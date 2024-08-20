@@ -39,11 +39,10 @@ textarea {
   --HR: rgb(237, 237, 237);
   --H-COLOR: #ff8c00;
   --CONTACT-ICON-COLOR: #ff8c00;
-  --FOOTER-F-COLOR:#ECF0F1;
-
+  --FOOTER-F-COLOR: #ecf0f1;
 
   /* || STYLE */
-  --INDENT-LEFT: 1rem;
+  --INDENT-LEFT: 0;
   --MARGIN-BGCOLOR: 1rem;
   --PADDING-TEXT: 1rem;
   --BORDER-RADIUS: 10px;
@@ -55,18 +54,18 @@ textarea {
 /* || GENERAL STYLES */
 
 [data-theme="light"] {
-  --BGCOLOR: #F7F7F7;
-  --BGCOLOR-SECTION: #ECF0F1;
-  --HEADER-BGCOLOR: #2C3E50;
+  --BGCOLOR: #f7f7f7;
+  --BGCOLOR-SECTION: #ecf0f1;
+  --HEADER-BGCOLOR: #2c3e50;
   --BODY-BGCOLOR: #white;
-  --FOOTER-BGCOLOR: #2C3E50;
+  --FOOTER-BGCOLOR: #2c3e50;
   --F-COLOR: #333333;
   --SECONDARY-F-COLOR: #333333;
-  --LINK-COLOR: #F39C12;
+  --LINK-COLOR: #f39c12;
   --HR: #000;
-  --H-COLOR: #2C3E50;
-  --CONTACT-ICON-COLOR: #F39C12;
-  --FOOTER-F-COLOR:#ECF0F1;
+  --H-COLOR: #2c3e50;
+  --CONTACT-ICON-COLOR: #f39c12;
+  --FOOTER-F-COLOR: #ecf0f1;
 }
 
 html {
@@ -115,6 +114,7 @@ header {
 }
 
 .header__h1 {
+  margin-right: 1rem;
   transition: ease;
   color: var(--F-COLOR);
   font-size: 24px;
@@ -139,6 +139,10 @@ nav {
 .header__nav li a {
   margin-left: 1.5rem;
   margin-right: 1.5rem;
+}
+
+.header__theme {
+  margin-left: 0;
 }
 
 .header__theme .fa-solid {
@@ -228,7 +232,7 @@ nav {
 }
 
 .Center img {
-  border-radius:10px;
+  border-radius: 10px;
   float: right;
   margin: 0 1rem 0 1rem;
   width: 250px;
@@ -251,8 +255,7 @@ h6 {
 
 .aboutme__p {
   color: var(--F-COLOR);
-  padding-top: 3rem;
-  font-size: var(--FS);
+font-size: var(--FS);
   margin-left: var(--INDENT-LEFT);
 }
 
@@ -265,7 +268,6 @@ h6 {
 
 .edu {
   color: var(--F-COLOR);
-  margin-top: 0.3rem;
   margin-left: var(--INDENT-LEFT);
   font-size: var(--FS);
 }
@@ -418,20 +420,18 @@ footer {
     font-size: var(--FS);
   }
 
+  .header__nav li {
+    margin-left: rem;
+  }
+
   .header__nav li a {
     margin-left: 0.75rem;
     margin-right: 0.75rem;
   }
 
   .header__theme {
-    margin-right: 0;
     border: none;
     background: none;
-  }
-
-  .header__theme img {
-    width: 35px;
-    height: 30px;
   }
 
   .main__home {
@@ -468,6 +468,7 @@ footer {
     margin-bottom: 1rem;
   }
   .Center img {
+    margin-right: 0;
     width: 100%;
     max-width: 125px;
     height: 125px;
@@ -500,7 +501,7 @@ footer {
   }
 
   .footer__contact {
-    margin-top: 1rem;
+    margin-top: 0;
     display: block;
   }
 
