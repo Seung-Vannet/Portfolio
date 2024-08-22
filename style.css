@@ -146,6 +146,7 @@ nav {
 }
 
 .header__theme .fa-solid {
+  font-size: 20px;
   color: white;
 }
 
@@ -255,7 +256,7 @@ h6 {
 
 .aboutme__p {
   color: var(--F-COLOR);
-font-size: var(--FS);
+  font-size: var(--FS);
   margin-left: var(--INDENT-LEFT);
 }
 
@@ -371,12 +372,12 @@ h6 {
 footer {
   margin-top: 2rem;
   padding: 0.5rem;
-  min-height: 30vh;
+  min-height: 20vh;
   background-color: var(--FOOTER-BGCOLOR);
 }
 
 .footer__contact {
-  margin-top: 3rem;
+  margin-top: 1.5rem;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
