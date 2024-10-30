@@ -5,175 +5,429 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Seung Vannet</title>
     <link
-      rel="icon"
-      href="img/Profile.png"
-      type="image/i-con"
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
     />
-    <link rel="stylesheet" href="style.css" />
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-      <link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="/style.css" />
   </head>
-
   <body>
     <header>
-        <h1 class="header__h1"><abbr title="Seung Vannet">S</abbr></h1>
-        <nav class="header__nav">
-          <li>
-            <a href="#home">HOME</a>
-          </li>
-          <li>
-            <a href="#me">ABOUT ME</a>
-          </li>
-          <li>
-            <a href="#skill">SKILLS</a>
-          </li>
-          <li>
-            <a href="#contact">CONTACT</a>
-          </li>
+      <nav>
+        <h1 class="nav-h1"><abbr title="Seung Vannet">S</abbr></h1>
+        <ul>
+          <li class="bold"><a href="#">HOME</a></li>
+          <li class="bold"><a href="#About-Me">ABOUT ME</a></li>
+          <li class="bold"><a href="#Skills">SKILLS</a></li>
+          <li class="bold"><a href="#Project">PROJECT</a></li>
+          <li class="bold"><a href="#Contact">CONTACT</a></li>
+        </ul>
+        <i class="fa-solid fa-toggle-on"></i>
+        <!--         <i class="fa-solid fa-toggle-off"></i>
+ -->
       </nav>
-      <button class="header__theme" id="theme"><i class="fa-solid fa-sun"></i></button>
-      
     </header>
 
     <main>
-      <article class="main__home" id="home">
+      <section class="Introduction">
+        <div class="introduction-flex-all">
+          <div class="introduction-flex">
+            <div>
+              <img class="introduction-img" src="/img/ME.jpg" alt="" />
+            </div>
+            <div>
+              <p>
+                <span class="introduction-span1 bold"
+                  >Information<br />Technology Engineering</span
+                >
+              </p>
 
-      <section class="main__introduction">
-        <figure class="main__intro">
-          <figcaption class="main__fig">
-            <span class="main__figcaps__span0">Information <br> Technology Engineering <br></span>
-            <hr class="main__hr">
-            <span class="main__figcaps__span1">Seung Vannet<br></span> 
-            <span class="main__figcaps__span2">18 Years Old <br></span>
-            <span class="main__figcaps__span3">Male <br></span>
-            <span class="main__figcaps__span4">Phnom Penh, Cambodia</span>
-          </figcaption>
-          <img
-          id="main__Logo"
-            src="img/ME.jpg"
-            alt="Me"
-            title="Me"
-            width="3020"
-            height="3020"
-          />
-        </figure>
+              <hr class="introduction-hr" />
+              <p>
+                <span class="introduction-span2 bold">Seung Vannet</span><br />
+                <span class="introduction-span3">19 Years Old</span><br />
+                <span class="introduction-span4">Male</span><br />
+                <span class="introduction-span5">Phnom Penh, Cambodia</span>
+              </p>
+            </div>
+          </div>
+
+          <div>
+            <a class="introduction-a" href="#About-Me">About Me</a>
+          </div>
+        </div>
       </section>
-    </article>
 
-      <article class="main__me" id="me">
-      <h3>ABOUT ME</h3>
+      <section class="About-Me" id="About-Me">
+        <h1 class="main-h1">About Me</h1>
 
-      <section class="main__aboutme">
-        <figure class="Center">
-        </figcaption>
-        <img
-        src="img/1.jpg"
-        alt="Picture"
-        title="Picture"
-        width="532"
-        height="712"
-      />
-       <figcaption class="aboutme__p">
-          I am a dedicated first-year student majoring in Information Technology
-          Engineering at the Royal University of Phnom Penh. I am passionate
-          about technology and have a strong foundation in research,
-          problem-solving, and self-directed. <br><br>
-          With good proficiency in English, I can communicate effectively in
-          professional settings. I am friendly, open-minded, and collaborative,
-          and I value honesty and respect in all interactions. I am quick to
-          adapt to new environments and situations, and I am highly motivated to
-          gain new knowledge and skills. I aspire to use the knowledge I have
-          gained to help develop society and contribute positively to my
-          community.
+        <div class="aboutme-flex">
+          <p>
+            <span class="aboutme-span1">Greeting,</span><br />
+            <span class="aboutme-span2">
+              I am an ambitious and detail-oriented enthusiast in technology who
+              is always looking to explore the vast world of digital innovation
+              in ways that are meaningful. It is the curiosity that initiated my
+              journey into technology, which has grown over time into a
+              committed pursuit. Presently, I am enriching my knowledge in the
+              course of Information Technology Engineering at RUPP, where I have
+              plunged myself into main areas like Web Development, Data
+              Analysis, and cybersecurity. These domains appeal to me because I
+              can solve difficult problems and create digital solutions which,
+              rather than just being functional, may be influential for everyday
+              users.
+              <br /><br />
 
-      </figure>
+              Other than in course work taken, this has been acquired in
+              projects I work on that challenge me to reach beyond my limits
+              with the ultimate aim of refining my expertise and acquainting me
+              with the fast pace that defines this technology arena. More
+              specifically, the power of emerging technologies and how they can
+              solve practical problems-be it by efficiently building accessible
+              web experiences or further enriching insights from data-driven
+              decisions. I try to infuse each project with a mix of creativity,
+              strategy, and technical detail, knowing these are the ingredients
+              of truly transformational work.
+              <br /><br />
+
+              One of my major objectives that helps me drive my journey is,
+              later on, to create an AI assistant for myself similar to JARVIS
+              from the Iron Man movies that would seamlessly support one through
+              daily tasks up to complex information management. This is the
+              aspiration that drives me to be continuously expanding my
+              knowledge in AI and machine learning to, eventually, build a
+              system that can learn and adapt to deliver value to users in ways
+              we cannot even dream of today. This leads me to believe, by
+              commitment to lifelong learning, in taking every opportunity that
+              may broaden my skill set and take me closer to creating something
+              innovative and impactful. My ultimate goal is to contribute
+              meaningfully to the technology industry and finally lead such
+              projects that push the boundaries of innovation with long-lasting,
+              positive impacts on people and communities.
+            </span>
+          </p>
+          <figure>
+            <div class="aboutme-center">
+              <img class="aboutme-img" src="/img/1.jpg" alt="" />
+              <figcaption class="aboutme-img-figcap">
+                <span>Education</span><br />
+                <hr />
+                <span class="bold"
+                  >Information Technology Engineering (ITE)</span
+                ><br />
+                <span>Year 1 | 2024 - 2025 (Expected Graduation: 2027)</span
+                ><br />
+                <span class="bold">Royal University of Phnom Penh</span
+                ><br /><br />
+
+                <span
+                  >Graduated High School 2023 at
+                  <span class="bold">BackTouk High School</span></span
+                >
+              </figcaption>
+            </div>
+          </figure>
+        </div>
       </section>
-    </article>
 
-    <article>
-      <h4>EDUCATION</h4>
+      <section class="Skills" id="Skills">
+        <h1 class="main-h1">Skills</h1>
 
-      <section class="Education">
-        <p class="edu__p1 edu">
-          Information Technology Engineering (ITE)
-        </p>
-        <p class="edu__p2 edu">
-          Year 1 | 2024 - 2025 (Expected Graduation: 2027)
-        </p>
-        <p class="edu__p3 edu">Royal University of Phnom Penh</p>
-        <p class="edu__p4 edu">
-           <span class="notbold">Graduated High School 2023 at</span> 
-           <span class="bold">Bak Touk High School.</span>
-           </p>
-        </p>
-    </section>
+        <div class="skills-flex">
+          <div class="skills-card">
+            <figure class="skills-center">
+              <img
+                class="skills-card-img frontend"
+                src="/img/Frontend.png"
+                alt=""
+              />
+              <figcaption class="skills-card-skill bold">
+                Frontend Development
+              </figcaption>
+            </figure>
+            <p class="skills-card-description">
+              With a strong background in HTML, CSS, and JavaScript, I'm able to
+              design and implement an aesthetically pleasing, well-structured
+              website that's easy to use. Knowing the importance of user
+              experience, I focus on responsive design that ensures the site
+              works just as well on desktops, tablets, and mobile devices.
+            </p>
+          </div>
 
-  </article>
+          <div class="skills-card">
+            <figure class="skills-center">
+              <img
+                class="skills-card-img project-management"
+                src="/img/Project-Management.webp"
+                alt=""
+              />
+              <figcaption class="skills-card-skill bold">
+                Project Management
+              </figcaption>
+            </figure>
+            <p class="skills-card-description">
+              By experience, I have developed project management skills that
+              will enable me to plan, execute, and manage projects from
+              inception through to completion. I believe it is of paramount
+              importance that a project should be well-organized in such a way
+              that deadlines and set goals of teams are met, and I make sure to
+              keep in good contact with each stakeholder involved.
+            </p>
+          </div>
 
-  <article id="skill">
-    <h5>SKILLS</h5>
-    <section  class="Technical__skill0">
-      <h1>Technical Skill</h1>
-      <div class="center__content">
- <figure class="Figure__FrontEnd">
-        <img class="skill__img1" src="img/FrontEnd.png" alt="frontend" width="1192" height="1196">
-        <figcaption class="img1__Figcap">
-          <span class="img1__span1">Front-End Development <br></span>
-          <span class="img1__span2">I have developed a foundational understanding of frontend development, focusing on HTML and CSS. In HTML, I've learned to structure content effectively using elements and tags, while in CSS, I've focused on creating styles and implementing layout strategies. Currently, I am expanding my skills in creating responsive and visually appealing web interfaces.</span>
-        </figcaption>
-      </figure>
+          <div class="skills-card">
+            <figure class="skills-center">
+              <img class="skills-card-img" src="/img/Leadership.jpg" alt="" />
+              <figcaption class="skills-card-skill bold">Leadership</figcaption>
+            </figure>
+            <p class="skills-card-description">
+              I learn and explore how to lead and inspire teams toward one
+              common goal. I create an environment in which people collaborate
+              and support each other. This even helps me encourage my team
+              members to speak up their ideas and contribute more actively,
+              hence boosting creativity and productivity in our projects.
+            </p>
+          </div>
 
-      <figure class="Figure__FrontEnd">
-        <img class="skill__img2"  src="img/Person.png" alt="Person" width="1080" height="1080">
-        <figcaption class="img2__Figcap">
-          <span class="img2__span1">Programming Languages<br></span>
-          <span class="img2__span2">I have a solid grasp of the fundamental concepts and principles of C, C++, and Python programming languages. In C, I am proficient in variables, data types, and control structures. In C++, I understand concepts like classes and inheritance. I am currently learning and exploring Python, familiarizing myself with its syntax and basics.</span>
-        </figcaption>
-      </figure>
-  </div>
-  
-    <h1>Soft Skills</h1>
-      <section class="SoftSkill">
-        <ol class="softskill">
-            <li>Research and Learning</li>
-            <li>Self-Study</li>
-            <li>Problem-Solving</li>
-            <li>Teamwork</li>
-        </ol>
-    </section>
+          <div class="skills-card">
+            <figure class="skills-center">
+              <img
+                class="skills-card-img communication"
+                src="/img/Communication.webp"
+                alt=""
+              />
+              <figcaption class="skills-card-skill bold">
+                Communication
+              </figcaption>
+            </figure>
+            <p class="skills-card-description">
+              I know clear communication is the backbone of any successful
+              project. As such, it involves open and transparent communication
+              with my team and clients so that all parties can be in the same
+              direction, equally informed at each stage of the process. In this
+              way, it brews up trust and culminates in better results.
+            </p>
+          </div>
 
-  </article>
+          <div class="skills-card">
+            <figure class="skills-center">
+              <img class="skills-card-img" src="/img/Teamwork.png" alt="" />
+              <figcaption class="skills-card-skill bold">Teamwork</figcaption>
+            </figure>
+            <p class="skills-card-description">
+              Being part of a team is all about cooperation toward one common
+              vision. I love working in a team and becoming a part of any
+              working group where diverse opinions and ideas are considered. I
+              participate actively, assist my teammates, and celebrating our
+              common achievements since the more successful the efforts, the
+              better.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="Knowledge" id="Knowledge">
+        <h1 class="main-h1">Knowledge</h1>
+
+        <div class="knowledge-flex">
+          <figure class="knowledge-card">
+            <img src="/img/HTML-logo.png" alt="" />
+            <figcaption>Intermediate</figcaption>
+          </figure>
+
+          <figure class="knowledge-card">
+            <img src="/img/CSS-logo.png" alt="" />
+            <figcaption>Intermediate</figcaption>
+          </figure>
+
+          <figure class="knowledge-card">
+            <img src="/img/JAVASCRIPT-logo.png" alt="" />
+            <figcaption>Beginner</figcaption>
+          </figure>
+
+          <figure class="knowledge-card">
+            <img src="/img/C-logo.png" alt="" />
+            <figcaption>Basic</figcaption>
+          </figure>
+
+          <figure class="knowledge-card">
+            <img src="/img/CPP-logo.png" alt="" />
+            <figcaption>Basic</figcaption>
+          </figure>
+
+          <figure class="knowledge-card">
+            <img src="/img/PYTHON-logo.png" alt="" />
+            <figcaption>Beginner</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="Project" id="Project">
+        <h1 class="main-h1">Project</h1>
+
+        <div class="project-gap">
+          <div class="project-card">
+            <div class="project-flex">
+              <img class="project-img" src="/img/PineArc-logo.png" alt="" />
+
+              <div class="project-spacebetween">
+                <p>
+                  <span class="project-title bold">PineArc</span>
+                  <br />
+                  <span class="project-description">
+                    Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                    Iure odit enim tenetur facilis laudantium maxime delectus,
+                    maiores consequuntur nesciunt omnis? Similique unde at quam
+                    soluta tempore alias quasi, repudiandae quaerat. Lorem
+                    ipsum, dolor sit amet consectetur adipisicing elit. Iste
+                    tenetur fugit voluptas a corrupti perspiciatis delectus
+                    incidunt, quis repellendus neque cumque mollitia doloremque
+                    sapiente eaque. Deserunt nulla odit optio soluta?
+                  </span>
+                </p>
+
+                <div class="project-link">
+                  <a href="https://www.facebook.com/PineArc"
+                    ><img
+                      class="project-link-fb"
+                      src="/img/icon/Facebook.png"
+                      alt=""
+                  /></a>
+                  <a href="https://github.com/pinearc"
+                    ><img
+                      class="project-link-git"
+                      src="/img/icon/Github.png"
+                      alt=""
+                  /></a>
+                  <a href="https://www.instagram.com/pine.arc/"
+                    ><img
+                      class="project-link-insta"
+                      src="/img/icon/Intagram.png"
+                      alt=""
+                  /></a>
+                  <a
+                    href="https://www.linkedin.com/company/104007462/admin/dashboard/"
+                    ><img
+                      class="project-link-linked"
+                      src="/img/icon/Linkedin.png"
+                      alt=""
+                  /></a>
+                  <a href="https://x.com/PineArc_dev"
+                    ><img
+                      class="project-link-twit"
+                      src="/img/icon/Twitter.png"
+                      alt=""
+                  /></a>
+                  <a href="https://www.youtube.com/@Pine-Arc"
+                    ><img
+                      class="project-link-yt"
+                      src="/img/icon/Youtube.png"
+                      alt=""
+                  /></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <div class="project-flex">
+              <i class="fa-solid fa-hammer project-img-hammer"></i>
+              <div class="project-center">
+                <p>
+                  <span class="project-title bold">PineArc</span>
+                  <br />
+                  <span class="project-description">
+                    Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                    Iure odit enim tenetur facilis laudantium maxime delectus,
+                    maiores consequuntur nesciunt omnis? Similique unde at quam
+                    soluta tempore alias quasi, repudiandae quaerat. Lorem
+                    ipsum, dolor sit amet consectetur adipisicing elit. Iste
+                    tenetur fugit voluptas a corrupti perspiciatis delectus
+                    incidunt, quis repellendus neque cumque mollitia doloremque
+                    sapiente eaque. Deserunt nulla odit optio soluta?
+                  </span>
+                </p>
+
+                <!--  <div class="project-link">
+                  <a href="https://www.facebook.com/PineArc"><img src="/img/icon/Facebook.png" alt=""></i></a>
+                  <a href="https://github.com/pinearc"><img src="/img/icon/GIthub.png" alt=""></a>
+                  <a href="https://www.instagram.com/pine.arc/"><img src="/img/icon/Intagram.png" alt=""></a>
+                  <a href="https://www.linkedin.com/company/104007462/admin/dashboard/"><img src="/img/icon/Linkin.png" alt=""></a>
+                  <a href="https://x.com/PineArc_dev"><img src="/img/icon/Twitter.png" alt=""></a>
+                  <a href="https://www.youtube.com/@Pine-Arc"><img src="/img/icon/Youtube.png" alt=""></a>
+                </div> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="Contact" id="Contact">
+        <h1 class="contact-h1">Contact</h1>
+        <div class="contact-container">
+          <div class="contact-flex">
+            <div class="contact-media">
+              <a href="https://www.facebook.com/seung.vannet.5/"
+                ><img src="/img/icon/Facebook.png" alt="" /><br
+              /></a>
+              <p>Active</p>
+            </div>
+
+            <div class="contact-media">
+              <a href="https://github.com/Seung-Vannet"
+                ><img src="/img/icon/Github.png" alt=""
+              /></a>
+              <p>Active</p>
+            </div>
+
+            <div class="contact-media">
+              <a href="https://www.instagram.com/seungvannet/"
+                ><img src="/img/icon/Intagram.png" alt=""
+              /></a>
+              <p>Active</p>
+            </div>
+
+            <div class="contact-media">
+              <a href="https://www.linkedin.com/in/seung-vannet-29667b284/"
+                ><img src="/img/icon/Linkedin.png" alt=""
+              /></a>
+              <p>Active</p>
+            </div>
+
+            <div class="contact-media">
+              <a href="#"><img src="/img/icon/Twitter.png" alt="" /></a>
+              <p class="inactive">Inactive</p>
+            </div>
+
+            <div class="contact-media">
+              <a href="#"><img src="/img/icon/Youtube.png" alt="" /></a>
+              <p class="inactive">Inactive</p>
+            </div>
+          </div>
+
+          <div class="contact-link">
+            <div class="contact-info-mail">
+              <a href="mailto:seungvannet.personal@gmail.com">
+                <span><i class="fa-solid fa-envelope"></i></span>
+                <span class="mail">seungvannet.personal@gmail.com</span>
+              </a>
+            </div>
+
+            <div class="contact-info-phone">
+              <a href="tel:+85581508898">
+                <span><i class="fa-solid fa-phone"></i></span>
+                <span>+855 81508898</span>
+              </a>
+            </div>
+
+            <div class="contact-info-location">
+              <a href="https://maps.app.goo.gl/BWoNfSw3v1m7ajHK7">
+                <span><i class="fa-solid fa-map-location"></i></span>
+                <span class="contact-detail">Phnom Penh, Cambodia</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
-
-    <footer>
-      <article id="contact">
-        <h6>CONTACT</h6>
-
-        <section class="footer__contact">
-        <figure class="footer__icon1">
-          <i class="fa-solid fa-phone""></i>      
-        <figcaption class="footer__figcap1">
-          <a class="footer__a" href="tel:+85581508898">+855 81 50 88 98</a>
-        </figcaption>
-      </figure>
-
-        <figure class="footer__icon2">
-          <i class="fa-solid fa-envelope""></i>
-        <figcaption class="footer__figcap1">
-          <a class="footer__a" href="mailto:SeungVannet.Personal@gmail.com">SeungVannet.Personal@gmail.com</a>
-        </figcaption>
-      </figure>
-
-        <figure class="footer__icon3">
-          <i class="fa-solid fa-location-dot""></i>       
-        <figcaption class="footer__figcap1">
-          <address>Phum Mol, Sangkat Dangkao, Khan Dangkao Phnom Penh</address>
-        </figcaption>
-      </figure>
-      </section>
-
-    </article>
-    </footer>
-    <script src="main.js"></script>
   </body>
 </html>
