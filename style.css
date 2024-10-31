@@ -177,6 +177,7 @@ nav ul {
 
 .aboutme-flex {
   display: flex;
+  flex-direction: row-reverse;
   width: 100%;
   align-items: center;
   justify-content: center;
@@ -292,7 +293,7 @@ nav ul {
 
 .knowledge-card figcaption {
   color: var(--Secondary-F-Color);
-  font-size: 14px;
+  font-size: var(--Secondary-FS);
 }
 
 /* Project */
@@ -457,4 +458,185 @@ nav ul {
   gap: 0.5rem;
   font-size: 1rem;
   margin-top: 0.5rem;
+}
+
+/* Smart Phone */
+
+@media screen and (max-width: 767px) {
+  :root {
+    --FS: 16px;
+    --Secondary-FS: 12px;
+    --section-margin: 0 2rem 0 2rem;
+  }
+
+  nav ul {
+    gap: 2rem;
+    font-size: 14px;
+  }
+
+  .main-h1 {
+    text-align: center;
+    margin: 2rem 0 2rem 0;
+    font-size: 22px;
+  }
+
+  /* Introduction */
+
+  .Introduction {
+    margin: 5rem 3rem 0 3rem;
+  }
+
+  .introduction-img {
+    width: 150px;
+    height: auto;
+  }
+
+  .introduction-span1 {
+    font-size: 26px;
+  }
+
+  .introduction-hr {
+    margin: 0.2rem 0 0.2rem 0;
+    height: 0.2rem;
+  }
+
+  .introduction-span2 {
+    font-size: 20px;
+  }
+
+  .introduction-span3 {
+    font-size: 16px;
+  }
+
+  .introduction-span4 {
+    font-size: 16px;
+  }
+
+  .introduction-span5 {
+    font-size: 16px;
+  }
+
+  .introduction-a {
+    display: none;
+  }
+
+  /*  About Me */
+
+  .aboutme-flex {
+    display: contents;
+  }
+
+  .aboutme-center {
+    float: right;
+    margin: 0 0 0.5rem 0.5rem;
+  }
+
+  .aboutme-img {
+    border: 4px outset var(--F-Color);
+    width: 200px;
+    height: auto;
+  }
+
+  .aboutme-img-figcap {
+    text-align: center;
+    font-size: 8px;
+  }
+
+  /* Skill */
+
+  .skills-flex {
+    gap: 1rem;
+  }
+
+  .skills-card {
+    width: 300px;
+    padding: 0.5rem 1rem 0.5rem 1rem;
+    border-radius: 10px;
+  }
+
+  .skills-card-img {
+    width: 98px;
+  }
+
+  .skills-card-img.frontend,
+  .skills-card-img.project-management {
+    width: 70px;
+  }
+
+  .skills-card-img.communication {
+    width: 62px;
+  }
+
+  /* Knowledge */
+
+  .knowledge-flex {
+    gap: 2rem;
+  }
+
+  .knowledge-card img {
+    width: 60px;
+    height: auto;
+  }
+
+  /* Project */
+
+  .project-img {
+    width: 120px;
+    height: 120px;
+    margin-right: 1rem;
+  }
+
+  .project-img-hammer {
+    padding: 34px;
+    font-size: 45px;
+    margin-right: 1rem;
+    justify-content: center;
+  }
+
+  /* Contact */
+
+  .contact-media a {
+    margin: 0 1rem 0 1rem;
+  }
+
+  .contact-media img {
+    width: 30px;
+    margin-bottom: 0.5rem;
+  }
+
+  .contact-media:hover img {
+    width: 40px;
+    margin-bottom: 0;
+  }
+
+  .contact-link {
+    margin-top: 2rem;
+    margin-right: 2rem;
+  }
+
+  .fa-envelope {
+    font-size: 2rem;
+  }
+
+  .fa-phone,
+  .fa-map-location {
+    font-size: 1.6rem;
+  }
+
+  .contact-info-mail a {
+    gap: 0.2rem;
+    font-size: 0.8rem;
+    margin-top: 0.4rem;
+  }
+
+  .contact-info-phone a,
+  .contact-info-location a {
+    gap: 0.5rem;
+    font-size: 0.8rem;
+    margin-top: 0.5rem;
+  }
+
+  .contact-info-phone {
+    margin: 0 8rem 0 6rem;
+  }
 }
