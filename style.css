@@ -3,7 +3,6 @@
 * {
   margin: 0;
   box-sizing: border-box;
-  transition: 0.1s linear;
 }
 
 :root {
@@ -13,7 +12,20 @@
   --Secondary-FS: 16px;
   --BG-Color: whitesmoke;
   --Hover-Color: grey;
+  --Card-BG-Color: none;
+  --Footer-BG-Color: rgb(234, 234, 234);
   --section-margin: 0 6rem 0 6rem;
+}
+
+.dark-theme {
+  --F-Color: rgb(223, 223, 223);
+  --Secondary-F-Color: rgb(181, 181, 181);
+  --FS: 20px;
+  --Secondary-FS: 16px;
+  --BG-Color: rgb(35, 35, 35);
+  --Hover-Color: grey;
+  --Card-BG-Color: rgb(50, 50, 50);
+  --Footer-BG-Color: rgb(29, 29, 29);
 }
 
 html {
@@ -28,6 +40,7 @@ body {
   font-size: var(--FS);
   font-family: "Outfit", sans-serif;
   color: var(--F-Color);
+  transition: 0.2s;
 }
 
 a:any-link {
@@ -57,11 +70,15 @@ abbr {
 
 /* Header */
 
+header {
+  padding-top: 0.5rem;
+  margin: var(--section-margin);
+}
+
 nav {
   display: flex;
   flex-direction: row;
   width: 100%;
-  padding: 0.5rem 1rem 0 1rem;
   justify-content: space-between;
   align-items: center;
 }
@@ -75,6 +92,13 @@ nav ul {
   gap: 4rem;
   font-size: 18px;
   list-style-type: none;
+}
+
+.theme {
+  font-size: 20px;
+  color: var(--F-Color);
+  background-color: var(--BG-);
+  border: none;
 }
 
 /* Introduction */
@@ -109,7 +133,7 @@ nav ul {
 .introduction-hr {
   margin: 0.5rem 0 0.5rem 0;
   height: 0.3rem;
-  background-color: black;
+  background-color: var(--F-Color);
   border: none;
 }
 
@@ -208,8 +232,9 @@ nav ul {
   align-items: center;
   width: 450px;
   padding: 1rem 2rem 1rem 2rem;
-  border: 1px solid black;
+  border: 1px solid var(--F-Color);
   border-radius: 10px;
+  background-color: var(--Card-BG-Color);
 }
 
 .skills-center {
@@ -276,6 +301,7 @@ nav ul {
 }
 
 .project-card {
+  background-color: var(--Card-BG-Color);
   position: relative;
   padding: 1rem;
   border: 1px solid var(--F-Color);
@@ -355,7 +381,7 @@ nav ul {
 
 .contact-container {
   padding: 1.5rem 0 1.5rem 0;
-  background-color: rgb(234, 234, 234);
+  background-color: var(--Footer-BG-Color);
 }
 
 .contact-flex {
