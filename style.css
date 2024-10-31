@@ -466,12 +466,12 @@ nav ul {
   :root {
     --FS: 16px;
     --Secondary-FS: 12px;
-    --section-margin: 0 2rem 0 2rem;
+    --section-margin: 0 1rem 0 1rem;
   }
 
   nav ul {
-    gap: 2rem;
-    font-size: 14px;
+    gap: 1rem;
+    font-size: 8px;
   }
 
   .main-h1 {
@@ -533,7 +533,7 @@ nav ul {
 
   .aboutme-img {
     border: 4px outset var(--F-Color);
-    width: 200px;
+    width: 150px;
     height: auto;
   }
 
