@@ -93,6 +93,7 @@ nav ul {
   gap: 4rem;
   font-size: 18px;
   list-style-type: none;
+  padding: 0;
 }
 
 .theme {
@@ -469,7 +470,12 @@ nav ul {
     --section-margin: 0 1rem 0 1rem;
   }
 
+  nav {
+    margin-right: 1rem;
+  }
+
   nav ul {
+    align-items: center;
     gap: 1rem;
     font-size: 8px;
   }
@@ -483,37 +489,37 @@ nav ul {
   /* Introduction */
 
   .Introduction {
-    margin: 5rem 3rem 0 3rem;
+    margin: 3rem 1rem 0 1rem;
   }
 
   .introduction-img {
-    width: 150px;
+    width: 100px;
     height: auto;
   }
 
   .introduction-span1 {
-    font-size: 26px;
+    font-size: 16px;
   }
 
   .introduction-hr {
     margin: 0.2rem 0 0.2rem 0;
-    height: 0.2rem;
+    height: 0.1rem;
   }
 
   .introduction-span2 {
-    font-size: 20px;
+    font-size: 14px;
   }
 
   .introduction-span3 {
-    font-size: 16px;
+    font-size: 12px;
   }
 
   .introduction-span4 {
-    font-size: 16px;
+    font-size: 12px;
   }
 
   .introduction-span5 {
-    font-size: 16px;
+    font-size: 12px;
   }
 
   .introduction-a {
@@ -533,13 +539,13 @@ nav ul {
 
   .aboutme-img {
     border: 4px outset var(--F-Color);
-    width: 150px;
+    width: 100px;
     height: auto;
   }
 
   .aboutme-img-figcap {
     text-align: center;
-    font-size: 8px;
+    font-size: 4px;
   }
 
   /* Skill */
@@ -596,47 +602,237 @@ nav ul {
   /* Contact */
 
   .contact-media a {
-    margin: 0 1rem 0 1rem;
+    margin: 0 0.5rem 0 0.5rem;
   }
 
   .contact-media img {
-    width: 30px;
-    margin-bottom: 0.5rem;
+    width: 25px;
+    margin-bottom: 0;
   }
 
   .contact-media:hover img {
-    width: 40px;
+    width: 35px;
     margin-bottom: 0;
   }
 
   .contact-link {
     margin-top: 2rem;
-    margin-right: 2rem;
+    margin-right: 0;
   }
 
   .fa-envelope {
-    font-size: 2rem;
+    font-size: 1.5rem;
   }
 
   .fa-phone,
   .fa-map-location {
-    font-size: 1.6rem;
+    font-size: 1.1rem;
+  }
+
+  .contact-info-mail a {
+    gap: 0.2rem;
+    font-size: 0.6rem;
+    margin-top: 0.4rem;
+    max-width: 100px;
+    display: block;
+    text-align: center;
+    overflow-wrap: break-word;
+  }
+
+  .contact-info-phone a,
+  .contact-info-location a {
+    gap: 0.5rem;
+    font-size: 0.6rem;
+    margin-top: 0.5rem;
+  }
+
+  .contact-info-phone {
+    margin: 0 4rem 0 4rem;
+  }
+}
+
+/* Tablet */
+
+@media screen and (min-width: 767px) and (max-width: 1200px) {
+  :root {
+    --FS: 20px;
+    --Secondary-FS: 16px;
+    --section-margin: 0 2rem 0 2rem;
+  }
+
+  nav {
+    margin-right: 1rem;
+  }
+
+  nav ul {
+    align-items: center;
+    gap: 1.5rem;
+    font-size: 14px;
+  }
+
+  .main-h1 {
+    text-align: center;
+    margin: 2rem 0 2rem 0;
+    font-size: 22px;
+  }
+
+  /* Introduction */
+
+  .Introduction {
+    margin: 3rem 2rem 0 2rem;
+  }
+
+  .introduction-img {
+    width: 200px;
+    height: auto;
+  }
+
+  .introduction-span1 {
+    font-size: 24px;
+  }
+
+  .introduction-hr {
+    margin: 0.2rem 0 0.2rem 0;
+    height: 0.1rem;
+  }
+
+  .introduction-span2 {
+    font-size: 22px;
+  }
+
+  .introduction-span3 {
+    font-size: 20px;
+  }
+
+  .introduction-span4 {
+    font-size: 20px;
+  }
+
+  .introduction-span5 {
+    font-size: 20px;
+  }
+
+  .introduction-a {
+    display: none;
+  }
+
+  /*  About Me */
+
+  .aboutme-flex {
+    display: contents;
+  }
+
+  .aboutme-center {
+    float: right;
+    margin: 0 0 0.5rem 0.5rem;
+  }
+
+  .aboutme-img {
+    border: 4px outset var(--F-Color);
+    width: 200px;
+    height: auto;
+  }
+
+  .aboutme-img-figcap {
+    text-align: center;
+    font-size: 8px;
+  }
+
+  /* Skill */
+
+  .skills-flex {
+    gap: 1rem;
+  }
+
+  .skills-card {
+    width: 300px;
+    padding: 0.5rem 1rem 0.5rem 1rem;
+    border-radius: 10px;
+  }
+
+  .skills-card-img {
+    width: 98px;
+  }
+
+  .skills-card-img.frontend,
+  .skills-card-img.project-management {
+    width: 70px;
+  }
+
+  .skills-card-img.communication {
+    width: 62px;
+  }
+
+  /* Knowledge */
+
+  .knowledge-flex {
+    gap: 2rem;
+  }
+
+  .knowledge-card img {
+    width: 60px;
+    height: auto;
+  }
+
+  /* Project */
+
+  .project-img {
+    width: 150px;
+    height: 150px;
+    margin-right: 1rem;
+  }
+
+  .project-img-hammer {
+    padding: 34px;
+    font-size: 75px;
+    margin-right: 1rem;
+    justify-content: center;
+  }
+
+  /* Contact */
+
+  .contact-media a {
+    margin: 0 1rem 0 1rem;
+  }
+
+  .contact-media img {
+    width: 35px;
+    margin-bottom: 0;
+  }
+
+  .contact-media:hover img {
+    width: 40px;
+  }
+
+  .contact-link {
+    margin-top: 2rem;
+    margin-right: 0;
+  }
+
+  .fa-envelope {
+    font-size: 2.5rem;
+  }
+
+  .fa-phone,
+  .fa-map-location {
+    font-size: 2.1rem;
   }
 
   .contact-info-mail a {
     gap: 0.2rem;
     font-size: 0.8rem;
     margin-top: 0.4rem;
+    max-width: 100px;
   }
 
   .contact-info-phone a,
   .contact-info-location a {
     gap: 0.5rem;
     font-size: 0.8rem;
-    margin-top: 0.5rem;
+    margin-top: 1rem;
   }
 
   .contact-info-phone {
-    margin: 0 8rem 0 6rem;
+    margin: 0 8rem 0 10rem;
   }
 }
