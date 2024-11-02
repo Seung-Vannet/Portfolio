@@ -3,7 +3,7 @@
 * {
   margin: 0;
   box-sizing: border-box;
-  transition: 0.2s linear;
+  transition: 0.2s ease;
 }
 
 :root {
@@ -470,14 +470,27 @@ nav ul {
     --section-margin: 0 1rem 0 1rem;
   }
 
+  .dark-theme {
+    --FS: 16px;
+    --Secondary-FS: 12px;
+  }
+
   nav {
     margin-right: 1rem;
+  }
+
+  .nav-h1 {
+    font-size: 16px;
   }
 
   nav ul {
     align-items: center;
     gap: 1rem;
-    font-size: 8px;
+    font-size: 12px;
+  }
+
+  .theme {
+    font-size: 16px;
   }
 
   .main-h1 {
