@@ -297,13 +297,15 @@ nav ul {
   font-size: var(--Secondary-FS);
 }
 
-/* Project */
+/* Project & Collaboration */
 
-.Project {
+.Project,
+.Collaboration {
   margin: var(--section-margin);
 }
 
-.project-card {
+.project-card,
+.collaboration-card {
   background-color: var(--Card-BG-Color);
   position: relative;
   padding: 1rem;
@@ -311,30 +313,35 @@ nav ul {
   border-radius: 10px;
 }
 
-.project-gap {
+.project-gap,
+.collaboration-gap {
   display: flex;
   flex-direction: column;
   gap: 2rem;
 }
 
-.project-flex {
+.project-flex,
+.collaboration-flex {
   display: flex;
 }
 
-.project-img {
+.project-img,
+.collaboration-img {
   width: 200px;
   height: 200px;
   border-radius: 10px;
   margin-right: 1rem;
 }
 
-.project-spacebetween {
+.project-spacebetween,
+.collaboration-spacebetween {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 
-.project-center {
+.project-center,
+.collaboration-center {
   align-content: center;
 }
 
@@ -345,24 +352,29 @@ nav ul {
   margin-right: 1rem;
 }
 
-.project-title {
+.project-title,
+.collaboration-title {
   font-size: var(--FS);
 }
 
-.project-description {
+.project-description,
+.collaboration-description {
   font-size: var(--Secondary-FS);
   color: var(--Secondary-F-Color);
 }
 
-.project-link {
+.project-link,
+.collaboration-link {
   text-align: end;
 }
 
-.project-link a {
+.project-link a,
+.collaboration-link a {
   margin-left: 5px;
 }
 
-.project-link img {
+.project-link img,
+.collaboration-link img {
   width: 20px;
 }
 
@@ -371,7 +383,13 @@ nav ul {
 .project-link-insta:hover,
 .project-link-linked:hover,
 .project-link-twit:hover,
-.project-link-yt:hover {
+.project-link-yt:hover,
+.collaboration-link-fb:hover,
+.collaboration-link-git:hover,
+.collaboration-link-insta:hover,
+.collaboration-link-linked:hover,
+.collaboration-link-twit:hover,
+.collaboration-link-yt:hover {
   width: 25px;
 }
 
@@ -506,12 +524,12 @@ nav ul {
   }
 
   .introduction-img {
-    width: 100px;
+    width: 150px;
     height: auto;
   }
 
   .introduction-span1 {
-    font-size: 16px;
+    font-size: 30px;
   }
 
   .introduction-hr {
@@ -520,19 +538,19 @@ nav ul {
   }
 
   .introduction-span2 {
-    font-size: 14px;
+    font-size: 22px;
   }
 
   .introduction-span3 {
-    font-size: 12px;
+    font-size: 16px;
   }
 
   .introduction-span4 {
-    font-size: 12px;
+    font-size: 16px;
   }
 
   .introduction-span5 {
-    font-size: 12px;
+    font-size: 16px;
   }
 
   .introduction-a {
@@ -552,13 +570,13 @@ nav ul {
 
   .aboutme-img {
     border: 4px outset var(--F-Color);
-    width: 100px;
+    width: 150px;
     height: auto;
   }
 
   .aboutme-img-figcap {
     text-align: center;
-    font-size: 4px;
+    font-size: 6px;
   }
 
   /* Skill */
@@ -597,9 +615,10 @@ nav ul {
     height: auto;
   }
 
-  /* Project */
+  /* Project & Collaboration*/
 
-  .project-img {
+  .project-img,
+  .collaboration-img {
     width: 120px;
     height: 120px;
     margin-right: 1rem;
@@ -787,9 +806,10 @@ nav ul {
     height: auto;
   }
 
-  /* Project */
+  /* Project & collarboration*/
 
-  .project-img {
+  .project-img,
+  .collaboration-img {
     width: 150px;
     height: 150px;
     margin-right: 1rem;
