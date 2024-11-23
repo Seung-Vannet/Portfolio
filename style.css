@@ -15,7 +15,7 @@
   --Hover-Color: grey;
   --Card-BG-Color: none;
   --Footer-BG-Color: rgb(234, 234, 234);
-  --section-margin: 0 6rem 0 6rem;
+  --section-margin: 0 9rem 0 9rem;
 }
 
 .dark-theme {
@@ -106,7 +106,8 @@ nav ul {
 /* Introduction */
 
 .Introduction {
-  margin: 5rem 6rem 0 6rem;
+  margin: var(--section-margin);
+  margin-top: 5rem;
 }
 
 .introduction-flex-all {
@@ -685,7 +686,7 @@ nav ul {
 
 /* Tablet */
 
-@media screen and (min-width: 767px) and (max-width: 1200px) {
+@media screen and (min-width: 768px) and (max-width: 1023px) {
   :root {
     --FS: 20px;
     --Secondary-FS: 16px;
