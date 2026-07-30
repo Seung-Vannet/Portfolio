@@ -1,0 +1,490 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Workout Routine | Seung Vannet</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #0b0c0e;
+        --bg-elev: #131417;
+        --ink: #f2f3f5;
+        --ink-dim: #9aa0ac;
+        --ink-faint: #5c6270;
+        --accent: #3e7bfa;
+        --line: rgba(242, 243, 245, 0.09);
+        --line-soft: rgba(242, 243, 245, 0.05);
+        --font-display: "Space Grotesk", sans-serif;
+        --font-body: "Inter", sans-serif;
+        --font-mono: "JetBrains Mono", monospace;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background: var(--bg);
+        color: var(--ink);
+        font-family: var(--font-body);
+        line-height: 1.6;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .page {
+        max-width: 1080px;
+        margin: 0 auto;
+        padding: 32px 24px 80px;
+      }
+
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 0 36px;
+        border-bottom: 1px solid var(--line-soft);
+        margin-bottom: 32px;
+      }
+
+      .brand {
+        font-family: var(--font-display);
+        font-weight: 600;
+        font-size: 1rem;
+      }
+
+      .brand span {
+        color: var(--accent);
+      }
+
+      .back-link {
+        font-family: var(--font-mono);
+        font-size: 0.78rem;
+        color: var(--ink-dim);
+        border: 1px solid var(--line-soft);
+        padding: 8px 12px;
+        border-radius: 999px;
+      }
+
+      .hero {
+        padding: 28px 0 24px;
+      }
+
+      .hero h1 {
+        font-family: var(--font-display);
+        font-size: clamp(1.8rem, 3.4vw, 2.5rem);
+        margin-bottom: 10px;
+      }
+
+      .hero p {
+        color: var(--ink-dim);
+        max-width: 720px;
+      }
+
+      .day-card {
+        border: 1px solid var(--line-soft);
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.03),
+          rgba(255, 255, 255, 0.015)
+        );
+        border-radius: 18px;
+        padding: 20px 22px;
+        margin-bottom: 16px;
+      }
+
+      .day-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 14px;
+      }
+
+      .day-name {
+        font-family: var(--font-display);
+        font-size: 1.05rem;
+        font-weight: 600;
+      }
+
+      .day-label {
+        font-family: var(--font-mono);
+        font-size: 0.74rem;
+        color: var(--accent);
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+      }
+
+      .day-meta {
+        color: var(--ink-dim);
+        font-size: 0.9rem;
+        margin-bottom: 12px;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 0.92rem;
+      }
+
+      th,
+      td {
+        text-align: left;
+        padding: 10px 0;
+        border-bottom: 1px solid var(--line-soft);
+      }
+
+      th {
+        font-family: var(--font-mono);
+        font-size: 0.74rem;
+        color: var(--ink-faint);
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+      }
+
+      td:first-child {
+        font-weight: 600;
+        color: var(--ink);
+      }
+
+      tr:last-child td {
+        border-bottom: none;
+      }
+
+      .note {
+        margin-top: 24px;
+        padding: 16px 18px;
+        border: 1px solid var(--line-soft);
+        border-radius: 14px;
+        color: var(--ink-dim);
+        background: rgba(255, 255, 255, 0.02);
+      }
+
+      @media (max-width: 720px) {
+        .page {
+          padding: 20px 16px 60px;
+        }
+
+        header {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 12px;
+        }
+
+        th:nth-child(2),
+        td:nth-child(2) {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <header>
+        <a href="index.html" class="brand">SV<span>.</span></a>
+        <a href="index.html" class="back-link">Back to portfolio</a>
+      </header>
+
+      <section class="hero">
+        <h1>Workout routine</h1>
+        <p>
+          A simple weekly split built around strength, recovery, and
+          consistency. This page exists as a personal reference rather than a
+          public feature.
+        </p>
+      </section>
+
+      <section class="day-card">
+        <div class="day-head">
+          <div class="day-name">Sunday — Push</div>
+          <div class="day-label">Full session</div>
+        </div>
+        <div class="day-meta">Chest, shoulders, triceps</div>
+        <table>
+          <thead>
+            <tr>
+              <th>Exercise</th>
+              <th>Target</th>
+              <th>Sets x Reps</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Barbell or Dumbbell Bench Press</td>
+              <td>Mid/overall chest</td>
+              <td>4 x 8-10</td>
+            </tr>
+            <tr>
+              <td>Incline Dumbbell Press</td>
+              <td>Upper chest</td>
+              <td>3 x 10-12</td>
+            </tr>
+            <tr>
+              <td>Seated Dumbbell Shoulder Press</td>
+              <td>Front/side shoulders</td>
+              <td>3 x 8-10</td>
+            </tr>
+            <tr>
+              <td>Dumbbell Lateral Raise</td>
+              <td>Side shoulders</td>
+              <td>3 x 12-15</td>
+            </tr>
+            <tr>
+              <td>Cable Chest Fly</td>
+              <td>Inner/mid chest</td>
+              <td>3 x 12-15</td>
+            </tr>
+            <tr>
+              <td>Triceps Rope Pushdown</td>
+              <td>Triceps</td>
+              <td>3 x 12-15</td>
+            </tr>
+            <tr>
+              <td>Overhead Dumbbell Triceps Extension</td>
+              <td>Triceps</td>
+              <td>2 x 12-15</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="day-card">
+        <div class="day-head">
+          <div class="day-name">Monday — Pull</div>
+          <div class="day-label">Full session</div>
+        </div>
+        <div class="day-meta">Back, biceps</div>
+        <table>
+          <thead>
+            <tr>
+              <th>Exercise</th>
+              <th>Target</th>
+              <th>Sets x Reps</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Lat Pulldown or Pull-ups</td>
+              <td>Lats</td>
+              <td>4 x 8-10</td>
+            </tr>
+            <tr>
+              <td>Barbell or Dumbbell Row</td>
+              <td>Mid-back thickness</td>
+              <td>4 x 8-10</td>
+            </tr>
+            <tr>
+              <td>Seated Cable Row</td>
+              <td>Mid-back</td>
+              <td>3 x 10-12</td>
+            </tr>
+            <tr>
+              <td>Face Pull</td>
+              <td>Rear delts + upper back</td>
+              <td>3 x 12-15</td>
+            </tr>
+            <tr>
+              <td>Barbell Curl</td>
+              <td>Biceps</td>
+              <td>3 x 10-12</td>
+            </tr>
+            <tr>
+              <td>Hammer Curl</td>
+              <td>Biceps + forearm</td>
+              <td>2 x 12-15</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="day-card">
+        <div class="day-head">
+          <div class="day-name">Tuesday — Legs</div>
+          <div class="day-label">Efficient session</div>
+        </div>
+        <div class="day-meta">Quads, hamstrings, glutes</div>
+        <table>
+          <thead>
+            <tr>
+              <th>Exercise</th>
+              <th>Target</th>
+              <th>Sets x Reps</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Barbell Back Squat or Leg Press</td>
+              <td>Quads, glutes</td>
+              <td>3 x 8-10</td>
+            </tr>
+            <tr>
+              <td>Romanian Deadlift</td>
+              <td>Hamstrings, glutes</td>
+              <td>3 x 8-10</td>
+            </tr>
+            <tr>
+              <td>Leg Curl</td>
+              <td>Hamstrings</td>
+              <td>2 x 12</td>
+            </tr>
+            <tr>
+              <td>Standing Calf Raise</td>
+              <td>Calves</td>
+              <td>3 x 15</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="day-card">
+        <div class="day-head">
+          <div class="day-name">Wednesday — Push</div>
+          <div class="day-label">Efficient session</div>
+        </div>
+        <div class="day-meta">Chest, shoulders, triceps</div>
+        <table>
+          <thead>
+            <tr>
+              <th>Exercise</th>
+              <th>Target</th>
+              <th>Sets x Reps</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Barbell or Dumbbell Bench Press</td>
+              <td>Mid chest</td>
+              <td>3 x 8-10</td>
+            </tr>
+            <tr>
+              <td>Seated Dumbbell Shoulder Press</td>
+              <td>Shoulders</td>
+              <td>3 x 8-10</td>
+            </tr>
+            <tr>
+              <td>Incline Dumbbell Press</td>
+              <td>Upper chest</td>
+              <td>2 x 12</td>
+            </tr>
+            <tr>
+              <td>Dumbbell Lateral Raise</td>
+              <td>Side shoulders</td>
+              <td>3 x 12-15</td>
+            </tr>
+            <tr>
+              <td>Triceps Rope Pushdown</td>
+              <td>Triceps</td>
+              <td>3 x 12-15</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="day-card">
+        <div class="day-head">
+          <div class="day-name">Thursday — Pull</div>
+          <div class="day-label">Efficient session</div>
+        </div>
+        <div class="day-meta">Back, biceps</div>
+        <table>
+          <thead>
+            <tr>
+              <th>Exercise</th>
+              <th>Target</th>
+              <th>Sets x Reps</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Lat Pulldown or Pull-ups</td>
+              <td>Back width</td>
+              <td>3 x 8-10</td>
+            </tr>
+            <tr>
+              <td>Dumbbell or Barbell Row</td>
+              <td>Back thickness</td>
+              <td>3 x 8-10</td>
+            </tr>
+            <tr>
+              <td>Seated Cable Row</td>
+              <td>Mid-back</td>
+              <td>2 x 12</td>
+            </tr>
+            <tr>
+              <td>Face Pull</td>
+              <td>Rear delts</td>
+              <td>2 x 15</td>
+            </tr>
+            <tr>
+              <td>Barbell or Dumbbell Curl</td>
+              <td>Biceps</td>
+              <td>3 x 10-12</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="day-card">
+        <div class="day-head">
+          <div class="day-name">Friday — Legs</div>
+          <div class="day-label">Efficient session</div>
+        </div>
+        <div class="day-meta">Quads, hamstrings, calves</div>
+        <table>
+          <thead>
+            <tr>
+              <th>Exercise</th>
+              <th>Target</th>
+              <th>Sets x Reps</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Squat or Leg Press</td>
+              <td>Quads, glutes</td>
+              <td>3 x 8-10</td>
+            </tr>
+            <tr>
+              <td>Romanian Deadlift</td>
+              <td>Hamstrings, glutes</td>
+              <td>3 x 10</td>
+            </tr>
+            <tr>
+              <td>Leg Curl</td>
+              <td>Hamstrings</td>
+              <td>2 x 12</td>
+            </tr>
+            <tr>
+              <td>Calf Raise</td>
+              <td>Calves</td>
+              <td>3 x 15</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="day-card">
+        <div class="day-head">
+          <div class="day-name">Saturday — Full Rest</div>
+          <div class="day-label">Recovery day</div>
+        </div>
+        <div class="day-meta">No gym, no cardio</div>
+        <p class="note">
+          This is your recovery day and your biggest coding block — let your
+          body fully reset before Sunday’s full push session kicks the week off
+          again.
+        </p>
+      </section>
+    </div>
+  </body>
+</html>

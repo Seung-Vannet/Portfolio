@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Seung Vannet — Portfolio</title>
+    <title>Seung Vannet | Portfolio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -133,6 +133,9 @@
         align-items: center;
         z-index: 1;
       }
+      .nav-links.open {
+        display: flex;
+      }
       .nav-links li {
         position: relative;
       }
@@ -213,8 +216,11 @@
         background: none;
         border: none;
         color: var(--ink);
-        font-size: 1.4rem;
+        font-size: 1.1rem;
         cursor: pointer;
+        padding: 8px;
+        border-radius: 8px;
+        border: 1px solid var(--line-soft);
       }
 
       /* ---------- hero ---------- */
@@ -292,25 +298,25 @@
       .hero-content {
         position: relative;
         z-index: 2;
-        max-width: 720px;
-        padding: 42px 48px;
+        max-width: 680px;
+        padding: 28px 32px;
         background: rgba(255, 255, 255, 0.01);
         border: 1px solid rgba(255, 255, 255, 0.05);
         backdrop-filter: blur(2px);
-        box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4);
-        border-radius: 24px;
+        box-shadow: 0 16px 48px rgba(0, 0, 0, 0.34);
+        border-radius: 20px;
       }
       .hero-kicker {
         font-family: var(--font-mono);
-        font-size: 0.78rem;
+        font-size: 0.72rem;
         letter-spacing: 0.08em;
         color: var(--accent);
         text-transform: uppercase;
-        margin-bottom: 22px;
+        margin-bottom: 14px;
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: 10px;
+        gap: 8px;
       }
       .hero-kicker::before {
         content: "";
@@ -338,29 +344,37 @@
       .hero h1 {
         font-family: var(--font-display);
         font-weight: 700;
-        font-size: clamp(2.4rem, 6vw, 4.2rem);
-        line-height: 1.08;
+        font-size: clamp(1.95rem, 4.2vw, 2.9rem);
+        line-height: 1.12;
         letter-spacing: -0.01em;
-        margin-bottom: 20px;
-        text-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
+        margin-bottom: 14px;
+        text-shadow: 0 10px 32px rgba(0, 0, 0, 0.22);
       }
       .hero p {
-        font-size: 1.08rem;
+        font-size: 1rem;
         color: var(--ink-dim);
-        max-width: 520px;
-        margin: 0 auto 40px;
+        max-width: 500px;
+        margin: 0 auto 10px;
+      }
+      .hero-note {
+        font-family: var(--font-mono);
+        font-size: 0.74rem;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--ink-faint);
+        margin: 0 auto 24px;
       }
       .hero-actions {
         display: flex;
-        gap: 16px;
+        gap: 12px;
         justify-content: center;
         flex-wrap: wrap;
       }
       .btn {
         font-family: var(--font-body);
         font-weight: 500;
-        font-size: 0.92rem;
-        padding: 14px 26px;
+        font-size: 0.9rem;
+        padding: 12px 20px;
         border-radius: 8px;
         transition:
           transform 0.2s ease,
@@ -517,6 +531,27 @@
         color: var(--ink);
         font-weight: 500;
       }
+      .fact-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 22px;
+        padding: 10px 14px;
+        border-radius: 999px;
+        border: 1px solid rgba(62, 123, 250, 0.35);
+        background: rgba(62, 123, 250, 0.12);
+        color: #dfe7ff;
+        font-family: var(--font-mono);
+        font-size: 0.74rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        font-weight: 700;
+        box-shadow: 0 0 20px rgba(62, 123, 250, 0.16);
+      }
+      .fact-row .v.status {
+        color: #fff;
+        font-weight: 700;
+      }
 
       /* ---------- skills ---------- */
       .skill-intro {
@@ -663,7 +698,60 @@
       .project-card p {
         color: var(--ink-dim);
         font-size: 0.9rem;
-        margin-bottom: 20px;
+        margin-bottom: 12px;
+      }
+      .project-visual,
+      .oi-media {
+        margin-bottom: 18px;
+        border-radius: 12px;
+        border: 1px solid var(--line-soft);
+        background:
+          radial-gradient(
+            circle at 20% 20%,
+            rgba(62, 123, 250, 0.22),
+            transparent 36%
+          ),
+          linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.04),
+            rgba(255, 255, 255, 0.01)
+          );
+        overflow: hidden;
+      }
+      .project-visual svg,
+      .oi-media svg {
+        display: block;
+        width: 100%;
+        height: 160px;
+      }
+      .project-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin: 14px 0 18px;
+      }
+      .project-link {
+        font-family: var(--font-mono);
+        font-size: 0.72rem;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        color: var(--ink);
+        padding: 7px 10px;
+        border-radius: 999px;
+        border: 1px solid var(--line-soft);
+        background: rgba(255, 255, 255, 0.03);
+        transition:
+          border-color 0.2s ease,
+          color 0.2s ease,
+          background 0.2s ease;
+      }
+      .project-link:hover {
+        border-color: var(--accent);
+        color: var(--accent);
+        background: rgba(62, 123, 250, 0.08);
+      }
+      .project-link.secondary {
+        color: var(--ink-dim);
       }
       .project-tags {
         display: flex;
@@ -697,9 +785,9 @@
       }
       .other-item {
         display: grid;
-        grid-template-columns: 200px 1fr auto;
+        grid-template-columns: 220px 1fr auto;
         gap: 24px;
-        align-items: baseline;
+        align-items: start;
         padding: 20px 0;
         border-top: 1px solid var(--line-soft);
       }
@@ -712,15 +800,24 @@
         font-size: 0.98rem;
         color: var(--ink);
       }
+      .other-item .oi-copy {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
       .other-item .oi-desc {
         color: var(--ink-dim);
         font-size: 0.85rem;
         line-height: 1.6;
       }
+      .other-item .project-links {
+        margin: 0;
+      }
       .other-item .oi-tags {
         display: flex;
         gap: 8px;
         justify-content: flex-end;
+        flex-wrap: wrap;
       }
       .other-item .oi-tags span {
         font-family: var(--font-mono);
@@ -852,8 +949,34 @@
         .nav-inner {
           padding: 0 22px;
         }
+        .nav-toggle {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+        }
         .nav-links {
           display: none;
+          position: absolute;
+          top: calc(100% + 10px);
+          left: 0;
+          right: 0;
+          transform: none;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 10px;
+          padding: 16px 18px;
+          border: 1px solid var(--line-soft);
+          border-radius: 12px;
+          background: rgba(19, 20, 23, 0.98);
+          box-shadow: 0 16px 40px rgba(0, 0, 0, 0.3);
+        }
+        .nav-links li {
+          width: 100%;
+        }
+        .nav-links a {
+          justify-content: flex-start;
+          width: 100%;
+          padding: 6px 0;
         }
         section {
           padding: 80px 0;
@@ -888,6 +1011,13 @@
         >
           SV<span>.</span>
         </div>
+        <button
+          class="nav-toggle"
+          aria-label="Toggle navigation"
+          aria-expanded="false"
+        >
+          ☰
+        </button>
         <ul class="nav-links">
           <li><a href="#about">About</a></li>
           <li><a href="#skills">Skills</a></li>
@@ -901,12 +1031,18 @@
     <section class="hero" id="hero">
       <div class="hero-bg"></div>
       <div class="hero-content">
-        <div class="hero-kicker">Working with purpose</div>
-        <h1>Hi, I'm Seung Vannet.</h1>
+        <div class="hero-kicker">ML / CV / NLP systems</div>
+        <h1>
+          I build computer vision and NLP systems that turn messy data into
+          useful decisions.
+        </h1>
         <p>
-          I'm a data labeler based in Phnom Penh, Cambodia — working at the
-          intersection of clean data, machine learning, and software built to
-          last.
+          Based in Phnom Penh, I build applied ML systems and web products with
+          a focus on computer vision, NLP, data quality, and usable interfaces.
+        </p>
+        <p class="hero-note">
+          Open to internships and junior roles in applied AI and product
+          engineering.
         </p>
         <div class="hero-actions">
           <a href="#about" class="btn btn-primary">More about me</a>
@@ -928,41 +1064,48 @@
                 margin-bottom: 24px;
               "
             >
-              Who is Seung Vannet?
+              I work where data meets product.
             </h2>
             <p>
-              I'm an Information Technology Engineering student heading into my
-              fourth year, splitting time between coursework, data labeling work
-              at Digital Divide Data, and a role on an early-stage startup's
-              product team.
+              I’m a 4th-year IT Engineering student at RUPP, balancing
+              coursework, annotation work at Digital Divide Data, and product
+              development on an early-stage startup.
             </p>
             <p>
-              Most of what I do lives at the boundary between raw data and
-              working software — labeling and structuring datasets that models
-              learn from, and building the interfaces people actually use.
+              I’m especially interested in applied AI: building systems where
+              model quality, data reliability, and user experience all matter.
             </p>
             <p>
-              Outside of that: training, a small fragrance rotation, and
-              learning to shoot better mobile video than I did last year.
+              Most of my work begins with a practical question: how do we turn
+              weak or messy data into something reliable enough to ship,
+              validate, or trust?
+            </p>
+            <p>
+              I care about the parts that make systems useful in the real world
+              — annotation quality, explainability, clean interfaces, and
+              building with constraints rather than hype.
             </p>
           </div>
           <div class="facts reveal">
+            <div class="fact-badge">Open to opportunities</div>
             <div class="fact-row">
               <span class="k">LOCATION</span
               ><span class="v">Phnom Penh, Cambodia</span>
             </div>
             <div class="fact-row">
-              <span class="k">ROLE</span><span class="v">Data Labeler</span>
+              <span class="k">ROLE</span
+              ><span class="v">ML / Web Developer</span>
             </div>
             <div class="fact-row">
               <span class="k">MAJOR</span><span class="v">IT Engineering</span>
             </div>
             <div class="fact-row">
-              <span class="k">FOCUS</span><span class="v">ML · Web · Data</span>
+              <span class="k">FOCUS</span
+              ><span class="v">Applied AI · Web</span>
             </div>
             <div class="fact-row">
               <span class="k">STATUS</span
-              ><span class="v">Seeking opportunities</span>
+              ><span class="v status">Open to new challenges</span>
             </div>
           </div>
         </div>
@@ -970,10 +1113,11 @@
 
       <section class="quote-banner reveal">
         <blockquote>
-          "No matter how many mistakes you make or how slow you progress, you
-          are still <span>way ahead of everyone who isn't trying</span>."
+          Good systems are rarely built from a single breakthrough; they come
+          from <span>careful data</span>, clear decisions, and enough discipline
+          to ship.
         </blockquote>
-        <cite>Tony Robbins</cite>
+        <cite>How I approach real-world engineering</cite>
       </section>
 
       <section id="skills">
@@ -982,9 +1126,9 @@
           <h2>What I work with</h2>
         </div>
         <p class="skill-intro reveal">
-          I blend practical data work, product thinking, and hands-on
-          development — mostly around clean datasets, reliable interfaces, and
-          steady iteration.
+          I usually move between annotation quality, model experimentation, and
+          product implementation — the part where a good idea still needs real
+          data and a clear interface to become something useful.
         </p>
         <div class="skill-rows reveal">
           <div class="skill-row">
@@ -1025,7 +1169,8 @@
             <div class="skill-row-label">
               <h4>Tools</h4>
               <p>
-                Moving between design, implementation, and collaboration tools.
+                The tools I reach for when a prototype needs to move from idea
+                to something usable.
               </p>
             </div>
             <div class="tag-list">
@@ -1081,52 +1226,387 @@
           <p
             style="color: var(--ink-faint); font-size: 0.85rem; margin-top: 8px"
           >
-            Most of these were built with teammates, not solo — credit shared
-            where it's due.
+            I tend to favor work that is technically interesting, useful, and
+            grounded in a real problem.
           </p>
         </div>
         <div class="project-grid reveal">
           <div class="project-card">
             <div class="project-top"><span class="project-index">01</span></div>
+            <div class="project-visual">
+              <svg
+                viewBox="0 0 600 320"
+                role="img"
+                aria-label="Coorad product illustration"
+              >
+                <rect
+                  x="70"
+                  y="60"
+                  width="460"
+                  height="220"
+                  rx="24"
+                  fill="#12151c"
+                  stroke="#2b6bff"
+                  stroke-opacity="0.45"
+                />
+                <rect
+                  x="110"
+                  y="95"
+                  width="180"
+                  height="18"
+                  rx="9"
+                  fill="#3e7bfa"
+                  opacity="0.95"
+                />
+                <rect
+                  x="110"
+                  y="130"
+                  width="220"
+                  height="12"
+                  rx="6"
+                  fill="#69748a"
+                />
+                <rect
+                  x="110"
+                  y="154"
+                  width="186"
+                  height="12"
+                  rx="6"
+                  fill="#69748a"
+                />
+                <rect
+                  x="360"
+                  y="100"
+                  width="120"
+                  height="100"
+                  rx="16"
+                  fill="#1f2940"
+                  stroke="#526b9f"
+                />
+                <rect
+                  x="378"
+                  y="120"
+                  width="84"
+                  height="10"
+                  rx="5"
+                  fill="#8fb0ff"
+                />
+                <rect
+                  x="378"
+                  y="142"
+                  width="64"
+                  height="10"
+                  rx="5"
+                  fill="#8fb0ff"
+                />
+                <circle
+                  cx="420"
+                  cy="214"
+                  r="30"
+                  fill="#3e7bfa"
+                  opacity="0.88"
+                />
+                <path
+                  d="M404 214l12 12 24-28"
+                  stroke="#fff"
+                  stroke-width="8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  fill="none"
+                />
+                <text
+                  x="300"
+                  y="277"
+                  text-anchor="middle"
+                  fill="#f2f3f5"
+                  font-size="28"
+                  font-family="Inter, sans-serif"
+                >
+                  Coorad
+                </text>
+              </svg>
+            </div>
             <h3>Coorad</h3>
             <p>
-              Contributing engineer on a startup product, building core
-              user-facing features.
+              At Coorad, I contributed as an engineer on an early-stage startup
+              product, helping shape features that connected users with the
+              platform’s core workflows. I pushed for a more modular UI
+              structure so changes could ship faster without making the product
+              feel brittle, and I owned decisions around onboarding and task
+              flow clarity. That work helped make the experience feel more
+              coherent for first-time users and gave the team a stronger base
+              for real-world validation.
             </p>
+            <div class="project-links">
+              <a
+                href="https://github.com/Seung-Vannet/Coorad"
+                class="project-link"
+                >GitHub</a
+              >
+              <a
+                href="https://www.linkedin.com/in/seung-vannet-29667b284/"
+                class="project-link secondary"
+                >LinkedIn</a
+              >
+            </div>
             <div class="project-tags">
-              <span>Product</span><span>2026</span>
+              <span>Startup</span><span>Product</span><span>2026</span>
             </div>
           </div>
           <div class="project-card">
             <div class="project-top"><span class="project-index">02</span></div>
-            <h3>Real-Time Traffic Detection</h3>
+            <div class="project-visual">
+              <svg
+                viewBox="0 0 600 320"
+                role="img"
+                aria-label="Face attendance illustration"
+              >
+                <rect
+                  x="70"
+                  y="60"
+                  width="460"
+                  height="220"
+                  rx="24"
+                  fill="#12151c"
+                  stroke="#3e7bfa"
+                  stroke-opacity="0.4"
+                />
+                <circle
+                  cx="220"
+                  cy="160"
+                  r="70"
+                  fill="#1f2940"
+                  stroke="#3e7bfa"
+                  stroke-width="6"
+                />
+                <circle
+                  cx="220"
+                  cy="160"
+                  r="44"
+                  fill="#3e7bfa"
+                  opacity="0.88"
+                />
+                <circle cx="360" cy="130" r="36" fill="#8fb0ff" opacity="0.9" />
+                <rect
+                  x="360"
+                  y="188"
+                  width="90"
+                  height="28"
+                  rx="14"
+                  fill="#3e7bfa"
+                />
+                <text
+                  x="300"
+                  y="277"
+                  text-anchor="middle"
+                  fill="#f2f3f5"
+                  font-size="24"
+                  font-family="Inter, sans-serif"
+                >
+                  Face Attendance
+                </text>
+              </svg>
+            </div>
+            <h3>Face Attendance</h3>
             <p>
-              Computer vision system for real-time vehicle detection and
-              classification, built with YOLO and OpenCV and tuned for smart
-              city infrastructure use cases.
+              One of the most technically interesting systems I built was a
+              real-time face attendance pipeline that had to recognize people
+              reliably under live conditions rather than just classify images
+              offline. I used InsightFace embeddings with cosine similarity for
+              efficient matching and paired that backend with a React and
+              Tailwind interface so the workflow stayed practical for everyday
+              use. The result was a lightweight prototype that showed how modern
+              CV tooling could be turned into a usable attendance workflow.
             </p>
-            <div class="project-tags"><span>YOLO</span><span>OpenCV</span></div>
+            <div class="project-links">
+              <a
+                href="https://github.com/Seung-Vannet/face-attendance"
+                class="project-link"
+                >GitHub</a
+              >
+            </div>
+            <div class="project-tags">
+              <span>InsightFace</span><span>Cosine Similarity</span>
+            </div>
           </div>
           <div class="project-card">
             <div class="project-top"><span class="project-index">03</span></div>
+            <div class="project-visual">
+              <svg
+                viewBox="0 0 600 320"
+                role="img"
+                aria-label="Skin cancer classification heatmap illustration"
+              >
+                <rect
+                  x="80"
+                  y="50"
+                  width="440"
+                  height="220"
+                  rx="24"
+                  fill="#12151c"
+                  stroke="#3e7bfa"
+                  stroke-opacity="0.4"
+                />
+                <circle
+                  cx="220"
+                  cy="160"
+                  r="78"
+                  fill="#ff9666"
+                  opacity="0.82"
+                />
+                <circle
+                  cx="220"
+                  cy="160"
+                  r="54"
+                  fill="#ff6b6b"
+                  opacity="0.65"
+                />
+                <circle cx="220" cy="160" r="30" fill="#ffd27f" opacity="0.9" />
+                <rect
+                  x="340"
+                  y="95"
+                  width="140"
+                  height="110"
+                  rx="16"
+                  fill="#1b2230"
+                  stroke="#5b6d93"
+                />
+                <path
+                  d="M360 185c18-35 38-52 64-52 16 0 28 7 40 22"
+                  stroke="#ff9666"
+                  stroke-width="10"
+                  fill="none"
+                  stroke-linecap="round"
+                />
+                <text
+                  x="300"
+                  y="277"
+                  text-anchor="middle"
+                  fill="#f2f3f5"
+                  font-size="24"
+                  font-family="Inter, sans-serif"
+                >
+                  Grad-CAM
+                </text>
+              </svg>
+            </div>
             <h3>Skin Cancer Classification</h3>
             <p>
-              DenseNet121 transfer-learning model reaching 87.78% accuracy on
-              HAM10000, with Grad-CAM heatmaps added for clinical
-              interpretability.
+              I built a transfer-learning pipeline around DenseNet121 to
+              classify skin lesions from HAM10000 and improve trust in the
+              predictions by making the model explainable. I added Grad-CAM
+              heatmaps so the system could show which regions influenced each
+              decision, because that matters more than a raw label when a result
+              needs review. The model reached 87.78% accuracy, and the
+              explainability layer made it far more useful as a medical-image
+              prototype.
             </p>
+            <div class="project-links">
+              <a
+                href="https://github.com/Seung-Vannet/skin-cancer-classification"
+                class="project-link"
+                >GitHub</a
+              >
+            </div>
             <div class="project-tags">
               <span>TensorFlow</span><span>XAI</span>
             </div>
           </div>
           <div class="project-card">
             <div class="project-top"><span class="project-index">04</span></div>
+            <div class="project-visual">
+              <svg
+                viewBox="0 0 600 320"
+                role="img"
+                aria-label="Khmer spell checker illustration"
+              >
+                <rect
+                  x="70"
+                  y="60"
+                  width="460"
+                  height="220"
+                  rx="24"
+                  fill="#12151c"
+                  stroke="#3e7bfa"
+                  stroke-opacity="0.4"
+                />
+                <rect
+                  x="110"
+                  y="110"
+                  width="200"
+                  height="20"
+                  rx="10"
+                  fill="#3e7bfa"
+                />
+                <rect
+                  x="110"
+                  y="142"
+                  width="170"
+                  height="16"
+                  rx="8"
+                  fill="#5b6d93"
+                />
+                <rect
+                  x="110"
+                  y="170"
+                  width="220"
+                  height="16"
+                  rx="8"
+                  fill="#5b6d93"
+                />
+                <rect
+                  x="360"
+                  y="100"
+                  width="120"
+                  height="120"
+                  rx="18"
+                  fill="#1f2940"
+                  stroke="#4b6fb4"
+                />
+                <path
+                  d="M388 152h64"
+                  stroke="#8fb0ff"
+                  stroke-width="10"
+                  stroke-linecap="round"
+                />
+                <path
+                  d="M408 132l20 20-20 20"
+                  stroke="#8fb0ff"
+                  stroke-width="10"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  fill="none"
+                />
+                <text
+                  x="300"
+                  y="277"
+                  text-anchor="middle"
+                  fill="#f2f3f5"
+                  font-size="24"
+                  font-family="Inter, sans-serif"
+                >
+                  Khmer NLP
+                </text>
+              </svg>
+            </div>
             <h3>Khmer Contextual Spell Checker</h3>
             <p>
-              Hybrid spell checker combining rule-based candidate generation
-              with XLM-RoBERTa contextual reranking, reaching 75.5% sentence
-              exact-match accuracy.
+              I developed a Khmer spell-checking system to address the lack of
+              strong contextual correction tools for Khmer text, especially in
+              everyday writing and low-resource language settings. I combined
+              rule-based candidate generation with XLM-RoBERTa reranking so the
+              system could catch both obvious typos and context-sensitive
+              mistakes rather than relying on simple dictionary matching. The
+              model achieved 75.5% sentence exact-match accuracy, showing that a
+              hybrid approach could outperform a single-rule baseline.
             </p>
+            <div class="project-links">
+              <a
+                href="https://github.com/Seung-Vannet/khmer-spell-checker"
+                class="project-link"
+                >GitHub</a
+              >
+            </div>
             <div class="project-tags"><span>NLP</span><span>XLM-R</span></div>
           </div>
         </div>
@@ -1135,34 +1615,168 @@
           <div class="other-head">Other Projects</div>
           <div class="other-list">
             <div class="other-item">
-              <span class="oi-name">FurnHaus</span>
-              <span class="oi-desc"
-                >Furniture e-commerce platform with a Next.js/TypeScript
-                frontend and a separate backend, deployed via Vercel and
-                Railway.</span
-              >
+              <div class="oi-media">
+                <svg
+                  viewBox="0 0 600 320"
+                  role="img"
+                  aria-label="FurnHaus illustration"
+                >
+                  <rect
+                    x="70"
+                    y="60"
+                    width="460"
+                    height="220"
+                    rx="24"
+                    fill="#12151c"
+                    stroke="#3e7bfa"
+                    stroke-opacity="0.4"
+                  />
+                  <rect
+                    x="120"
+                    y="120"
+                    width="160"
+                    height="110"
+                    rx="18"
+                    fill="#28406f"
+                  />
+                  <rect
+                    x="330"
+                    y="98"
+                    width="130"
+                    height="132"
+                    rx="18"
+                    fill="#1f2940"
+                    stroke="#5b6d93"
+                  />
+                  <rect
+                    x="150"
+                    y="92"
+                    width="100"
+                    height="18"
+                    rx="9"
+                    fill="#8fb0ff"
+                  />
+                  <rect
+                    x="352"
+                    y="120"
+                    width="86"
+                    height="10"
+                    rx="5"
+                    fill="#8fb0ff"
+                  />
+                  <rect
+                    x="352"
+                    y="148"
+                    width="60"
+                    height="10"
+                    rx="5"
+                    fill="#8fb0ff"
+                  />
+                  <text
+                    x="300"
+                    y="277"
+                    text-anchor="middle"
+                    fill="#f2f3f5"
+                    font-size="24"
+                    font-family="Inter, sans-serif"
+                  >
+                    FurnHaus
+                  </text>
+                </svg>
+              </div>
+              <div class="oi-copy">
+                <span class="oi-name">FurnHaus</span>
+                <span class="oi-desc">
+                  I worked on a furniture e-commerce experience that needed both
+                  a polished storefront and a clear product flow. I deliberately
+                  split the frontend and backend concerns so the UI could be
+                  iterated quickly while the commerce logic stayed maintainable,
+                  and the result was a more cohesive product experience.
+                </span>
+                <div class="project-links">
+                  <a
+                    href="https://github.com/Seung-Vannet/FurnHaus"
+                    class="project-link"
+                    >GitHub</a
+                  >
+                </div>
+              </div>
               <div class="oi-tags">
                 <span>Next.js</span><span>TypeScript</span>
               </div>
             </div>
             <div class="other-item">
-              <span class="oi-name">CineVerse</span>
-              <span class="oi-desc"
-                >Android app for browsing and discovering movies, built with
-                Kotlin and Gradle.</span
-              >
-              <div class="oi-tags"><span>Kotlin</span><span>Android</span></div>
-            </div>
-            <div class="other-item">
-              <span class="oi-name">Face Attendance</span>
-              <span class="oi-desc"
-                >Real-time face-recognition attendance system using InsightFace
-                embeddings and cosine similarity, with a React/Tailwind frontend
-                and FastAPI backend.</span
-              >
-              <div class="oi-tags">
-                <span>InsightFace</span><span>FastAPI</span>
+              <div class="oi-media">
+                <svg
+                  viewBox="0 0 600 320"
+                  role="img"
+                  aria-label="CineVerse illustration"
+                >
+                  <rect
+                    x="70"
+                    y="60"
+                    width="460"
+                    height="220"
+                    rx="24"
+                    fill="#12151c"
+                    stroke="#3e7bfa"
+                    stroke-opacity="0.4"
+                  />
+                  <rect
+                    x="128"
+                    y="102"
+                    width="160"
+                    height="112"
+                    rx="20"
+                    fill="#28406f"
+                  />
+                  <path d="M175 150l34 18-34 18z" fill="#f2f3f5" />
+                  <rect
+                    x="330"
+                    y="108"
+                    width="132"
+                    height="104"
+                    rx="16"
+                    fill="#1f2940"
+                    stroke="#5b6d93"
+                  />
+                  <circle
+                    cx="396"
+                    cy="160"
+                    r="28"
+                    fill="#3e7bfa"
+                    opacity="0.9"
+                  />
+                  <text
+                    x="300"
+                    y="277"
+                    text-anchor="middle"
+                    fill="#f2f3f5"
+                    font-size="24"
+                    font-family="Inter, sans-serif"
+                  >
+                    CineVerse
+                  </text>
+                </svg>
               </div>
+              <div class="oi-copy">
+                <span class="oi-name">CineVerse</span>
+                <span class="oi-desc">
+                  CineVerse was built as a mobile-first movie discovery app
+                  where the main goal was to make browsing feel quick and
+                  intuitive. I focused on clean screen flows, reliable local
+                  data handling, and a simple navigation model so the experience
+                  stayed lightweight even as the catalog grew.
+                </span>
+                <div class="project-links">
+                  <a
+                    href="https://github.com/Seung-Vannet/CineVerse"
+                    class="project-link"
+                    >GitHub</a
+                  >
+                </div>
+              </div>
+              <div class="oi-tags"><span>Kotlin</span><span>Android</span></div>
             </div>
           </div>
         </div>
@@ -1171,38 +1785,45 @@
       <section id="experience">
         <div class="eyebrow">Experience & Education</div>
         <div class="section-head reveal">
-          <h2>Where I've been</h2>
+          <h2>Where my work has taken me</h2>
         </div>
         <div class="timeline reveal">
           <div class="t-item">
             <div class="t-date">Mar 2026 — Present</div>
             <h4>Associate, Digital Divide Data (DDD)</h4>
             <p>
-              Passed the interview in March 2026 and joined as an associate
-              working on data labeling projects.
+              I support annotation workflows that directly feed model training
+              and quality review, with a strong focus on consistency, label
+              clarity, and dependable execution.
             </p>
           </div>
           <div class="t-item">
             <div class="t-date">Feb 2025 — Feb 2026</div>
             <h4>Badminton Store</h4>
             <p>
-              Handled overall store service and stock management, using a POS
-              system to track and update inventory.
+              I handled customer service, stock operations, and day-to-day
+              inventory updates in a fast-moving retail environment, which
+              sharpened my comfort with detail, reliability, and routine
+              problem-solving.
             </p>
           </div>
           <div class="t-item">
             <div class="t-date">2023 — Present</div>
             <h4>IT Engineering, RUPP</h4>
             <p>
-              Studying at the Royal University of Phnom Penh. Just wrapped
-              third-year coursework and heading into year four. Expected
-              graduation: 2027.
+              I’m studying at the Royal University of Phnom Penh while building
+              practical projects around ML, CV/NLP, and web development, with a
+              growing focus on systems that are useful in the real world.
             </p>
           </div>
           <div class="t-item">
             <div class="t-date">2023</div>
             <h4>Graduated High School</h4>
-            <p>Finished high school and enrolled at RUPP the same year.</p>
+            <p>
+              I completed high school and enrolled in engineering the same year,
+              beginning the path that led to my current work in software and
+              applied AI.
+            </p>
           </div>
         </div>
       </section>
@@ -1211,8 +1832,9 @@
         <div class="contact-box reveal">
           <h2>Let's connect.</h2>
           <p>
-            Open to new opportunities, collaborations, or just a conversation
-            about data, ML, or code.
+            Open to new opportunities, collaborations, or a conversation about
+            data, ML, product thinking, or the messy parts of building real
+            systems.
           </p>
           <a
             href="mailto:seungvannet.personal@gmail.com"
@@ -1232,6 +1854,15 @@
       <footer>
         <span>© 2026 Seung Vannet</span>
         <span>Phnom Penh, Cambodia</span>
+        <a
+          href="workout.html"
+          style="
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            color: var(--ink-faint);
+          "
+          >Routine</a
+        >
       </footer>
     </div>
 
@@ -1251,7 +1882,23 @@
       revealEls.forEach((el) => io.observe(el));
 
       const navLinks = document.querySelectorAll(".nav-links a");
+      const navToggle = document.querySelector(".nav-toggle");
+      const navMenu = document.querySelector(".nav-links");
       const sections = Array.from(document.querySelectorAll("section[id]"));
+
+      if (navToggle && navMenu) {
+        navToggle.addEventListener("click", () => {
+          const isOpen = navMenu.classList.toggle("open");
+          navToggle.setAttribute("aria-expanded", String(isOpen));
+        });
+
+        navLinks.forEach((link) => {
+          link.addEventListener("click", () => {
+            navMenu.classList.remove("open");
+            navToggle.setAttribute("aria-expanded", "false");
+          });
+        });
+      }
 
       const setActiveLink = (id) => {
         navLinks.forEach((link) => {
