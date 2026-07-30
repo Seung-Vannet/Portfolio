@@ -1,330 +1,1072 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Seung Vannet</title>
-    <link rel="icon" href="img/Profile.png" type="image/i-con" />
+    <title>Seung Vannet — Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
     />
-    <link rel="stylesheet" href="style.css" />
+    <style>
+      :root {
+        --bg: #0b0c0e;
+        --bg-elev: #131417;
+        --bg-elev-2: #191b1f;
+        --ink: #f2f3f5;
+        --ink-dim: #9aa0ac;
+        --ink-faint: #5c6270;
+        --accent: #3e7bfa;
+        --accent-dim: #1f3a73;
+        --line: rgba(242, 243, 245, 0.09);
+        --line-soft: rgba(242, 243, 245, 0.05);
+
+        --font-display: "Space Grotesk", sans-serif;
+        --font-body: "Inter", sans-serif;
+        --font-mono: "JetBrains Mono", monospace;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+        * {
+          animation-duration: 0.01ms !important;
+          transition-duration: 0.01ms !important;
+        }
+      }
+
+      body {
+        background: var(--bg);
+        color: var(--ink);
+        font-family: var(--font-body);
+        line-height: 1.6;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      ::selection {
+        background: var(--accent);
+        color: #fff;
+      }
+      :focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 3px;
+      }
+
+      .wrap {
+        max-width: 1120px;
+        margin: 0 auto;
+        padding: 0 40px;
+      }
+
+      /* ---------- nav ---------- */
+      header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 200;
+        background: rgba(11, 12, 14, 0.72);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--line-soft);
+      }
+      .nav-inner {
+        max-width: 1120px;
+        margin: 0 auto;
+        padding: 0 40px;
+        height: 72px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: relative;
+      }
+      .logo {
+        position: relative;
+        z-index: 2;
+        font-family: var(--font-display);
+        font-weight: 600;
+        font-size: 1.05rem;
+        display: inline-flex;
+        align-items: center;
+        gap: 2px;
+        color: var(--ink);
+        cursor: pointer;
+        transition:
+          text-shadow 0.25s ease,
+          color 0.25s ease;
+      }
+      .logo:hover {
+        color: var(--accent);
+        text-shadow:
+          0 0 16px rgba(62, 123, 250, 0.45),
+          0 0 28px rgba(62, 123, 250, 0.24);
+      }
+      .logo span {
+        color: var(--accent);
+        transition: text-shadow 0.25s ease;
+      }
+      .logo:hover span {
+        text-shadow:
+          0 0 16px rgba(62, 123, 250, 0.5),
+          0 0 30px rgba(62, 123, 250, 0.3);
+      }
+      .nav-links {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 28px;
+        list-style: none;
+        justify-content: center;
+        align-items: center;
+        z-index: 1;
+      }
+      .nav-links li {
+        position: relative;
+      }
+      .nav-links a {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 8px 0;
+        font-size: 0.88rem;
+        color: var(--ink-dim);
+        font-weight: 500;
+        transition:
+          color 0.25s ease,
+          text-shadow 0.25s ease;
+      }
+      .nav-links a::before,
+      .nav-links a::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        pointer-events: none;
+        transition:
+          width 0.25s ease,
+          opacity 0.25s ease,
+          box-shadow 0.25s ease;
+      }
+      .nav-links a::before {
+        bottom: -6px;
+        width: 0;
+        height: 2px;
+        border-radius: 999px;
+        background: var(--accent);
+        opacity: 0.9;
+        box-shadow:
+          0 -8px 16px rgba(62, 123, 250, 0.42),
+          0 -16px 28px rgba(62, 123, 250, 0.22);
+      }
+      .nav-links a:hover,
+      .nav-links a.active {
+        color: var(--ink);
+      }
+      .nav-links a:hover::before,
+      .nav-links a.active::before {
+        width: calc(100% + 16px);
+      }
+      .nav-cta {
+        position: relative;
+        z-index: 2;
+        font-family: var(--font-mono);
+        font-size: 0.78rem;
+        padding: 9px 18px;
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        color: var(--ink);
+        background: rgba(255, 255, 255, 0.03);
+        box-shadow:
+          0 0 24px rgba(62, 123, 250, 0.35),
+          0 4px 12px rgba(62, 123, 250, 0.2);
+        transition:
+          border-color 0.25s ease,
+          background 0.25s ease,
+          transform 0.2s ease,
+          box-shadow 0.25s ease;
+      }
+      .nav-cta:hover,
+      .nav-cta.active {
+        border-color: rgba(62, 123, 250, 0.7);
+        transform: translateY(-2px);
+        background: rgba(62, 123, 250, 0.08);
+        box-shadow:
+          0 0 42px rgba(62, 123, 250, 0.55),
+          0 6px 16px rgba(62, 123, 250, 0.3);
+      }
+      .nav-toggle {
+        display: none;
+        background: none;
+        border: none;
+        color: var(--ink);
+        font-size: 1.4rem;
+        cursor: pointer;
+      }
+
+      /* ---------- hero ---------- */
+      .hero {
+        position: relative;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        overflow: hidden;
+        isolation: isolate;
+      }
+      .hero::before,
+      .hero::after {
+        content: "";
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(60px);
+        opacity: 0.7;
+        pointer-events: none;
+        animation: floatGlow 8s ease-in-out infinite;
+      }
+      .hero::before {
+        width: 320px;
+        height: 320px;
+        top: -60px;
+        left: -80px;
+        background: rgba(62, 123, 250, 0.24);
+      }
+      .hero::after {
+        width: 260px;
+        height: 260px;
+        right: -40px;
+        bottom: -40px;
+        background: rgba(153, 86, 255, 0.22);
+        animation-delay: -4s;
+      }
+      @keyframes floatGlow {
+        0%,
+        100% {
+          transform: translate3d(0, 0, 0) scale(1);
+        }
+        50% {
+          transform: translate3d(18px, -12px, 0) scale(1.08);
+        }
+      }
+      .hero-bg {
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(circle at 30% 20%, #1a2942 0%, transparent 55%),
+          radial-gradient(circle at 75% 75%, #241a34 0%, transparent 50%),
+          linear-gradient(180deg, #0d0e11 0%, #0b0c0e 100%);
+      }
+      .hero-bg::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: url("img/hero_bg_profile.JPG") center/cover no-repeat;
+        opacity: 0.3;
+        filter: saturate(1.1) contrast(1.08);
+        transform: scale(1.04);
+      }
+      .hero-bg::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          135deg,
+          rgba(13, 14, 17, 0.35) 0%,
+          rgba(11, 12, 14, 0.8) 100%
+        );
+      }
+      .hero-content {
+        position: relative;
+        z-index: 2;
+        max-width: 720px;
+        padding: 42px 48px;
+        background: rgba(255, 255, 255, 0.01);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(2px);
+        box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4);
+        border-radius: 24px;
+      }
+      .hero-kicker {
+        font-family: var(--font-mono);
+        font-size: 0.78rem;
+        letter-spacing: 0.08em;
+        color: var(--accent);
+        text-transform: uppercase;
+        margin-bottom: 22px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+      }
+      .hero-kicker::before {
+        content: "";
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--accent);
+        box-shadow: 0 0 0 0 rgba(62, 123, 250, 0.7);
+        animation: pulseDot 1.8s ease-out infinite;
+      }
+      @keyframes pulseDot {
+        0% {
+          transform: scale(0.95);
+          box-shadow: 0 0 0 0 rgba(62, 123, 250, 0.7);
+        }
+        70% {
+          transform: scale(1);
+          box-shadow: 0 0 0 8px rgba(62, 123, 250, 0);
+        }
+        100% {
+          transform: scale(0.95);
+          box-shadow: 0 0 0 0 rgba(62, 123, 250, 0);
+        }
+      }
+      .hero h1 {
+        font-family: var(--font-display);
+        font-weight: 700;
+        font-size: clamp(2.4rem, 6vw, 4.2rem);
+        line-height: 1.08;
+        letter-spacing: -0.01em;
+        margin-bottom: 20px;
+        text-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
+      }
+      .hero p {
+        font-size: 1.08rem;
+        color: var(--ink-dim);
+        max-width: 520px;
+        margin: 0 auto 40px;
+      }
+      .hero-actions {
+        display: flex;
+        gap: 16px;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+      .btn {
+        font-family: var(--font-body);
+        font-weight: 500;
+        font-size: 0.92rem;
+        padding: 14px 26px;
+        border-radius: 8px;
+        transition:
+          transform 0.2s ease,
+          background 0.2s ease,
+          border-color 0.2s ease,
+          box-shadow 0.25s ease;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .btn-primary {
+        background: var(--accent);
+        color: #fff;
+        box-shadow:
+          0 0 24px rgba(62, 123, 250, 0.35),
+          0 4px 12px rgba(62, 123, 250, 0.2);
+      }
+      .btn-primary:hover {
+        background: #5590fb;
+        transform: translateY(-2px);
+        box-shadow:
+          0 0 42px rgba(62, 123, 250, 0.55),
+          0 6px 16px rgba(62, 123, 250, 0.3);
+      }
+      .btn-ghost {
+        border: 1px solid var(--line);
+        color: var(--ink);
+        background: rgba(255, 255, 255, 0.03);
+        box-shadow:
+          0 0 24px rgba(62, 123, 250, 0.35),
+          0 4px 12px rgba(62, 123, 250, 0.2);
+      }
+      .btn-ghost:hover {
+        border-color: rgba(62, 123, 250, 0.7);
+        transform: translateY(-2px);
+        box-shadow:
+          0 0 42px rgba(62, 123, 250, 0.55),
+          0 6px 16px rgba(62, 123, 250, 0.3);
+      }
+      .hero-actions .btn-ghost {
+        box-shadow: none;
+      }
+      .hero-actions .btn-ghost:hover {
+        box-shadow:
+          0 0 42px rgba(62, 123, 250, 0.55),
+          0 6px 16px rgba(62, 123, 250, 0.3);
+      }
+      .nav-cta {
+        box-shadow: none;
+      }
+      .nav-cta:hover {
+        box-shadow:
+          0 0 42px rgba(62, 123, 250, 0.55),
+          0 6px 16px rgba(62, 123, 250, 0.3);
+      }
+
+      /* ---------- shared section chrome ---------- */
+      section {
+        padding: 120px 0;
+        scroll-margin-top: 96px;
+      }
+      .eyebrow {
+        font-family: var(--font-mono);
+        font-size: 0.75rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin-bottom: 16px;
+      }
+      .section-head {
+        margin-bottom: 56px;
+        max-width: 600px;
+      }
+      .section-head h2 {
+        font-family: var(--font-display);
+        font-weight: 600;
+        font-size: 2.2rem;
+      }
+
+      .reveal {
+        opacity: 0;
+        transform: translateY(20px);
+        transition:
+          opacity 0.7s ease,
+          transform 0.7s ease;
+      }
+      .reveal.in {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* ---------- about ---------- */
+      .about-grid {
+        display: grid;
+        grid-template-columns: 1.4fr 1fr;
+        gap: 64px;
+        align-items: start;
+      }
+      .about-copy p {
+        color: var(--ink-dim);
+        margin-bottom: 18px;
+        max-width: 560px;
+      }
+      .quote-banner {
+        padding: 100px 0;
+        text-align: center;
+      }
+      .quote-banner blockquote {
+        font-family: var(--font-display);
+        font-weight: 500;
+        font-size: clamp(1.5rem, 3.2vw, 2.1rem);
+        line-height: 1.5;
+        max-width: 780px;
+        margin: 0 auto 28px;
+        color: var(--ink);
+      }
+      .quote-banner blockquote span {
+        color: var(--accent);
+      }
+      .quote-banner cite {
+        display: block;
+        font-family: var(--font-mono);
+        font-style: normal;
+        font-size: 0.8rem;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--ink-faint);
+      }
+      .quote-banner cite::before {
+        content: "— ";
+      }
+      .facts {
+        background: var(--bg-elev);
+        border: 1px solid var(--line-soft);
+        border-radius: 12px;
+        padding: 28px;
+      }
+      .fact-row {
+        display: flex;
+        justify-content: space-between;
+        padding: 12px 0;
+        border-bottom: 1px solid var(--line-soft);
+        font-size: 0.88rem;
+      }
+      .fact-row:last-child {
+        border-bottom: none;
+      }
+      .fact-row .k {
+        color: var(--ink-faint);
+        font-family: var(--font-mono);
+        font-size: 0.78rem;
+      }
+      .fact-row .v {
+        color: var(--ink);
+        font-weight: 500;
+      }
+
+      /* ---------- skills ---------- */
+      .skill-intro {
+        color: var(--ink-dim);
+        max-width: 640px;
+        margin-bottom: 28px;
+        font-size: 0.98rem;
+      }
+      .skill-rows {
+        display: flex;
+        flex-direction: column;
+      }
+      .skill-row {
+        display: grid;
+        grid-template-columns: 200px 1fr;
+        gap: 40px;
+        padding: 32px 0;
+        border-top: 1px solid var(--line-soft);
+        align-items: start;
+      }
+      .skill-row:last-child {
+        border-bottom: 1px solid var(--line-soft);
+      }
+      .skill-row-label h4 {
+        font-family: var(--font-mono);
+        font-size: 0.78rem;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: var(--ink);
+      }
+      .skill-row-label p {
+        color: var(--ink-faint);
+        font-size: 0.82rem;
+        line-height: 1.6;
+        margin-top: 8px;
+      }
+      .skill-row .tag-list {
+        padding-top: 3px;
+      }
+      .lang-flow {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 32px;
+        padding-top: 3px;
+      }
+      .lang-flow .lang-block {
+        min-width: 150px;
+      }
+      .lang-flow .lang-row {
+        margin-top: 8px;
+      }
+      .lang-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+      }
+      .lang-block .lang-name {
+        font-size: 0.88rem;
+        color: var(--ink);
+        display: block;
+        margin-bottom: 8px;
+      }
+      .lang-row .lang-level {
+        font-family: var(--font-mono);
+        font-size: 0.68rem;
+        color: var(--ink-faint);
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        min-width: 56px;
+        text-align: right;
+      }
+      .lang-bar {
+        flex: 1;
+        height: 4px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.06);
+        overflow: hidden;
+      }
+      .lang-fill {
+        height: 100%;
+        border-radius: 999px;
+        background: var(--accent);
+      }
+      .tag-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .tag {
+        font-family: var(--font-mono);
+        font-size: 0.78rem;
+        color: var(--ink);
+        border: 1px solid var(--line);
+        background: rgba(255, 255, 255, 0.03);
+        padding: 7px 13px;
+        border-radius: 6px;
+        transition:
+          border-color 0.2s ease,
+          color 0.2s ease,
+          background 0.2s ease;
+      }
+      .tag:hover {
+        border-color: var(--accent);
+        color: var(--accent);
+        background: rgba(62, 123, 250, 0.08);
+      }
+
+      /* ---------- projects ---------- */
+      .project-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1px;
+        background: var(--line-soft);
+        border: 1px solid var(--line-soft);
+        border-radius: 12px;
+        overflow: hidden;
+      }
+      .project-card {
+        background: var(--bg);
+        padding: 36px;
+        transition: background 0.25s ease;
+      }
+      .project-card:hover {
+        background: var(--bg-elev);
+      }
+      .project-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 20px;
+      }
+      .project-index {
+        font-family: var(--font-mono);
+        font-size: 0.75rem;
+        color: var(--accent);
+      }
+      .project-card h3 {
+        font-family: var(--font-display);
+        font-weight: 600;
+        font-size: 1.3rem;
+        margin-bottom: 10px;
+      }
+      .project-card p {
+        color: var(--ink-dim);
+        font-size: 0.9rem;
+        margin-bottom: 20px;
+      }
+      .project-tags {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+      .project-tags span {
+        font-family: var(--font-mono);
+        font-size: 0.68rem;
+        color: var(--ink-faint);
+        border: 1px solid var(--line-soft);
+        padding: 4px 10px;
+        border-radius: 5px;
+      }
+
+      /* ---------- other projects ---------- */
+      .other-projects {
+        margin-top: 72px;
+      }
+      .other-head {
+        font-family: var(--font-mono);
+        font-size: 0.72rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--ink-faint);
+        margin-bottom: 8px;
+      }
+      .other-list {
+        display: flex;
+        flex-direction: column;
+      }
+      .other-item {
+        display: grid;
+        grid-template-columns: 200px 1fr auto;
+        gap: 24px;
+        align-items: baseline;
+        padding: 20px 0;
+        border-top: 1px solid var(--line-soft);
+      }
+      .other-item:last-child {
+        border-bottom: 1px solid var(--line-soft);
+      }
+      .other-item .oi-name {
+        font-family: var(--font-display);
+        font-weight: 600;
+        font-size: 0.98rem;
+        color: var(--ink);
+      }
+      .other-item .oi-desc {
+        color: var(--ink-dim);
+        font-size: 0.85rem;
+        line-height: 1.6;
+      }
+      .other-item .oi-tags {
+        display: flex;
+        gap: 8px;
+        justify-content: flex-end;
+      }
+      .other-item .oi-tags span {
+        font-family: var(--font-mono);
+        font-size: 0.66rem;
+        color: var(--ink-faint);
+        border: 1px solid var(--line-soft);
+        padding: 4px 9px;
+        border-radius: 5px;
+        white-space: nowrap;
+      }
+
+      /* ---------- timeline ---------- */
+      .timeline {
+        position: relative;
+        padding-left: 32px;
+      }
+      .timeline::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 4px;
+        bottom: 4px;
+        width: 2px;
+        background: var(--line);
+      }
+      .t-item {
+        position: relative;
+        padding-bottom: 40px;
+      }
+      .t-item:last-child {
+        padding-bottom: 0;
+      }
+      .t-item::before {
+        content: "";
+        position: absolute;
+        left: -36px;
+        top: 3px;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: var(--accent);
+      }
+      .t-date {
+        font-family: var(--font-mono);
+        font-size: 0.72rem;
+        color: var(--ink-faint);
+        margin-bottom: 6px;
+      }
+      .t-item h4 {
+        font-family: var(--font-display);
+        font-weight: 600;
+        font-size: 1.1rem;
+        margin-bottom: 6px;
+      }
+      .t-item p {
+        color: var(--ink-dim);
+        font-size: 0.9rem;
+        max-width: 520px;
+      }
+
+      /* ---------- contact ---------- */
+      .contact-box {
+        background: var(--bg-elev);
+        border: 1px solid var(--line-soft);
+        border-radius: 16px;
+        padding: 64px;
+        text-align: center;
+      }
+      .contact-box h2 {
+        font-family: var(--font-display);
+        font-weight: 600;
+        font-size: clamp(1.8rem, 4vw, 2.6rem);
+        margin-bottom: 16px;
+      }
+      .contact-box p {
+        color: var(--ink-dim);
+        margin-bottom: 32px;
+      }
+      .contact-links {
+        display: flex;
+        gap: 28px;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-top: 36px;
+      }
+      .contact-links a {
+        font-family: var(--font-mono);
+        font-size: 0.82rem;
+        color: var(--ink-dim);
+        border-bottom: 1px solid var(--line-soft);
+        padding-bottom: 3px;
+        transition:
+          color 0.2s ease,
+          border-color 0.2s ease;
+      }
+      .contact-links a:hover {
+        color: var(--accent);
+        border-color: var(--accent);
+      }
+
+      footer {
+        padding: 40px 0;
+        border-top: 1px solid var(--line-soft);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-family: var(--font-mono);
+        font-size: 0.72rem;
+        color: var(--ink-faint);
+      }
+
+      /* ---------- responsive ---------- */
+      @media (max-width: 900px) {
+        .about-grid {
+          grid-template-columns: 1fr;
+        }
+        .skill-row {
+          grid-template-columns: 1fr;
+          gap: 12px;
+        }
+        .project-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+      @media (max-width: 720px) {
+        .wrap {
+          padding: 0 22px;
+        }
+        .nav-inner {
+          padding: 0 22px;
+        }
+        .nav-links {
+          display: none;
+        }
+        section {
+          padding: 80px 0;
+        }
+        .other-item {
+          grid-template-columns: 1fr;
+          gap: 8px;
+        }
+        .other-item .oi-tags {
+          justify-content: flex-start;
+        }
+        .contact-box {
+          padding: 40px 24px;
+        }
+        footer {
+          flex-direction: column;
+          gap: 8px;
+          text-align: center;
+        }
+      }
+    </style>
   </head>
   <body>
     <header>
-      <nav>
-        <h1 class="nav-h1"><abbr title="Seung Vannet">S</abbr></h1>
-        <ul>
-          <li class="bold"><a href="#">HOME</a></li>
-          <li class="bold"><a href="#About-Me">ABOUT ME</a></li>
-          <li class="bold"><a href="#Skills">SKILLS</a></li>
-          <li class="bold"><a href="#Project">PROJECT</a></li>
-          <li class="bold"><a href="#Contact">CONTACT</a></li>
+      <div class="nav-inner">
+        <div
+          class="logo"
+          id="logo-home"
+          role="button"
+          tabindex="0"
+          aria-label="Scroll to top"
+        >
+          SV<span>.</span>
+        </div>
+        <ul class="nav-links">
+          <li><a href="#about">About</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#work">Work</a></li>
+          <li><a href="#experience">Experience</a></li>
         </ul>
-        <button class="theme">
-          <i class="fa-solid fa-toggle-on"></i>
-        </button>
-      </nav>
+        <a href="#contact" class="nav-cta">Contact</a>
+      </div>
     </header>
 
-    <main>
-      <section class="Introduction">
-        <div class="introduction-flex-all">
-          <div class="introduction-flex">
-            <div>
-              <img class="introduction-img" src="img/ME.jpg" alt="" />
+    <section class="hero" id="hero">
+      <div class="hero-bg"></div>
+      <div class="hero-content">
+        <div class="hero-kicker">Working with purpose</div>
+        <h1>Hi, I'm Seung Vannet.</h1>
+        <p>
+          I'm a data labeler based in Phnom Penh, Cambodia — working at the
+          intersection of clean data, machine learning, and software built to
+          last.
+        </p>
+        <div class="hero-actions">
+          <a href="#about" class="btn btn-primary">More about me</a>
+          <a href="#work" class="btn btn-ghost">View my work</a>
+        </div>
+      </div>
+    </section>
+
+    <div class="wrap">
+      <section id="about">
+        <div class="eyebrow">About</div>
+        <div class="about-grid">
+          <div class="about-copy reveal">
+            <h2
+              style="
+                font-family: var(--font-display);
+                font-weight: 600;
+                font-size: 2rem;
+                margin-bottom: 24px;
+              "
+            >
+              Who is Seung Vannet?
+            </h2>
+            <p>
+              I'm an Information Technology Engineering student heading into my
+              fourth year, splitting time between coursework, data labeling work
+              at Digital Divide Data, and a role on an early-stage startup's
+              product team.
+            </p>
+            <p>
+              Most of what I do lives at the boundary between raw data and
+              working software — labeling and structuring datasets that models
+              learn from, and building the interfaces people actually use.
+            </p>
+            <p>
+              Outside of that: training, a small fragrance rotation, and
+              learning to shoot better mobile video than I did last year.
+            </p>
+          </div>
+          <div class="facts reveal">
+            <div class="fact-row">
+              <span class="k">LOCATION</span
+              ><span class="v">Phnom Penh, Cambodia</span>
             </div>
-            <div>
+            <div class="fact-row">
+              <span class="k">ROLE</span><span class="v">Data Labeler</span>
+            </div>
+            <div class="fact-row">
+              <span class="k">MAJOR</span><span class="v">IT Engineering</span>
+            </div>
+            <div class="fact-row">
+              <span class="k">FOCUS</span><span class="v">ML · Web · Data</span>
+            </div>
+            <div class="fact-row">
+              <span class="k">STATUS</span
+              ><span class="v">Seeking opportunities</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="quote-banner reveal">
+        <blockquote>
+          "No matter how many mistakes you make or how slow you progress, you
+          are still <span>way ahead of everyone who isn't trying</span>."
+        </blockquote>
+        <cite>Tony Robbins</cite>
+      </section>
+
+      <section id="skills">
+        <div class="eyebrow">Skills</div>
+        <div class="section-head reveal">
+          <h2>What I work with</h2>
+        </div>
+        <p class="skill-intro reveal">
+          I blend practical data work, product thinking, and hands-on
+          development — mostly around clean datasets, reliable interfaces, and
+          steady iteration.
+        </p>
+        <div class="skill-rows reveal">
+          <div class="skill-row">
+            <div class="skill-row-label">
+              <h4>AI / ML</h4>
               <p>
-                <span class="introduction-span1 bold"
-                  >Information<br />Technology Engineering</span
-                >
+                Computer vision and NLP work, from data prep through model
+                interpretability.
               </p>
-
-              <hr class="introduction-hr" />
+            </div>
+            <div class="tag-list">
+              <span class="tag">TensorFlow</span>
+              <span class="tag">YOLO</span>
+              <span class="tag">OpenCV</span>
+              <span class="tag">XAI / Grad-CAM</span>
+              <span class="tag">Hugging Face</span>
+              <span class="tag">Data labeling</span>
+            </div>
+          </div>
+          <div class="skill-row">
+            <div class="skill-row-label">
+              <h4>Development</h4>
               <p>
-                <span class="introduction-span2 bold">Seung Vannet</span><br />
-                <span class="introduction-span3">19 Years Old</span><br />
-                <span class="introduction-span4">Male</span><br />
-                <span class="introduction-span5">Phnom Penh, Cambodia</span>
+                Simple, usable products with a strong focus on clarity and
+                maintainability.
               </p>
             </div>
-          </div>
-
-          <div>
-            <a class="introduction-a" href="#About-Me">About Me</a>
-          </div>
-        </div>
-      </section>
-
-      <section class="About-Me" id="About-Me">
-        <h1 class="main-h1">About Me</h1>
-
-        <div class="aboutme-flex">
-          <figure>
-            <div class="aboutme-center">
-              <img class="aboutme-img" src="img/1.jpg" alt="" />
-              <figcaption class="aboutme-img-figcap">
-                <span>Education</span><br />
-                <hr />
-                <span class="bold"
-                  >Information Technology Engineering (ITE)</span
-                ><br />
-                <span>Year 1 | 2024 - 2025 (Expected Graduation: 2027)</span
-                ><br />
-                <span class="bold">Royal University of Phnom Penh</span
-                ><br /><br />
-
-                <span
-                  >Graduated High School 2023 at
-                  <span class="bold">BackTouk High School</span></span
-                >
-              </figcaption>
+            <div class="tag-list">
+              <span class="tag">Python</span>
+              <span class="tag">C / C++</span>
+              <span class="tag">Java</span>
+              <span class="tag">HTML / CSS</span>
+              <span class="tag">JavaScript</span>
+              <span class="tag">Streamlit</span>
             </div>
-          </figure>
-          <p>
-            <span class="aboutme-span1">Greeting,</span><br />
-            <span class="aboutme-span2">
-              I am an ambitious and detail-oriented enthusiast in technology who
-              is always looking to explore the vast world of digital innovation
-              in ways that are meaningful. It is the curiosity that initiated my
-              journey into technology, which has grown over time into a
-              committed pursuit. Presently, I am enriching my knowledge in the
-              course of Information Technology Engineering at RUPP, where I have
-              plunged myself into main areas like Web Development, Data
-              Analysis, and cybersecurity. These domains appeal to me because I
-              can solve difficult problems and create digital solutions which,
-              rather than just being functional, may be influential for everyday
-              users.
-              <br /><br />
-
-              Other than in course work taken, this has been acquired in
-              projects I work on that challenge me to reach beyond my limits
-              with the ultimate aim of refining my expertise and acquainting me
-              with the fast pace that defines this technology arena. More
-              specifically, the power of emerging technologies and how they can
-              solve practical problems-be it by efficiently building accessible
-              web experiences or further enriching insights from data-driven
-              decisions. I try to infuse each project with a mix of creativity,
-              strategy, and technical detail, knowing these are the ingredients
-              of truly transformational work.
-              <br /><br />
-
-              One of my major objectives that helps me drive my journey is,
-              later on, to create an AI assistant for myself similar to JARVIS
-              from the Iron Man movies that would seamlessly support one through
-              daily tasks up to complex information management. This is the
-              aspiration that drives me to be continuously expanding my
-              knowledge in AI and machine learning to, eventually, build a
-              system that can learn and adapt to deliver value to users in ways
-              we cannot even dream of today. This leads me to believe, by
-              commitment to lifelong learning, in taking every opportunity that
-              may broaden my skill set and take me closer to creating something
-              innovative and impactful. My ultimate goal is to contribute
-              meaningfully to the technology industry and finally lead such
-              projects that push the boundaries of innovation with long-lasting,
-              positive impacts on people and communities.
-            </span>
-          </p>
-        </div>
-      </section>
-
-      <section class="Skills" id="Skills">
-        <h1 class="main-h1">Skills</h1>
-
-        <div class="skills-flex">
-          <div class="skills-card">
-            <figure class="skills-center">
-              <img
-                class="skills-card-img frontend"
-                src="img/FrontEnd.png"
-                alt=""
-              />
-              <figcaption class="skills-card-skill bold">
-                Frontend Development
-              </figcaption>
-            </figure>
-            <p class="skills-card-description">
-              With a strong background in HTML, CSS, and JavaScript, I'm able to
-              design and implement an aesthetically pleasing, well-structured
-              website that's easy to use. Knowing the importance of user
-              experience, I focus on responsive design that ensures the site
-              works just as well on desktops, tablets, and mobile devices.
-            </p>
           </div>
-
-          <div class="skills-card">
-            <figure class="skills-center">
-              <img
-                class="skills-card-img project-management"
-                src="img/Project-Management.webp"
-                alt=""
-              />
-              <figcaption class="skills-card-skill bold">
-                Project Management
-              </figcaption>
-            </figure>
-            <p class="skills-card-description">
-              By experience, I have developed project management skills that
-              will enable me to plan, execute, and manage projects from
-              inception through to completion. I believe it is of paramount
-              importance that a project should be well-organized in such a way
-              that deadlines and set goals of teams are met, and I make sure to
-              keep in good contact with each stakeholder involved.
-            </p>
+          <div class="skill-row">
+            <div class="skill-row-label">
+              <h4>Tools</h4>
+              <p>
+                Moving between design, implementation, and collaboration tools.
+              </p>
+            </div>
+            <div class="tag-list">
+              <span class="tag">Git / GitHub</span>
+              <span class="tag">VS Code</span>
+              <span class="tag">Linux</span>
+              <span class="tag">Figma</span>
+              <span class="tag">Canva</span>
+            </div>
           </div>
-
-          <div class="skills-card">
-            <figure class="skills-center">
-              <img class="skills-card-img" src="img/Leadership.jpg" alt="" />
-              <figcaption class="skills-card-skill bold">Leadership</figcaption>
-            </figure>
-            <p class="skills-card-description">
-              I learn and explore how to lead and inspire teams toward one
-              common goal. I create an environment in which people collaborate
-              and support each other. This even helps me encourage my team
-              members to speak up their ideas and contribute more actively,
-              hence boosting creativity and productivity in our projects.
-            </p>
-          </div>
-
-          <div class="skills-card">
-            <figure class="skills-center">
-              <img
-                class="skills-card-img communication"
-                src="img/Communication.webp"
-                alt=""
-              />
-              <figcaption class="skills-card-skill bold">
-                Communication
-              </figcaption>
-            </figure>
-            <p class="skills-card-description">
-              I know clear communication is the backbone of any successful
-              project. As such, it involves open and transparent communication
-              with my team and clients so that all parties can be in the same
-              direction, equally informed at each stage of the process. In this
-              way, it brews up trust and culminates in better results.
-            </p>
-          </div>
-
-          <div class="skills-card">
-            <figure class="skills-center">
-              <img class="skills-card-img" src="img/Teamwork.png" alt="" />
-              <figcaption class="skills-card-skill bold">Teamwork</figcaption>
-            </figure>
-            <p class="skills-card-description">
-              Being part of a team is all about cooperation toward one common
-              vision. I love working in a team and becoming a part of any
-              working group where diverse opinions and ideas are considered. I
-              participate actively, assist my teammates, and celebrating our
-              common achievements since the more successful the efforts, the
-              better.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section class="Knowledge" id="Knowledge">
-        <h1 class="main-h1">Knowledge</h1>
-
-        <div class="knowledge-flex">
-          <figure class="knowledge-card">
-            <img src="img/HTML-logo.png" alt="" />
-            <figcaption>Intermediate</figcaption>
-          </figure>
-
-          <figure class="knowledge-card">
-            <img src="img/CSS-logo.png" alt="" />
-            <figcaption>Intermediate</figcaption>
-          </figure>
-
-          <figure class="knowledge-card">
-            <img src="img/JAVASCRIPT-logo.png" alt="" />
-            <figcaption>Beginner</figcaption>
-          </figure>
-
-          <figure class="knowledge-card">
-            <img src="img/C-logo.png" alt="" />
-            <figcaption>Basic</figcaption>
-          </figure>
-
-          <figure class="knowledge-card">
-            <img src="img/CPP-logo.png" alt="" />
-            <figcaption>Basic</figcaption>
-          </figure>
-
-          <figure class="knowledge-card">
-            <img src="img/PYTHON-logo.png" alt="" />
-            <figcaption>Beginner</figcaption>
-          </figure>
-        </div>
-      </section>
-
-      <section class="Collaboration" id="Collaboration">
-        <h1 class="main-h1">Collaboration</h1>
-
-        <div class="collaboration-gap">
-          <div class="collaboration-card">
-            <div class="collaboration-flex">
-              <img class="collaboration-img" src="img/PineArc-logo.png" alt="" />
-
-              <div class="collaboration-spacebetween">
-                <p>
-                  <span class="collaboration-title bold">PineArc</span>
-                  <br />
-                  <span class="collaboration-description">
-                    At PineArc, we're committed to developing solutions that
-                    will empower the technology community. With a startup
-                    spirit, our goal is to bridge gaps in technology, creating
-                    applications that simplify and enhance daily experiences.
-                    Our purpose goes much deeper than just building products;
-                    we're about creating an environment where collaboration
-                    allows innovation to really flourish. We will strive to
-                    serve the tech community in the future by providing tools
-                    that will help both the beginning learner and the practicing
-                    professional make tech more usable and powerful.
-                  </span>
-                </p>
-                <div class="collaboration-link">
-                  <a href="https://www.facebook.com/PineArc"
-                    ><img
-                      class="collaboration-link-fb"
-                      src="img/icon/Facebook.png"
-                      alt=""
-                  /></a>
-                  <a href="https://github.com/pinearc"
-                    ><img
-                      class="collaboration-link-git"
-                      src="img/icon/Github.png"
-                      alt=""
-                  /></a>
-                  <a href="https://www.instagram.com/pine.arc/"
-                    ><img
-                      class="collaboration-link-insta"
-                      src="img/icon/Intagram.png"
-                      alt=""
-                  /></a>
-                  <a
-                    href="https://www.linkedin.com/company/104007462/admin/dashboard/"
-                    ><img
-                      class="collaboration-link-linked"
-                      src="img/icon/Linkedin.png"
-                      alt=""
-                  /></a>
-                  <a href="https://x.com/PineArc_dev"
-                    ><img
-                      class="collaboration-link-twit"
-                      src="img/icon/Twitter.png"
-                      alt=""
-                  /></a>
-                  <a href="https://www.youtube.com/@Pine-Arc"
-                    ><img
-                      class="collaboration-link-yt"
-                      src="img/icon/Youtube.png"
-                      alt=""
-                  /></a>
+          <div class="skill-row">
+            <div class="skill-row-label">
+              <h4>Languages</h4>
+              <p>Working across Khmer, English, and Chinese day to day.</p>
+            </div>
+            <div class="lang-flow">
+              <div class="lang-block">
+                <span class="lang-name">Khmer</span>
+                <div class="lang-row">
+                  <div class="lang-bar">
+                    <div class="lang-fill" style="width: 100%"></div>
+                  </div>
+                  <span class="lang-level">Native</span>
+                </div>
+              </div>
+              <div class="lang-block">
+                <span class="lang-name">English</span>
+                <div class="lang-row">
+                  <div class="lang-bar">
+                    <div class="lang-fill" style="width: 80%"></div>
+                  </div>
+                  <span class="lang-level">Advanced</span>
+                </div>
+              </div>
+              <div class="lang-block">
+                <span class="lang-name">Chinese</span>
+                <div class="lang-row">
+                  <div class="lang-bar">
+                    <div class="lang-fill" style="width: 30%"></div>
+                  </div>
+                  <span class="lang-level">Beginner</span>
                 </div>
               </div>
             </div>
@@ -332,115 +1074,224 @@
         </div>
       </section>
 
-      <section class="Project" id="Project">
-        <h1 class="main-h1">Project</h1>
-
-        <div class="project-gap">
+      <section id="work">
+        <div class="eyebrow">Selected work</div>
+        <div class="section-head reveal">
+          <h2>Recent projects</h2>
+          <p
+            style="color: var(--ink-faint); font-size: 0.85rem; margin-top: 8px"
+          >
+            Most of these were built with teammates, not solo — credit shared
+            where it's due.
+          </p>
+        </div>
+        <div class="project-grid reveal">
           <div class="project-card">
-            <div class="project-flex">
-              <i class="fa-solid fa-hammer project-img-hammer"></i>
-              <div class="project-center">
-                <p>
-                  <span class="project-title bold">Personal Project</span>
-                  <br />
-                  <span class="project-description">
-                    Presently, I am much involved in developing my set of skills
-                    and knowledge connected with the area of artificial
-                    intelligence in building personal assistance technology. The
-                    project is basic research into AI's potential to make daily
-                    life easier and more convenient, but for now, in the early
-                    stage of planning, it remains just an idea. More
-                    importantly, I will be learning and practicing all the
-                    different coding languages and frameworks that can be used
-                    in the development of this concept, making sure to emphasize
-                    learning and innovation throughout the creative process.
-                  </span>
-                </p>
+            <div class="project-top"><span class="project-index">01</span></div>
+            <h3>Coorad</h3>
+            <p>
+              Contributing engineer on a startup product, building core
+              user-facing features.
+            </p>
+            <div class="project-tags">
+              <span>Product</span><span>2026</span>
+            </div>
+          </div>
+          <div class="project-card">
+            <div class="project-top"><span class="project-index">02</span></div>
+            <h3>Real-Time Traffic Detection</h3>
+            <p>
+              Computer vision system for real-time vehicle detection and
+              classification, built with YOLO and OpenCV and tuned for smart
+              city infrastructure use cases.
+            </p>
+            <div class="project-tags"><span>YOLO</span><span>OpenCV</span></div>
+          </div>
+          <div class="project-card">
+            <div class="project-top"><span class="project-index">03</span></div>
+            <h3>Skin Cancer Classification</h3>
+            <p>
+              DenseNet121 transfer-learning model reaching 87.78% accuracy on
+              HAM10000, with Grad-CAM heatmaps added for clinical
+              interpretability.
+            </p>
+            <div class="project-tags">
+              <span>TensorFlow</span><span>XAI</span>
+            </div>
+          </div>
+          <div class="project-card">
+            <div class="project-top"><span class="project-index">04</span></div>
+            <h3>Khmer Contextual Spell Checker</h3>
+            <p>
+              Hybrid spell checker combining rule-based candidate generation
+              with XLM-RoBERTa contextual reranking, reaching 75.5% sentence
+              exact-match accuracy.
+            </p>
+            <div class="project-tags"><span>NLP</span><span>XLM-R</span></div>
+          </div>
+        </div>
 
-                <!--  <div class="project-link">
-                  <a href="https://www.facebook.com/PineArc"><img src="/img/icon/Facebook.png" alt=""></i></a>
-                  <a href="https://github.com/pinearc"><img src="/img/icon/GIthub.png" alt=""></a>
-                  <a href="https://www.instagram.com/pine.arc/"><img src="/img/icon/Intagram.png" alt=""></a>
-                  <a href="https://www.linkedin.com/company/104007462/admin/dashboard/"><img src="/img/icon/Linkin.png" alt=""></a>
-                  <a href="https://x.com/PineArc_dev"><img src="/img/icon/Twitter.png" alt=""></a>
-                  <a href="https://www.youtube.com/@Pine-Arc"><img src="/img/icon/Youtube.png" alt=""></a>
-                </div> -->
+        <div class="other-projects reveal">
+          <div class="other-head">Other Projects</div>
+          <div class="other-list">
+            <div class="other-item">
+              <span class="oi-name">FurnHaus</span>
+              <span class="oi-desc"
+                >Furniture e-commerce platform with a Next.js/TypeScript
+                frontend and a separate backend, deployed via Vercel and
+                Railway.</span
+              >
+              <div class="oi-tags">
+                <span>Next.js</span><span>TypeScript</span>
+              </div>
+            </div>
+            <div class="other-item">
+              <span class="oi-name">CineVerse</span>
+              <span class="oi-desc"
+                >Android app for browsing and discovering movies, built with
+                Kotlin and Gradle.</span
+              >
+              <div class="oi-tags"><span>Kotlin</span><span>Android</span></div>
+            </div>
+            <div class="other-item">
+              <span class="oi-name">Face Attendance</span>
+              <span class="oi-desc"
+                >Real-time face-recognition attendance system using InsightFace
+                embeddings and cosine similarity, with a React/Tailwind frontend
+                and FastAPI backend.</span
+              >
+              <div class="oi-tags">
+                <span>InsightFace</span><span>FastAPI</span>
               </div>
             </div>
           </div>
         </div>
       </section>
-    </main>
 
-    <footer>
-      <section class="Contact" id="Contact">
-        <h1 class="contact-h1">Contact</h1>
-        <div class="contact-container">
-          <div class="contact-flex">
-            <div class="contact-media">
-              <a href="https://www.facebook.com/seung.vannet.5/"
-                ><img src="img/icon/Facebook.png" alt="" /><br
-              /></a>
-              <p>Active</p>
-            </div>
-
-            <div class="contact-media">
-              <a href="https://github.com/Seung-Vannet"
-                ><img src="img/icon/Github.png" alt=""
-              /></a>
-              <p>Active</p>
-            </div>
-
-            <div class="contact-media">
-              <a href="https://www.instagram.com/seungvannet/"
-                ><img src="img/icon/Intagram.png" alt=""
-              /></a>
-              <p>Active</p>
-            </div>
-
-            <div class="contact-media">
-              <a href="https://www.linkedin.com/in/seung-vannet-29667b284/"
-                ><img src="img/icon/Linkedin.png" alt=""
-              /></a>
-              <p>Active</p>
-            </div>
-
-            <div class="contact-media">
-              <a href="#"><img src="img/icon/Twitter.png" alt="" /></a>
-              <p class="inactive">Inactive</p>
-            </div>
-
-            <div class="contact-media">
-              <a href="#"><img src="img/icon/Youtube.png" alt="" /></a>
-              <p class="inactive">Inactive</p>
-            </div>
+      <section id="experience">
+        <div class="eyebrow">Experience & Education</div>
+        <div class="section-head reveal">
+          <h2>Where I've been</h2>
+        </div>
+        <div class="timeline reveal">
+          <div class="t-item">
+            <div class="t-date">Mar 2026 — Present</div>
+            <h4>Associate, Digital Divide Data (DDD)</h4>
+            <p>
+              Passed the interview in March 2026 and joined as an associate
+              working on data labeling projects.
+            </p>
           </div>
-
-          <div class="contact-link">
-            <div class="contact-info-mail">
-              <a href="mailto:seungvannet.personal@gmail.com">
-                <span><i class="fa-solid fa-envelope"></i></span>
-                <span class="mail">seungvannet.personal@gmail.com</span>
-              </a>
-            </div>
-
-            <div class="contact-info-phone">
-              <a href="tel:+85581508898">
-                <span><i class="fa-solid fa-phone"></i></span>
-                <span>+855 81508898</span>
-              </a>
-            </div>
-
-            <div class="contact-info-location">
-              <a href="https://maps.app.goo.gl/BWoNfSw3v1m7ajHK7">
-                <span><i class="fa-solid fa-map-location"></i></span>
-                <span class="contact-detail">Phnom Penh, Cambodia</span>
-              </a>
-            </div>
+          <div class="t-item">
+            <div class="t-date">Feb 2025 — Feb 2026</div>
+            <h4>Badminton Store</h4>
+            <p>
+              Handled overall store service and stock management, using a POS
+              system to track and update inventory.
+            </p>
+          </div>
+          <div class="t-item">
+            <div class="t-date">2023 — Present</div>
+            <h4>IT Engineering, RUPP</h4>
+            <p>
+              Studying at the Royal University of Phnom Penh. Just wrapped
+              third-year coursework and heading into year four. Expected
+              graduation: 2027.
+            </p>
+          </div>
+          <div class="t-item">
+            <div class="t-date">2023</div>
+            <h4>Graduated High School</h4>
+            <p>Finished high school and enrolled at RUPP the same year.</p>
           </div>
         </div>
       </section>
-      <script src="main.js" defer></script>
-    </footer>
+
+      <section id="contact">
+        <div class="contact-box reveal">
+          <h2>Let's connect.</h2>
+          <p>
+            Open to new opportunities, collaborations, or just a conversation
+            about data, ML, or code.
+          </p>
+          <a
+            href="mailto:seungvannet.personal@gmail.com"
+            class="btn btn-primary"
+            >Say hello</a
+          >
+          <div class="contact-links">
+            <a href="https://github.com/Seung-Vannet">GitHub</a>
+            <a href="https://www.linkedin.com/in/seung-vannet-29667b284/"
+              >LinkedIn</a
+            >
+            <a href="https://www.instagram.com/seungvannet/">Instagram</a>
+          </div>
+        </div>
+      </section>
+
+      <footer>
+        <span>© 2026 Seung Vannet</span>
+        <span>Phnom Penh, Cambodia</span>
+      </footer>
+    </div>
+
+    <script>
+      const revealEls = document.querySelectorAll(".reveal");
+      const io = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              e.target.classList.add("in");
+              io.unobserve(e.target);
+            }
+          });
+        },
+        { threshold: 0.15 },
+      );
+      revealEls.forEach((el) => io.observe(el));
+
+      const navLinks = document.querySelectorAll(".nav-links a");
+      const sections = Array.from(document.querySelectorAll("section[id]"));
+
+      const setActiveLink = (id) => {
+        navLinks.forEach((link) => {
+          link.classList.toggle(
+            "active",
+            link.getAttribute("href") === `#${id}`,
+          );
+        });
+      };
+
+      const updateActiveNav = () => {
+        const triggerPoint = window.innerHeight * 0.35;
+        let activeId = "";
+
+        sections.forEach((section) => {
+          const rect = section.getBoundingClientRect();
+          if (rect.top <= triggerPoint && rect.bottom >= triggerPoint) {
+            activeId = section.id;
+          }
+        });
+
+        if (activeId) {
+          setActiveLink(activeId);
+        }
+      };
+
+      updateActiveNav();
+      window.addEventListener("scroll", updateActiveNav, { passive: true });
+      window.addEventListener("resize", updateActiveNav);
+
+      const logoHome = document.getElementById("logo-home");
+      const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
+
+      logoHome?.addEventListener("click", scrollToTop);
+      logoHome?.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          scrollToTop();
+        }
+      });
+    </script>
   </body>
 </html>
