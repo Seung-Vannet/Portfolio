@@ -133,6 +133,7 @@
 
       table {
         width: 100%;
+        table-layout: fixed;
         border-collapse: collapse;
         font-size: 0.92rem;
       }
@@ -142,6 +143,22 @@
         text-align: left;
         padding: 10px 0;
         border-bottom: 1px solid var(--line-soft);
+        vertical-align: top;
+      }
+
+      th:nth-child(1),
+      td:nth-child(1) {
+        width: 56%;
+      }
+
+      th:nth-child(2),
+      td:nth-child(2) {
+        width: 28%;
+      }
+
+      th:nth-child(3),
+      td:nth-child(3) {
+        width: 16%;
       }
 
       th {
@@ -170,6 +187,10 @@
         background: rgba(255, 255, 255, 0.02);
       }
 
+      .mobile-only {
+        display: none;
+      }
+
       @media (max-width: 720px) {
         .page {
           padding: 20px 16px 60px;
@@ -181,9 +202,34 @@
           gap: 12px;
         }
 
-        th:nth-child(2),
-        td:nth-child(2) {
+        table {
           display: none;
+        }
+
+        .mobile-only {
+          display: block;
+        }
+
+        .mobile-item {
+          padding: 12px 0;
+          border-top: 1px solid var(--line-soft);
+        }
+
+        .mobile-item:first-of-type {
+          border-top: none;
+          padding-top: 0;
+        }
+
+        .mobile-item strong {
+          display: block;
+          color: var(--ink);
+          margin-bottom: 4px;
+        }
+
+        .mobile-item span {
+          display: block;
+          color: var(--ink-dim);
+          font-size: 0.9rem;
         }
       }
     </style>
@@ -222,40 +268,70 @@
             <tr>
               <td>Barbell or Dumbbell Bench Press</td>
               <td>Mid/overall chest</td>
-              <td>4 x 8-10</td>
+              <td>3 x 8-12</td>
             </tr>
             <tr>
               <td>Incline Dumbbell Press</td>
               <td>Upper chest</td>
-              <td>3 x 10-12</td>
+              <td>3 x 8-12</td>
             </tr>
             <tr>
               <td>Seated Dumbbell Shoulder Press</td>
               <td>Front/side shoulders</td>
-              <td>3 x 8-10</td>
+              <td>3 x 8-12</td>
             </tr>
             <tr>
               <td>Dumbbell Lateral Raise</td>
               <td>Side shoulders</td>
-              <td>3 x 12-15</td>
+              <td>3 x 8-12</td>
             </tr>
             <tr>
               <td>Cable Chest Fly</td>
               <td>Inner/mid chest</td>
-              <td>3 x 12-15</td>
+              <td>3 x 8-12</td>
             </tr>
             <tr>
               <td>Triceps Rope Pushdown</td>
               <td>Triceps</td>
-              <td>3 x 12-15</td>
+              <td>3 x 8-12</td>
             </tr>
             <tr>
               <td>Overhead Dumbbell Triceps Extension</td>
               <td>Triceps</td>
-              <td>2 x 12-15</td>
+              <td>3 x 8-12</td>
             </tr>
           </tbody>
         </table>
+        <div class="mobile-only">
+          <div class="mobile-item">
+            <strong>Barbell or Dumbbell Bench Press</strong>
+            <span>Target: Mid/overall chest · 3 x 8-12</span>
+          </div>
+          <div class="mobile-item">
+            <strong>Incline Dumbbell Press</strong>
+            <span>Target: Upper chest · 3 x 8-12</span>
+          </div>
+          <div class="mobile-item">
+            <strong>Seated Dumbbell Shoulder Press</strong>
+            <span>Target: Front/side shoulders · 3 x 8-12</span>
+          </div>
+          <div class="mobile-item">
+            <strong>Dumbbell Lateral Raise</strong>
+            <span>Target: Side shoulders · 3 x 8-12</span>
+          </div>
+          <div class="mobile-item">
+            <strong>Cable Chest Fly</strong>
+            <span>Target: Inner/mid chest · 3 x 8-12</span>
+          </div>
+          <div class="mobile-item">
+            <strong>Triceps Rope Pushdown</strong>
+            <span>Target: Triceps · 3 x 8-12</span>
+          </div>
+          <div class="mobile-item">
+            <strong>Overhead Dumbbell Triceps Extension</strong>
+            <span>Target: Triceps · 3 x 8-12</span>
+          </div>
+        </div>
       </section>
 
       <section class="day-card">
@@ -276,35 +352,61 @@
             <tr>
               <td>Lat Pulldown or Pull-ups</td>
               <td>Lats</td>
-              <td>4 x 8-10</td>
+              <td>3 x 8-12</td>
             </tr>
             <tr>
               <td>Barbell or Dumbbell Row</td>
               <td>Mid-back thickness</td>
-              <td>4 x 8-10</td>
+              <td>3 x 8-12</td>
             </tr>
             <tr>
               <td>Seated Cable Row</td>
               <td>Mid-back</td>
-              <td>3 x 10-12</td>
+              <td>3 x 8-12</td>
             </tr>
             <tr>
               <td>Face Pull</td>
               <td>Rear delts + upper back</td>
-              <td>3 x 12-15</td>
+              <td>3 x 8-12</td>
             </tr>
             <tr>
               <td>Barbell Curl</td>
               <td>Biceps</td>
-              <td>3 x 10-12</td>
+              <td>3 x 8-12</td>
             </tr>
             <tr>
               <td>Hammer Curl</td>
               <td>Biceps + forearm</td>
-              <td>2 x 12-15</td>
+              <td>3 x 8-12</td>
             </tr>
           </tbody>
         </table>
+        <div class="mobile-only">
+          <div class="mobile-item">
+            <strong>Lat Pulldown or Pull-ups</strong>
+            <span>Target: Lats · 3 x 8-12</span>
+          </div>
+          <div class="mobile-item">
+            <strong>Barbell or Dumbbell Row</strong>
+            <span>Target: Mid-back thickness · 3 x 8-12</span>
+          </div>
+          <div class="mobile-item">
+            <strong>Seated Cable Row</strong>
+            <span>Target: Mid-back · 3 x 8-12</span>
+          </div>
+          <div class="mobile-item">
+            <strong>Face Pull</strong>
+            <span>Target: Rear delts + upper back · 3 x 8-12</span>
+          </div>
+          <div class="mobile-item">
+            <strong>Barbell Curl</strong>
+            <span>Target: Biceps · 3 x 8-12</span>
+          </div>
+          <div class="mobile-item">
+            <strong>Hammer Curl</strong>
+            <span>Target: Biceps + forearm · 3 x 8-12</span>
+          </div>
+        </div>
       </section>
 
       <section class="day-card">
@@ -325,25 +427,43 @@
             <tr>
               <td>Barbell Back Squat or Leg Press</td>
               <td>Quads, glutes</td>
-              <td>3 x 8-10</td>
+              <td>3 x 8-12</td>
             </tr>
             <tr>
               <td>Romanian Deadlift</td>
               <td>Hamstrings, glutes</td>
-              <td>3 x 8-10</td>
+              <td>3 x 8-12</td>
             </tr>
             <tr>
               <td>Leg Curl</td>
               <td>Hamstrings</td>
-              <td>2 x 12</td>
+              <td>3 x 8-12</td>
             </tr>
             <tr>
               <td>Standing Calf Raise</td>
               <td>Calves</td>
-              <td>3 x 15</td>
+              <td>3 x 8-12</td>
             </tr>
           </tbody>
         </table>
+        <div class="mobile-only">
+          <div class="mobile-item">
+            <strong>Barbell Back Squat or Leg Press</strong>
+            <span>Target: Quads, glutes · 3 x 8-12</span>
+          </div>
+          <div class="mobile-item">
+            <strong>Romanian Deadlift</strong>
+            <span>Target: Hamstrings, glutes · 3 x 8-12</span>
+          </div>
+          <div class="mobile-item">
+            <strong>Leg Curl</strong>
+            <span>Target: Hamstrings · 3 x 8-12</span>
+          </div>
+          <div class="mobile-item">
+            <strong>Standing Calf Raise</strong>
+            <span>Target: Calves · 3 x 8-12</span>
+          </div>
+        </div>
       </section>
 
       <section class="day-card">
@@ -364,30 +484,52 @@
             <tr>
               <td>Barbell or Dumbbell Bench Press</td>
               <td>Mid chest</td>
-              <td>3 x 8-10</td>
+              <td>3 x 8-12</td>
             </tr>
             <tr>
               <td>Seated Dumbbell Shoulder Press</td>
               <td>Shoulders</td>
-              <td>3 x 8-10</td>
+              <td>3 x 8-12</td>
             </tr>
             <tr>
               <td>Incline Dumbbell Press</td>
               <td>Upper chest</td>
-              <td>2 x 12</td>
+              <td>3 x 8-12</td>
             </tr>
             <tr>
               <td>Dumbbell Lateral Raise</td>
               <td>Side shoulders</td>
-              <td>3 x 12-15</td>
+              <td>3 x 8-12</td>
             </tr>
             <tr>
               <td>Triceps Rope Pushdown</td>
               <td>Triceps</td>
-              <td>3 x 12-15</td>
+              <td>3 x 8-12</td>
             </tr>
           </tbody>
         </table>
+        <div class="mobile-only">
+          <div class="mobile-item">
+            <strong>Barbell or Dumbbell Bench Press</strong>
+            <span>Target: Mid chest · 3 x 8-12</span>
+          </div>
+          <div class="mobile-item">
+            <strong>Seated Dumbbell Shoulder Press</strong>
+            <span>Target: Shoulders · 3 x 8-12</span>
+          </div>
+          <div class="mobile-item">
+            <strong>Incline Dumbbell Press</strong>
+            <span>Target: Upper chest · 3 x 8-12</span>
+          </div>
+          <div class="mobile-item">
+            <strong>Dumbbell Lateral Raise</strong>
+            <span>Target: Side shoulders · 3 x 8-12</span>
+          </div>
+          <div class="mobile-item">
+            <strong>Triceps Rope Pushdown</strong>
+            <span>Target: Triceps · 3 x 8-12</span>
+          </div>
+        </div>
       </section>
 
       <section class="day-card">
@@ -408,30 +550,52 @@
             <tr>
               <td>Lat Pulldown or Pull-ups</td>
               <td>Back width</td>
-              <td>3 x 8-10</td>
+              <td>3 x 8-12</td>
             </tr>
             <tr>
               <td>Dumbbell or Barbell Row</td>
               <td>Back thickness</td>
-              <td>3 x 8-10</td>
+              <td>3 x 8-12</td>
             </tr>
             <tr>
               <td>Seated Cable Row</td>
               <td>Mid-back</td>
-              <td>2 x 12</td>
+              <td>3 x 8-12</td>
             </tr>
             <tr>
               <td>Face Pull</td>
               <td>Rear delts</td>
-              <td>2 x 15</td>
+              <td>3 x 8-12</td>
             </tr>
             <tr>
               <td>Barbell or Dumbbell Curl</td>
               <td>Biceps</td>
-              <td>3 x 10-12</td>
+              <td>3 x 8-12</td>
             </tr>
           </tbody>
         </table>
+        <div class="mobile-only">
+          <div class="mobile-item">
+            <strong>Lat Pulldown or Pull-ups</strong>
+            <span>Target: Back width · 3 x 8-12</span>
+          </div>
+          <div class="mobile-item">
+            <strong>Dumbbell or Barbell Row</strong>
+            <span>Target: Back thickness · 3 x 8-12</span>
+          </div>
+          <div class="mobile-item">
+            <strong>Seated Cable Row</strong>
+            <span>Target: Mid-back · 3 x 8-12</span>
+          </div>
+          <div class="mobile-item">
+            <strong>Face Pull</strong>
+            <span>Target: Rear delts · 3 x 8-12</span>
+          </div>
+          <div class="mobile-item">
+            <strong>Barbell or Dumbbell Curl</strong>
+            <span>Target: Biceps · 3 x 8-12</span>
+          </div>
+        </div>
       </section>
 
       <section class="day-card">
@@ -452,25 +616,43 @@
             <tr>
               <td>Squat or Leg Press</td>
               <td>Quads, glutes</td>
-              <td>3 x 8-10</td>
+              <td>3 x 8-12</td>
             </tr>
             <tr>
               <td>Romanian Deadlift</td>
               <td>Hamstrings, glutes</td>
-              <td>3 x 10</td>
+              <td>3 x 8-12</td>
             </tr>
             <tr>
               <td>Leg Curl</td>
               <td>Hamstrings</td>
-              <td>2 x 12</td>
+              <td>3 x 8-12</td>
             </tr>
             <tr>
               <td>Calf Raise</td>
               <td>Calves</td>
-              <td>3 x 15</td>
+              <td>3 x 8-12</td>
             </tr>
           </tbody>
         </table>
+        <div class="mobile-only">
+          <div class="mobile-item">
+            <strong>Squat or Leg Press</strong>
+            <span>Target: Quads, glutes · 3 x 8-12</span>
+          </div>
+          <div class="mobile-item">
+            <strong>Romanian Deadlift</strong>
+            <span>Target: Hamstrings, glutes · 3 x 8-12</span>
+          </div>
+          <div class="mobile-item">
+            <strong>Leg Curl</strong>
+            <span>Target: Hamstrings · 3 x 8-12</span>
+          </div>
+          <div class="mobile-item">
+            <strong>Calf Raise</strong>
+            <span>Target: Calves · 3 x 8-12</span>
+          </div>
+        </div>
       </section>
 
       <section class="day-card">
