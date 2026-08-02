@@ -79,6 +79,20 @@
         border: 1px solid var(--line-soft);
         padding: 8px 12px;
         border-radius: 999px;
+        transition:
+          color 0.25s ease,
+          border-color 0.25s ease,
+          box-shadow 0.25s ease,
+          transform 0.2s ease;
+      }
+
+      .back-link:hover {
+        color: var(--ink);
+        border-color: rgba(62, 123, 250, 0.7);
+        transform: translateY(-2px);
+        box-shadow:
+          0 0 24px rgba(62, 123, 250, 0.3),
+          0 6px 16px rgba(62, 123, 250, 0.2);
       }
 
       .hero {
@@ -348,9 +362,40 @@
         }
 
         header {
-          flex-direction: column;
-          align-items: flex-start;
+          flex-direction: row;
+          align-items: center;
+          justify-content: space-between;
           gap: 12px;
+        }
+
+        .back-link {
+          white-space: nowrap;
+        }
+
+        .info-grid {
+          grid-template-columns: 1fr;
+          gap: 12px;
+        }
+
+        .info-card {
+          padding: 18px 16px;
+          border-radius: 18px;
+          min-height: 124px;
+        }
+
+        .info-label {
+          margin-bottom: 10px;
+        }
+
+        .info-value,
+        .info-subtext {
+          display: block;
+          margin-left: 0;
+        }
+
+        .info-subtext {
+          margin-top: 6px;
+          line-height: 1.55;
         }
 
         .overview-list {
@@ -385,6 +430,17 @@
           display: block;
           color: var(--ink-dim);
           font-size: 0.9rem;
+          line-height: 1.45;
+        }
+
+        .countdown-line {
+          display: block;
+          margin-top: 4px;
+          line-height: 1.45;
+        }
+
+        .countdown-line:first-child {
+          margin-top: 0;
         }
       }
     </style>
@@ -399,14 +455,15 @@
       <section class="hero">
         <h1>Workout routine</h1>
         <p>
-          A weekly split centered on strength, recovery, and deep focus blocks.
-          This page now reflects your updated schedule for the next cycle.
+          WOW! I hid the button yet you still found this page. This page is for
+          my personal working out sessions that I follow. Well since you're
+          here, you can check my shedule.
         </p>
       </section>
 
       <section class="info-grid">
         <div class="info-card">
-          <div class="info-label">Today</div>
+          <div class="info-label">What day is it?</div>
           <div class="info-value" id="today-date"></div>
           <div class="info-subtext" id="today-day"></div>
         </div>
@@ -420,7 +477,7 @@
       <section class="day-card">
         <div class="day-head">
           <div class="day-name">Weekly overview</div>
-          <div class="day-label">Focus by day</div>
+          <div class="day-label">Workout Schedule</div>
         </div>
         <div class="overview-list">
           <a class="overview-item" href="#sunday">
@@ -873,12 +930,10 @@
           <div class="day-name">Saturday — Full Rest</div>
           <div class="day-label">Recovery day</div>
         </div>
-        <div class="day-meta">
-          No gym. Recovery + your biggest coding block for Coorad.
-        </div>
+        <div class="day-meta">Chilling and have for coding.</div>
         <p class="note">
-          Keep Saturday fully off and use the extra energy for deep work,
-          recovery, and a strong reset before Sunday’s full push session.
+          Usually i spend time coding and relaxing. Sometime i go outside
+          hangingout with my friends.
         </p>
       </section>
     </div>
@@ -957,7 +1012,6 @@
             day: "numeric",
             year: "numeric",
           });
-          todayDayEl.textContent = "Current day and date";
         }
 
         if (subscriptionPaidEl && subscriptionCountdownEl) {
@@ -986,19 +1040,50 @@
               year: "numeric",
             },
           )}`;
-          subscriptionCountdownEl.textContent = `${daysPassed} days passed • ${daysLeft} days left • Expires ${expiresAt.toLocaleDateString(
-            "en-US",
-            {
-              month: "short",
-              day: "numeric",
-              year: "numeric",
-            },
-          )}`;
+          const expiryText = `Expires ${expiresAt.toLocaleDateString("en-US", {
+            month: "short",
+            day: "numeric",
+            year: "numeric",
+          })}`;
+
+          if (window.matchMedia("(max-width: 720px)").matches) {
+            subscriptionCountdownEl.innerHTML = `
+              <span class="countdown-line">${daysPassed} days passed</span>
+              <span class="countdown-line">${daysLeft} days left • ${expiryText}</span>
+            `;
+          } else {
+            subscriptionCountdownEl.textContent = `${daysPassed} days passed • ${daysLeft} days left • ${expiryText}`;
+          }
         }
       };
 
+      const updateMobileExerciseText = () => {
+        const isMobile = window.matchMedia("(max-width: 720px)").matches;
+
+        document.querySelectorAll(".mobile-item span").forEach((span) => {
+          if (!span.dataset.originalText) {
+            span.dataset.originalText = span.textContent;
+          }
+
+          if (!isMobile) {
+            span.textContent = span.dataset.originalText;
+            return;
+          }
+
+          const separatorIndex = span.dataset.originalText.indexOf(" · ");
+          if (separatorIndex !== -1) {
+            span.textContent = span.dataset.originalText.slice(
+              0,
+              separatorIndex,
+            );
+          }
+        });
+      };
+
       updateStatusInfo();
+      updateMobileExerciseText();
       setInterval(updateStatusInfo, 60000);
+      window.addEventListener("resize", updateMobileExerciseText);
 
       if (window.location.hash) {
         const initialId = window.location.hash.slice(1);
