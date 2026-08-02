@@ -96,6 +96,46 @@
         max-width: 720px;
       }
 
+      .info-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
+        margin: 8px 0 24px;
+      }
+
+      .info-card {
+        border: 1px solid var(--line-soft);
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.04),
+          rgba(255, 255, 255, 0.018)
+        );
+        border-radius: 16px;
+        padding: 16px 18px;
+      }
+
+      .info-label {
+        font-family: var(--font-mono);
+        font-size: 0.72rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin-bottom: 8px;
+      }
+
+      .info-value {
+        font-family: var(--font-display);
+        font-size: 1rem;
+        font-weight: 600;
+        color: var(--ink);
+        margin-bottom: 4px;
+      }
+
+      .info-subtext {
+        color: var(--ink-dim);
+        font-size: 0.9rem;
+      }
+
       .day-card {
         border: 1px solid var(--line-soft);
         background: linear-gradient(
@@ -362,6 +402,19 @@
           A weekly split centered on strength, recovery, and deep focus blocks.
           This page now reflects your updated schedule for the next cycle.
         </p>
+      </section>
+
+      <section class="info-grid">
+        <div class="info-card">
+          <div class="info-label">Today</div>
+          <div class="info-value" id="today-date"></div>
+          <div class="info-subtext" id="today-day"></div>
+        </div>
+        <div class="info-card">
+          <div class="info-label">Gym subscription</div>
+          <div class="info-value" id="subscription-paid"></div>
+          <div class="info-subtext" id="subscription-countdown"></div>
+        </div>
       </section>
 
       <section class="day-card">
@@ -835,6 +888,13 @@
       const dayCards = document.querySelectorAll(".day-card[id]");
       let activeHighlightId = null;
 
+      const todayDateEl = document.getElementById("today-date");
+      const todayDayEl = document.getElementById("today-day");
+      const subscriptionPaidEl = document.getElementById("subscription-paid");
+      const subscriptionCountdownEl = document.getElementById(
+        "subscription-countdown",
+      );
+
       const clearHighlights = () => {
         dayCards.forEach((card) => card.classList.remove("is-highlighted"));
       };
@@ -887,6 +947,58 @@
           });
         });
       });
+
+      const updateStatusInfo = () => {
+        if (todayDateEl) {
+          const today = new Date();
+          todayDateEl.textContent = today.toLocaleDateString("en-US", {
+            weekday: "long",
+            month: "long",
+            day: "numeric",
+            year: "numeric",
+          });
+          todayDayEl.textContent = "Current day and date";
+        }
+
+        if (subscriptionPaidEl && subscriptionCountdownEl) {
+          const paidDate = new Date("2026-07-09T00:00:00");
+          const expiresAt = new Date(paidDate);
+          expiresAt.setMonth(expiresAt.getMonth() + 4);
+
+          const today = new Date();
+          today.setHours(0, 0, 0, 0);
+
+          const timeLeft = expiresAt - today;
+          const daysPassed = Math.max(
+            0,
+            Math.floor((today - paidDate) / (1000 * 60 * 60 * 24)),
+          );
+          const daysLeft = Math.max(
+            0,
+            Math.ceil(timeLeft / (1000 * 60 * 60 * 24)),
+          );
+
+          subscriptionPaidEl.textContent = `Paid ${paidDate.toLocaleDateString(
+            "en-US",
+            {
+              month: "short",
+              day: "numeric",
+              year: "numeric",
+            },
+          )}`;
+          subscriptionCountdownEl.textContent = `${daysPassed} days passed • ${daysLeft} days left • Expires ${expiresAt.toLocaleDateString(
+            "en-US",
+            {
+              month: "short",
+              day: "numeric",
+              year: "numeric",
+            },
+          )}`;
+        }
+      };
+
+      updateStatusInfo();
+      setInterval(updateStatusInfo, 60000);
 
       if (window.location.hash) {
         const initialId = window.location.hash.slice(1);
