@@ -31,6 +31,10 @@
         box-sizing: border-box;
       }
 
+      html {
+        scroll-behavior: smooth;
+      }
+
       body {
         background: var(--bg);
         color: var(--ink);
@@ -102,6 +106,71 @@
         border-radius: 18px;
         padding: 20px 22px;
         margin-bottom: 16px;
+        transition:
+          transform 0.25s ease,
+          border-color 0.25s ease,
+          box-shadow 0.25s ease;
+      }
+
+      .day-card.is-highlighted {
+        border-color: rgba(62, 123, 250, 0.75);
+        box-shadow:
+          0 0 0 1px rgba(62, 123, 250, 0.16),
+          0 0 24px rgba(62, 123, 250, 0.28),
+          0 10px 24px rgba(0, 0, 0, 0.24);
+        transform: translateY(-3px);
+        animation: sectionPulse 2.4s cubic-bezier(0.22, 1, 0.36, 1) 0.5s both;
+        will-change: transform, box-shadow;
+      }
+
+      .day-card.is-highlighted .day-head {
+        animation: contentReveal 1s cubic-bezier(0.22, 1, 0.36, 1) 0.5s both;
+      }
+
+      .day-card.is-highlighted .day-meta {
+        animation: contentReveal 1s cubic-bezier(0.22, 1, 0.36, 1) 0.68s both;
+      }
+
+      .day-card.is-highlighted table,
+      .day-card.is-highlighted .mobile-only {
+        animation: contentReveal 1.1s cubic-bezier(0.22, 1, 0.36, 1) 0.82s both;
+      }
+
+      .day-card.is-highlighted .note {
+        animation: contentReveal 1s cubic-bezier(0.22, 1, 0.36, 1) 0.96s both;
+      }
+
+      @keyframes sectionPulse {
+        0% {
+          box-shadow:
+            0 0 0 0 rgba(62, 123, 250, 0.32),
+            0 0 0 0 rgba(62, 123, 250, 0.12);
+          transform: translateY(0);
+        }
+        35% {
+          box-shadow:
+            0 0 0 4px rgba(62, 123, 250, 0.1),
+            0 0 30px rgba(62, 123, 250, 0.24),
+            0 10px 24px rgba(0, 0, 0, 0.24);
+          transform: translateY(-4px);
+        }
+        100% {
+          box-shadow:
+            0 0 0 0 rgba(62, 123, 250, 0),
+            0 0 0 0 rgba(62, 123, 250, 0);
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes contentReveal {
+        0% {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
       }
 
       .day-head {
@@ -129,6 +198,48 @@
         color: var(--ink-dim);
         font-size: 0.9rem;
         margin-bottom: 12px;
+      }
+
+      .overview-list {
+        display: grid;
+        gap: 10px;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .overview-item {
+        padding: 12px 14px;
+        border: 1px solid var(--line-soft);
+        border-radius: 12px;
+        background: rgba(255, 255, 255, 0.02);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+        cursor: pointer;
+        transition:
+          border-color 0.2s ease,
+          transform 0.2s ease,
+          background 0.2s ease;
+      }
+
+      .overview-item:hover {
+        border-color: rgba(62, 123, 250, 0.45);
+        background: rgba(62, 123, 250, 0.08);
+        transform: translateY(-1px);
+      }
+
+      .overview-item strong {
+        color: var(--ink);
+      }
+
+      .overview-item span {
+        color: var(--ink-dim);
+        font-size: 0.9rem;
+        text-align: right;
+      }
+
+      .day-card[id] {
+        scroll-margin-top: 20px;
       }
 
       table {
@@ -202,6 +313,10 @@
           gap: 12px;
         }
 
+        .overview-list {
+          grid-template-columns: 1fr;
+        }
+
         table {
           display: none;
         }
@@ -244,13 +359,49 @@
       <section class="hero">
         <h1>Workout routine</h1>
         <p>
-          A simple weekly split built around strength, recovery, and
-          consistency. This page exists as a personal reference rather than a
-          public feature.
+          A weekly split centered on strength, recovery, and deep focus blocks.
+          This page now reflects your updated schedule for the next cycle.
         </p>
       </section>
 
       <section class="day-card">
+        <div class="day-head">
+          <div class="day-name">Weekly overview</div>
+          <div class="day-label">Focus by day</div>
+        </div>
+        <div class="overview-list">
+          <a class="overview-item" href="#sunday">
+            <strong>Sunday</strong>
+            <span>Chest, shoulders, triceps</span>
+          </a>
+          <a class="overview-item" href="#monday">
+            <strong>Monday</strong>
+            <span>Back, biceps</span>
+          </a>
+          <a class="overview-item" href="#tuesday">
+            <strong>Tuesday</strong>
+            <span>Legs (Glutes, hamstrings, quads)</span>
+          </a>
+          <a class="overview-item" href="#wednesday">
+            <strong>Wednesday</strong>
+            <span>Chest, shoulders, triceps</span>
+          </a>
+          <a class="overview-item" href="#thursday">
+            <strong>Thursday</strong>
+            <span>Back, biceps</span>
+          </a>
+          <a class="overview-item" href="#friday">
+            <strong>Friday</strong>
+            <span>Upper chest, shoulders, back, biceps</span>
+          </a>
+          <a class="overview-item" href="#saturday">
+            <strong>Saturday</strong>
+            <span>Full rest</span>
+          </a>
+        </div>
+      </section>
+
+      <section class="day-card" id="sunday">
         <div class="day-head">
           <div class="day-name">Sunday — Push</div>
           <div class="day-label">Full session</div>
@@ -260,7 +411,7 @@
           <thead>
             <tr>
               <th>Exercise</th>
-              <th>Target</th>
+              <th>Target Area</th>
               <th>Sets x Reps</th>
             </tr>
           </thead>
@@ -268,73 +419,73 @@
             <tr>
               <td>Barbell or Dumbbell Bench Press</td>
               <td>Mid/overall chest</td>
-              <td>3 x 8-12</td>
+              <td>4 x 8-10</td>
             </tr>
             <tr>
               <td>Incline Dumbbell Press</td>
               <td>Upper chest</td>
-              <td>3 x 8-12</td>
+              <td>3 x 10-12</td>
             </tr>
             <tr>
               <td>Seated Dumbbell Shoulder Press</td>
               <td>Front/side shoulders</td>
-              <td>3 x 8-12</td>
+              <td>3 x 8-10</td>
             </tr>
             <tr>
               <td>Dumbbell Lateral Raise</td>
-              <td>Side shoulders</td>
-              <td>3 x 8-12</td>
+              <td>Side shoulders (V-taper)</td>
+              <td>3 x 12-15</td>
             </tr>
             <tr>
               <td>Cable Chest Fly</td>
               <td>Inner/mid chest</td>
-              <td>3 x 8-12</td>
+              <td>3 x 12-15</td>
             </tr>
             <tr>
               <td>Triceps Rope Pushdown</td>
               <td>Triceps</td>
-              <td>3 x 8-12</td>
+              <td>3 x 12-15</td>
             </tr>
             <tr>
               <td>Overhead Dumbbell Triceps Extension</td>
               <td>Triceps</td>
-              <td>3 x 8-12</td>
+              <td>2 x 12-15</td>
             </tr>
           </tbody>
         </table>
         <div class="mobile-only">
           <div class="mobile-item">
             <strong>Barbell or Dumbbell Bench Press</strong>
-            <span>Target: Mid/overall chest · 3 x 8-12</span>
+            <span>Target: Mid/overall chest · 4 x 8-10</span>
           </div>
           <div class="mobile-item">
             <strong>Incline Dumbbell Press</strong>
-            <span>Target: Upper chest · 3 x 8-12</span>
+            <span>Target: Upper chest · 3 x 10-12</span>
           </div>
           <div class="mobile-item">
             <strong>Seated Dumbbell Shoulder Press</strong>
-            <span>Target: Front/side shoulders · 3 x 8-12</span>
+            <span>Target: Front/side shoulders · 3 x 8-10</span>
           </div>
           <div class="mobile-item">
             <strong>Dumbbell Lateral Raise</strong>
-            <span>Target: Side shoulders · 3 x 8-12</span>
+            <span>Target: Side shoulders (V-taper) · 3 x 12-15</span>
           </div>
           <div class="mobile-item">
             <strong>Cable Chest Fly</strong>
-            <span>Target: Inner/mid chest · 3 x 8-12</span>
+            <span>Target: Inner/mid chest · 3 x 12-15</span>
           </div>
           <div class="mobile-item">
             <strong>Triceps Rope Pushdown</strong>
-            <span>Target: Triceps · 3 x 8-12</span>
+            <span>Target: Triceps · 3 x 12-15</span>
           </div>
           <div class="mobile-item">
             <strong>Overhead Dumbbell Triceps Extension</strong>
-            <span>Target: Triceps · 3 x 8-12</span>
+            <span>Target: Triceps · 2 x 12-15</span>
           </div>
         </div>
       </section>
 
-      <section class="day-card">
+      <section class="day-card" id="monday">
         <div class="day-head">
           <div class="day-name">Monday — Pull</div>
           <div class="day-label">Full session</div>
@@ -344,205 +495,7 @@
           <thead>
             <tr>
               <th>Exercise</th>
-              <th>Target</th>
-              <th>Sets x Reps</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Lat Pulldown or Pull-ups</td>
-              <td>Lats</td>
-              <td>3 x 8-12</td>
-            </tr>
-            <tr>
-              <td>Barbell or Dumbbell Row</td>
-              <td>Mid-back thickness</td>
-              <td>3 x 8-12</td>
-            </tr>
-            <tr>
-              <td>Seated Cable Row</td>
-              <td>Mid-back</td>
-              <td>3 x 8-12</td>
-            </tr>
-            <tr>
-              <td>Face Pull</td>
-              <td>Rear delts + upper back</td>
-              <td>3 x 8-12</td>
-            </tr>
-            <tr>
-              <td>Barbell Curl</td>
-              <td>Biceps</td>
-              <td>3 x 8-12</td>
-            </tr>
-            <tr>
-              <td>Hammer Curl</td>
-              <td>Biceps + forearm</td>
-              <td>3 x 8-12</td>
-            </tr>
-          </tbody>
-        </table>
-        <div class="mobile-only">
-          <div class="mobile-item">
-            <strong>Lat Pulldown or Pull-ups</strong>
-            <span>Target: Lats · 3 x 8-12</span>
-          </div>
-          <div class="mobile-item">
-            <strong>Barbell or Dumbbell Row</strong>
-            <span>Target: Mid-back thickness · 3 x 8-12</span>
-          </div>
-          <div class="mobile-item">
-            <strong>Seated Cable Row</strong>
-            <span>Target: Mid-back · 3 x 8-12</span>
-          </div>
-          <div class="mobile-item">
-            <strong>Face Pull</strong>
-            <span>Target: Rear delts + upper back · 3 x 8-12</span>
-          </div>
-          <div class="mobile-item">
-            <strong>Barbell Curl</strong>
-            <span>Target: Biceps · 3 x 8-12</span>
-          </div>
-          <div class="mobile-item">
-            <strong>Hammer Curl</strong>
-            <span>Target: Biceps + forearm · 3 x 8-12</span>
-          </div>
-        </div>
-      </section>
-
-      <section class="day-card">
-        <div class="day-head">
-          <div class="day-name">Tuesday — Legs</div>
-          <div class="day-label">Efficient session</div>
-        </div>
-        <div class="day-meta">Quads, hamstrings, glutes</div>
-        <table>
-          <thead>
-            <tr>
-              <th>Exercise</th>
-              <th>Target</th>
-              <th>Sets x Reps</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Barbell Back Squat or Leg Press</td>
-              <td>Quads, glutes</td>
-              <td>3 x 8-12</td>
-            </tr>
-            <tr>
-              <td>Romanian Deadlift</td>
-              <td>Hamstrings, glutes</td>
-              <td>3 x 8-12</td>
-            </tr>
-            <tr>
-              <td>Leg Curl</td>
-              <td>Hamstrings</td>
-              <td>3 x 8-12</td>
-            </tr>
-            <tr>
-              <td>Standing Calf Raise</td>
-              <td>Calves</td>
-              <td>3 x 8-12</td>
-            </tr>
-          </tbody>
-        </table>
-        <div class="mobile-only">
-          <div class="mobile-item">
-            <strong>Barbell Back Squat or Leg Press</strong>
-            <span>Target: Quads, glutes · 3 x 8-12</span>
-          </div>
-          <div class="mobile-item">
-            <strong>Romanian Deadlift</strong>
-            <span>Target: Hamstrings, glutes · 3 x 8-12</span>
-          </div>
-          <div class="mobile-item">
-            <strong>Leg Curl</strong>
-            <span>Target: Hamstrings · 3 x 8-12</span>
-          </div>
-          <div class="mobile-item">
-            <strong>Standing Calf Raise</strong>
-            <span>Target: Calves · 3 x 8-12</span>
-          </div>
-        </div>
-      </section>
-
-      <section class="day-card">
-        <div class="day-head">
-          <div class="day-name">Wednesday — Push</div>
-          <div class="day-label">Efficient session</div>
-        </div>
-        <div class="day-meta">Chest, shoulders, triceps</div>
-        <table>
-          <thead>
-            <tr>
-              <th>Exercise</th>
-              <th>Target</th>
-              <th>Sets x Reps</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Barbell or Dumbbell Bench Press</td>
-              <td>Mid chest</td>
-              <td>3 x 8-12</td>
-            </tr>
-            <tr>
-              <td>Seated Dumbbell Shoulder Press</td>
-              <td>Shoulders</td>
-              <td>3 x 8-12</td>
-            </tr>
-            <tr>
-              <td>Incline Dumbbell Press</td>
-              <td>Upper chest</td>
-              <td>3 x 8-12</td>
-            </tr>
-            <tr>
-              <td>Dumbbell Lateral Raise</td>
-              <td>Side shoulders</td>
-              <td>3 x 8-12</td>
-            </tr>
-            <tr>
-              <td>Triceps Rope Pushdown</td>
-              <td>Triceps</td>
-              <td>3 x 8-12</td>
-            </tr>
-          </tbody>
-        </table>
-        <div class="mobile-only">
-          <div class="mobile-item">
-            <strong>Barbell or Dumbbell Bench Press</strong>
-            <span>Target: Mid chest · 3 x 8-12</span>
-          </div>
-          <div class="mobile-item">
-            <strong>Seated Dumbbell Shoulder Press</strong>
-            <span>Target: Shoulders · 3 x 8-12</span>
-          </div>
-          <div class="mobile-item">
-            <strong>Incline Dumbbell Press</strong>
-            <span>Target: Upper chest · 3 x 8-12</span>
-          </div>
-          <div class="mobile-item">
-            <strong>Dumbbell Lateral Raise</strong>
-            <span>Target: Side shoulders · 3 x 8-12</span>
-          </div>
-          <div class="mobile-item">
-            <strong>Triceps Rope Pushdown</strong>
-            <span>Target: Triceps · 3 x 8-12</span>
-          </div>
-        </div>
-      </section>
-
-      <section class="day-card">
-        <div class="day-head">
-          <div class="day-name">Thursday — Pull</div>
-          <div class="day-label">Efficient session</div>
-        </div>
-        <div class="day-meta">Back, biceps</div>
-        <table>
-          <thead>
-            <tr>
-              <th>Exercise</th>
-              <th>Target</th>
+              <th>Target Area</th>
               <th>Sets x Reps</th>
             </tr>
           </thead>
@@ -550,123 +503,401 @@
             <tr>
               <td>Lat Pulldown or Pull-ups</td>
               <td>Back width</td>
-              <td>3 x 8-12</td>
+              <td>4 x 8-10</td>
             </tr>
             <tr>
-              <td>Dumbbell or Barbell Row</td>
+              <td>Barbell or Dumbbell Row</td>
               <td>Back thickness</td>
-              <td>3 x 8-12</td>
+              <td>4 x 8-10</td>
             </tr>
             <tr>
               <td>Seated Cable Row</td>
               <td>Mid-back</td>
-              <td>3 x 8-12</td>
+              <td>3 x 10-12</td>
             </tr>
             <tr>
               <td>Face Pull</td>
               <td>Rear delts</td>
-              <td>3 x 8-12</td>
+              <td>3 x 12-15</td>
             </tr>
             <tr>
-              <td>Barbell or Dumbbell Curl</td>
+              <td>Barbell Curl</td>
               <td>Biceps</td>
-              <td>3 x 8-12</td>
+              <td>3 x 10-12</td>
+            </tr>
+            <tr>
+              <td>Hammer Curl</td>
+              <td>Biceps + forearm</td>
+              <td>2 x 12-15</td>
             </tr>
           </tbody>
         </table>
         <div class="mobile-only">
           <div class="mobile-item">
             <strong>Lat Pulldown or Pull-ups</strong>
-            <span>Target: Back width · 3 x 8-12</span>
+            <span>Target: Back width · 4 x 8-10</span>
           </div>
           <div class="mobile-item">
-            <strong>Dumbbell or Barbell Row</strong>
-            <span>Target: Back thickness · 3 x 8-12</span>
+            <strong>Barbell or Dumbbell Row</strong>
+            <span>Target: Back thickness · 4 x 8-10</span>
           </div>
           <div class="mobile-item">
             <strong>Seated Cable Row</strong>
-            <span>Target: Mid-back · 3 x 8-12</span>
+            <span>Target: Mid-back · 3 x 10-12</span>
           </div>
           <div class="mobile-item">
             <strong>Face Pull</strong>
-            <span>Target: Rear delts · 3 x 8-12</span>
+            <span>Target: Rear delts · 3 x 12-15</span>
           </div>
           <div class="mobile-item">
-            <strong>Barbell or Dumbbell Curl</strong>
-            <span>Target: Biceps · 3 x 8-12</span>
+            <strong>Barbell Curl</strong>
+            <span>Target: Biceps · 3 x 10-12</span>
+          </div>
+          <div class="mobile-item">
+            <strong>Hammer Curl</strong>
+            <span>Target: Biceps + forearm · 2 x 12-15</span>
           </div>
         </div>
       </section>
 
-      <section class="day-card">
+      <section class="day-card" id="tuesday">
         <div class="day-head">
-          <div class="day-name">Friday — Legs</div>
-          <div class="day-label">Efficient session</div>
+          <div class="day-name">Tuesday — Legs</div>
+          <div class="day-label">Glute-focused</div>
         </div>
-        <div class="day-meta">Quads, hamstrings, calves</div>
+        <div class="day-meta">Glutes, hamstrings, quads</div>
         <table>
           <thead>
             <tr>
               <th>Exercise</th>
-              <th>Target</th>
+              <th>Target Area</th>
               <th>Sets x Reps</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td>Squat or Leg Press</td>
-              <td>Quads, glutes</td>
-              <td>3 x 8-12</td>
+              <td>Barbell Hip Thrust</td>
+              <td>Glutes (primary)</td>
+              <td>4 x 10-12</td>
+            </tr>
+            <tr>
+              <td>Bulgarian Split Squat</td>
+              <td>Glutes, quads</td>
+              <td>3 x 10-12 each leg</td>
             </tr>
             <tr>
               <td>Romanian Deadlift</td>
               <td>Hamstrings, glutes</td>
-              <td>3 x 8-12</td>
+              <td>3 x 8-10</td>
             </tr>
             <tr>
-              <td>Leg Curl</td>
-              <td>Hamstrings</td>
-              <td>3 x 8-12</td>
-            </tr>
-            <tr>
-              <td>Calf Raise</td>
-              <td>Calves</td>
-              <td>3 x 8-12</td>
+              <td>Cable Kickback</td>
+              <td>Glutes isolated</td>
+              <td>3 x 12-15</td>
             </tr>
           </tbody>
         </table>
         <div class="mobile-only">
           <div class="mobile-item">
-            <strong>Squat or Leg Press</strong>
-            <span>Target: Quads, glutes · 3 x 8-12</span>
+            <strong>Barbell Hip Thrust</strong>
+            <span>Target: Glutes (primary) · 4 x 10-12</span>
+          </div>
+          <div class="mobile-item">
+            <strong>Bulgarian Split Squat</strong>
+            <span>Target: Glutes, quads · 3 x 10-12 each leg</span>
           </div>
           <div class="mobile-item">
             <strong>Romanian Deadlift</strong>
-            <span>Target: Hamstrings, glutes · 3 x 8-12</span>
+            <span>Target: Hamstrings, glutes · 3 x 8-10</span>
           </div>
           <div class="mobile-item">
-            <strong>Leg Curl</strong>
-            <span>Target: Hamstrings · 3 x 8-12</span>
-          </div>
-          <div class="mobile-item">
-            <strong>Calf Raise</strong>
-            <span>Target: Calves · 3 x 8-12</span>
+            <strong>Cable Kickback</strong>
+            <span>Target: Glutes isolated · 3 x 12-15</span>
           </div>
         </div>
       </section>
 
-      <section class="day-card">
+      <section class="day-card" id="wednesday">
+        <div class="day-head">
+          <div class="day-name">Wednesday — Push</div>
+          <div class="day-label">Efficient</div>
+        </div>
+        <div class="day-meta">Chest, shoulders, triceps</div>
+        <table>
+          <thead>
+            <tr>
+              <th>Exercise</th>
+              <th>Target Area</th>
+              <th>Sets x Reps</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Barbell or Dumbbell Bench Press</td>
+              <td>Mid chest</td>
+              <td>3 x 8-10</td>
+            </tr>
+            <tr>
+              <td>Seated Dumbbell Shoulder Press</td>
+              <td>Shoulders</td>
+              <td>3 x 8-10</td>
+            </tr>
+            <tr>
+              <td>Incline Dumbbell Press</td>
+              <td>Upper chest</td>
+              <td>2 x 12</td>
+            </tr>
+            <tr>
+              <td>Dumbbell Lateral Raise</td>
+              <td>Side shoulders</td>
+              <td>3 x 12-15</td>
+            </tr>
+            <tr>
+              <td>Triceps Rope Pushdown</td>
+              <td>Triceps</td>
+              <td>3 x 12-15</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="mobile-only">
+          <div class="mobile-item">
+            <strong>Barbell or Dumbbell Bench Press</strong>
+            <span>Target: Mid chest · 3 x 8-10</span>
+          </div>
+          <div class="mobile-item">
+            <strong>Seated Dumbbell Shoulder Press</strong>
+            <span>Target: Shoulders · 3 x 8-10</span>
+          </div>
+          <div class="mobile-item">
+            <strong>Incline Dumbbell Press</strong>
+            <span>Target: Upper chest · 2 x 12</span>
+          </div>
+          <div class="mobile-item">
+            <strong>Dumbbell Lateral Raise</strong>
+            <span>Target: Side shoulders · 3 x 12-15</span>
+          </div>
+          <div class="mobile-item">
+            <strong>Triceps Rope Pushdown</strong>
+            <span>Target: Triceps · 3 x 12-15</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="day-card" id="thursday">
+        <div class="day-head">
+          <div class="day-name">Thursday — Pull</div>
+          <div class="day-label">Efficient</div>
+        </div>
+        <div class="day-meta">Back, biceps</div>
+        <table>
+          <thead>
+            <tr>
+              <th>Exercise</th>
+              <th>Target Area</th>
+              <th>Sets x Reps</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Lat Pulldown or Pull-ups</td>
+              <td>Back width</td>
+              <td>3 x 8-10</td>
+            </tr>
+            <tr>
+              <td>Dumbbell or Barbell Row</td>
+              <td>Back thickness</td>
+              <td>3 x 8-10</td>
+            </tr>
+            <tr>
+              <td>Seated Cable Row</td>
+              <td>Mid-back</td>
+              <td>2 x 12</td>
+            </tr>
+            <tr>
+              <td>Face Pull</td>
+              <td>Rear delts</td>
+              <td>2 x 15</td>
+            </tr>
+            <tr>
+              <td>Barbell or Dumbbell Curl</td>
+              <td>Biceps</td>
+              <td>3 x 10-12</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="mobile-only">
+          <div class="mobile-item">
+            <strong>Lat Pulldown or Pull-ups</strong>
+            <span>Target: Back width · 3 x 8-10</span>
+          </div>
+          <div class="mobile-item">
+            <strong>Dumbbell or Barbell Row</strong>
+            <span>Target: Back thickness · 3 x 8-10</span>
+          </div>
+          <div class="mobile-item">
+            <strong>Seated Cable Row</strong>
+            <span>Target: Mid-back · 2 x 12</span>
+          </div>
+          <div class="mobile-item">
+            <strong>Face Pull</strong>
+            <span>Target: Rear delts · 2 x 15</span>
+          </div>
+          <div class="mobile-item">
+            <strong>Barbell or Dumbbell Curl</strong>
+            <span>Target: Biceps · 3 x 10-12</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="day-card" id="friday">
+        <div class="day-head">
+          <div class="day-name">Friday — Upper Body Accessory</div>
+          <div class="day-label">Accessory</div>
+        </div>
+        <div class="day-meta">Upper chest, shoulders, back, biceps</div>
+        <table>
+          <thead>
+            <tr>
+              <th>Exercise</th>
+              <th>Target Area</th>
+              <th>Sets x Reps</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Incline Dumbbell Press</td>
+              <td>Upper chest</td>
+              <td>3 x 10-12</td>
+            </tr>
+            <tr>
+              <td>Dumbbell Lateral Raise</td>
+              <td>Shoulders</td>
+              <td>3 x 12-15</td>
+            </tr>
+            <tr>
+              <td>Cable Row or Dumbbell Row</td>
+              <td>Back thickness</td>
+              <td>3 x 10-12</td>
+            </tr>
+            <tr>
+              <td>Face Pull</td>
+              <td>Rear delts</td>
+              <td>3 x 15</td>
+            </tr>
+            <tr>
+              <td>Barbell or Dumbbell Curl</td>
+              <td>Biceps</td>
+              <td>2 x 12</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="mobile-only">
+          <div class="mobile-item">
+            <strong>Incline Dumbbell Press</strong>
+            <span>Target: Upper chest · 3 x 10-12</span>
+          </div>
+          <div class="mobile-item">
+            <strong>Dumbbell Lateral Raise</strong>
+            <span>Target: Shoulders · 3 x 12-15</span>
+          </div>
+          <div class="mobile-item">
+            <strong>Cable Row or Dumbbell Row</strong>
+            <span>Target: Back thickness · 3 x 10-12</span>
+          </div>
+          <div class="mobile-item">
+            <strong>Face Pull</strong>
+            <span>Target: Rear delts · 3 x 15</span>
+          </div>
+          <div class="mobile-item">
+            <strong>Barbell or Dumbbell Curl</strong>
+            <span>Target: Biceps · 2 x 12</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="day-card" id="saturday">
         <div class="day-head">
           <div class="day-name">Saturday — Full Rest</div>
           <div class="day-label">Recovery day</div>
         </div>
-        <div class="day-meta">No gym, no cardio</div>
+        <div class="day-meta">
+          No gym. Recovery + your biggest coding block for Coorad.
+        </div>
         <p class="note">
-          This is your recovery day and your biggest coding block — let your
-          body fully reset before Sunday’s full push session kicks the week off
-          again.
+          Keep Saturday fully off and use the extra energy for deep work,
+          recovery, and a strong reset before Sunday’s full push session.
         </p>
       </section>
     </div>
+
+    <script>
+      const overviewLinks = document.querySelectorAll(".overview-item");
+      const dayCards = document.querySelectorAll(".day-card[id]");
+      let activeHighlightId = null;
+
+      const clearHighlights = () => {
+        dayCards.forEach((card) => card.classList.remove("is-highlighted"));
+      };
+
+      const triggerHighlight = (targetId) => {
+        const targetCard = document.getElementById(targetId);
+        if (!targetCard) return;
+
+        clearHighlights();
+        targetCard.classList.add("is-highlighted");
+
+        window.setTimeout(() => {
+          targetCard.classList.remove("is-highlighted");
+        }, 3200);
+      };
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+
+            if (activeHighlightId && entry.target.id === activeHighlightId) {
+              triggerHighlight(entry.target.id);
+              activeHighlightId = null;
+            }
+          });
+        },
+        {
+          threshold: 0.2,
+          rootMargin: "-6% 0px -18% 0px",
+        },
+      );
+
+      dayCards.forEach((card) => observer.observe(card));
+
+      overviewLinks.forEach((link) => {
+        link.addEventListener("click", (event) => {
+          const href = link.getAttribute("href");
+          if (!href || !href.startsWith("#")) return;
+
+          const targetId = href.slice(1);
+          event.preventDefault();
+          history.pushState(null, "", href);
+          clearHighlights();
+          activeHighlightId = targetId;
+
+          document.getElementById(targetId)?.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+          });
+        });
+      });
+
+      if (window.location.hash) {
+        const initialId = window.location.hash.slice(1);
+        activeHighlightId = initialId;
+        window.setTimeout(() => {
+          document.getElementById(initialId)?.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+          });
+        }, 80);
+      }
+    </script>
   </body>
 </html>
