@@ -10,1212 +10,7 @@
       href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     />
-    <style>
-      :root {
-        --bg: #0b0c0e;
-        --bg-elev: #131417;
-        --bg-elev-2: #191b1f;
-        --ink: #f2f3f5;
-        --ink-dim: #9aa0ac;
-        --ink-faint: #5c6270;
-        --accent: #3e7bfa;
-        --accent-dim: #1f3a73;
-        --line: rgba(242, 243, 245, 0.09);
-        --line-soft: rgba(242, 243, 245, 0.05);
-
-        --font-display: "Space Grotesk", sans-serif;
-        --font-body: "Inter", sans-serif;
-        --font-mono: "JetBrains Mono", monospace;
-      }
-
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-      html {
-        scroll-behavior: smooth;
-      }
-      @media (prefers-reduced-motion: reduce) {
-        html {
-          scroll-behavior: auto;
-        }
-        * {
-          animation-duration: 0.01ms !important;
-          transition-duration: 0.01ms !important;
-        }
-      }
-
-      body {
-        background: var(--bg);
-        color: var(--ink);
-        font-family: var(--font-body);
-        line-height: 1.6;
-      }
-      a {
-        color: inherit;
-        text-decoration: none;
-      }
-      ::selection {
-        background: var(--accent);
-        color: #fff;
-      }
-      :focus-visible {
-        outline: 2px solid var(--accent);
-        outline-offset: 3px;
-      }
-
-      .wrap {
-        max-width: 1120px;
-        margin: 0 auto;
-        padding: 0 40px;
-      }
-
-      /* ---------- nav ---------- */
-      header {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        z-index: 200;
-        background: rgba(11, 12, 14, 0.72);
-        backdrop-filter: blur(10px);
-        border-bottom: 1px solid var(--line-soft);
-      }
-      .nav-inner {
-        max-width: 1120px;
-        margin: 0 auto;
-        padding: 0 40px;
-        height: 72px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        position: relative;
-      }
-      .logo {
-        position: relative;
-        z-index: 2;
-        font-family: var(--font-display);
-        font-weight: 600;
-        font-size: 1.05rem;
-        display: inline-flex;
-        align-items: center;
-        gap: 2px;
-        color: var(--ink);
-        cursor: pointer;
-        transition:
-          text-shadow 0.25s ease,
-          color 0.25s ease;
-      }
-      .logo:hover {
-        color: var(--accent);
-        text-shadow:
-          0 0 16px rgba(62, 123, 250, 0.45),
-          0 0 28px rgba(62, 123, 250, 0.24);
-      }
-      .logo span {
-        color: var(--accent);
-        transition: text-shadow 0.25s ease;
-      }
-      .logo:hover span {
-        text-shadow:
-          0 0 16px rgba(62, 123, 250, 0.5),
-          0 0 30px rgba(62, 123, 250, 0.3);
-      }
-      .nav-links {
-        position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
-        display: flex;
-        gap: 28px;
-        list-style: none;
-        justify-content: center;
-        align-items: center;
-        z-index: 1;
-      }
-      .nav-links.open {
-        display: flex;
-      }
-      .nav-links li {
-        position: relative;
-      }
-      .nav-links a {
-        position: relative;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        padding: 8px 0;
-        font-size: 0.88rem;
-        color: var(--ink-dim);
-        font-weight: 500;
-        transition:
-          color 0.25s ease,
-          text-shadow 0.25s ease;
-      }
-      .nav-links a::before,
-      .nav-links a::after {
-        content: "";
-        position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
-        pointer-events: none;
-        transition:
-          width 0.25s ease,
-          opacity 0.25s ease,
-          box-shadow 0.25s ease;
-      }
-      .nav-links a::before {
-        bottom: -6px;
-        width: 0;
-        height: 2px;
-        border-radius: 999px;
-        background: var(--accent);
-        opacity: 0.9;
-        box-shadow:
-          0 -8px 16px rgba(62, 123, 250, 0.42),
-          0 -16px 28px rgba(62, 123, 250, 0.22);
-      }
-      .nav-links a:hover,
-      .nav-links a.active {
-        color: var(--ink);
-      }
-      .nav-links a:hover::before,
-      .nav-links a.active::before {
-        width: calc(100% + 16px);
-      }
-      .nav-cta {
-        position: relative;
-        z-index: 2;
-        font-family: var(--font-mono);
-        font-size: 0.78rem;
-        padding: 9px 18px;
-        border: 1px solid var(--line);
-        border-radius: 6px;
-        color: var(--ink);
-        background: rgba(255, 255, 255, 0.03);
-        box-shadow:
-          0 0 24px rgba(62, 123, 250, 0.35),
-          0 4px 12px rgba(62, 123, 250, 0.2);
-        transition:
-          border-color 0.25s ease,
-          background 0.25s ease,
-          transform 0.2s ease,
-          box-shadow 0.25s ease;
-      }
-      .nav-cta:hover,
-      .nav-cta.active {
-        border-color: rgba(62, 123, 250, 0.7);
-        transform: translateY(-2px);
-        background: rgba(62, 123, 250, 0.08);
-        box-shadow:
-          0 0 42px rgba(62, 123, 250, 0.55),
-          0 6px 16px rgba(62, 123, 250, 0.3);
-      }
-      .nav-toggle {
-        display: none;
-        background: none;
-        border: none;
-        color: var(--ink);
-        font-size: 1.1rem;
-        cursor: pointer;
-        padding: 8px;
-        border-radius: 8px;
-        border: 1px solid var(--line-soft);
-      }
-
-      /* ---------- hero ---------- */
-      .hero {
-        position: relative;
-        min-height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        overflow: hidden;
-        isolation: isolate;
-      }
-      .hero::before,
-      .hero::after {
-        content: "";
-        position: absolute;
-        border-radius: 50%;
-        filter: blur(60px);
-        opacity: 0.7;
-        pointer-events: none;
-        animation: floatGlow 8s ease-in-out infinite;
-      }
-      .hero::before {
-        width: 320px;
-        height: 320px;
-        top: -60px;
-        left: -80px;
-        background: rgba(62, 123, 250, 0.24);
-      }
-      .hero::after {
-        width: 260px;
-        height: 260px;
-        right: -40px;
-        bottom: -40px;
-        background: rgba(153, 86, 255, 0.22);
-        animation-delay: -4s;
-      }
-      @keyframes floatGlow {
-        0%,
-        100% {
-          transform: translate3d(0, 0, 0) scale(1);
-        }
-        50% {
-          transform: translate3d(18px, -12px, 0) scale(1.08);
-        }
-      }
-      .hero-bg {
-        position: absolute;
-        inset: 0;
-        background:
-          radial-gradient(circle at 30% 20%, #1a2942 0%, transparent 55%),
-          radial-gradient(circle at 75% 75%, #241a34 0%, transparent 50%),
-          linear-gradient(180deg, #0d0e11 0%, #0b0c0e 100%);
-      }
-      .hero-bg::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background: url("img/hero_bg_profile.JPG") center/cover no-repeat;
-        opacity: 0.3;
-        filter: saturate(1.1) contrast(1.08);
-        transform: scale(1.04);
-      }
-      .hero-bg::after {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(
-          135deg,
-          rgba(13, 14, 17, 0.35) 0%,
-          rgba(11, 12, 14, 0.8) 100%
-        );
-      }
-      .hero-content {
-        position: relative;
-        z-index: 2;
-        max-width: 680px;
-        padding: 28px 32px;
-        background: rgba(255, 255, 255, 0.01);
-        border: 1px solid rgba(255, 255, 255, 0.05);
-        backdrop-filter: blur(2px);
-        box-shadow: 0 16px 48px rgba(0, 0, 0, 0.34);
-        border-radius: 20px;
-      }
-      .hero-kicker {
-        font-family: var(--font-mono);
-        font-size: 0.72rem;
-        letter-spacing: 0.08em;
-        color: var(--accent);
-        text-transform: uppercase;
-        margin-bottom: 14px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 8px;
-      }
-      .hero-kicker::before {
-        content: "";
-        width: 8px;
-        height: 8px;
-        border-radius: 50%;
-        background: var(--accent);
-        box-shadow: 0 0 0 0 rgba(62, 123, 250, 0.7);
-        animation: pulseDot 1.8s ease-out infinite;
-      }
-      @keyframes pulseDot {
-        0% {
-          transform: scale(0.95);
-          box-shadow: 0 0 0 0 rgba(62, 123, 250, 0.7);
-        }
-        70% {
-          transform: scale(1);
-          box-shadow: 0 0 0 8px rgba(62, 123, 250, 0);
-        }
-        100% {
-          transform: scale(0.95);
-          box-shadow: 0 0 0 0 rgba(62, 123, 250, 0);
-        }
-      }
-      .hero h1 {
-        font-family: var(--font-display);
-        font-weight: 700;
-        font-size: clamp(1.95rem, 4.2vw, 2.9rem);
-        line-height: 1.12;
-        letter-spacing: -0.01em;
-        margin-bottom: 14px;
-        text-shadow: 0 10px 32px rgba(0, 0, 0, 0.22);
-      }
-      .hero p {
-        font-size: 1rem;
-        color: var(--ink-dim);
-        max-width: 500px;
-        margin: 0 auto 10px;
-      }
-      .hero-note {
-        font-family: var(--font-mono);
-        font-size: 0.74rem;
-        letter-spacing: 0.06em;
-        text-transform: uppercase;
-        color: var(--ink-faint);
-        margin: 0 auto 24px;
-      }
-      .hero-actions {
-        display: flex;
-        gap: 12px;
-        justify-content: center;
-        flex-wrap: wrap;
-      }
-      .btn {
-        font-family: var(--font-body);
-        font-weight: 500;
-        font-size: 0.9rem;
-        padding: 12px 20px;
-        border-radius: 8px;
-        transition:
-          transform 0.2s ease,
-          background 0.2s ease,
-          border-color 0.2s ease,
-          box-shadow 0.25s ease;
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-      }
-      .btn-primary {
-        background: var(--accent);
-        color: #fff;
-        box-shadow:
-          0 0 24px rgba(62, 123, 250, 0.35),
-          0 4px 12px rgba(62, 123, 250, 0.2);
-      }
-      .btn-primary:hover {
-        background: #5590fb;
-        transform: translateY(-2px);
-        box-shadow:
-          0 0 42px rgba(62, 123, 250, 0.55),
-          0 6px 16px rgba(62, 123, 250, 0.3);
-      }
-      .btn-ghost {
-        border: 1px solid var(--line);
-        color: var(--ink);
-        background: rgba(255, 255, 255, 0.03);
-        box-shadow:
-          0 0 24px rgba(62, 123, 250, 0.35),
-          0 4px 12px rgba(62, 123, 250, 0.2);
-      }
-      .btn-ghost:hover {
-        border-color: rgba(62, 123, 250, 0.7);
-        transform: translateY(-2px);
-        box-shadow:
-          0 0 42px rgba(62, 123, 250, 0.55),
-          0 6px 16px rgba(62, 123, 250, 0.3);
-      }
-      .hero-actions .btn-ghost {
-        box-shadow: none;
-      }
-      .hero-actions .btn-ghost:hover {
-        box-shadow:
-          0 0 42px rgba(62, 123, 250, 0.55),
-          0 6px 16px rgba(62, 123, 250, 0.3);
-      }
-      .nav-cta {
-        box-shadow: none;
-      }
-      .nav-cta:hover {
-        box-shadow:
-          0 0 42px rgba(62, 123, 250, 0.55),
-          0 6px 16px rgba(62, 123, 250, 0.3);
-      }
-
-      /* ---------- shared section chrome ---------- */
-      section {
-        padding: 120px 0;
-        scroll-margin-top: 96px;
-      }
-      .eyebrow {
-        font-family: var(--font-mono);
-        font-size: 0.75rem;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-        color: var(--accent);
-        margin-bottom: 16px;
-      }
-      .section-head {
-        margin-bottom: 56px;
-        max-width: 600px;
-      }
-      .section-head h2 {
-        font-family: var(--font-display);
-        font-weight: 600;
-        font-size: 2.2rem;
-      }
-
-      .reveal {
-        opacity: 0;
-        transform: translateY(20px);
-        transition:
-          opacity 0.7s ease,
-          transform 0.7s ease;
-      }
-      .reveal.in {
-        opacity: 1;
-        transform: translateY(0);
-      }
-
-      /* ---------- about ---------- */
-      .about-grid {
-        display: grid;
-        grid-template-columns: 1.4fr 1fr;
-        gap: 64px;
-        align-items: start;
-      }
-      .about-copy p {
-        color: var(--ink-dim);
-        margin-bottom: 18px;
-        max-width: 560px;
-      }
-      .quote-banner {
-        padding: 100px 0;
-        text-align: center;
-      }
-      .quote-banner blockquote {
-        font-family: var(--font-display);
-        font-weight: 500;
-        font-size: clamp(1.5rem, 3.2vw, 2.1rem);
-        line-height: 1.5;
-        max-width: 780px;
-        margin: 0 auto 28px;
-        color: var(--ink);
-      }
-      .quote-banner blockquote span {
-        color: var(--accent);
-      }
-      .quote-banner cite {
-        display: block;
-        font-family: var(--font-mono);
-        font-style: normal;
-        font-size: 0.8rem;
-        letter-spacing: 0.06em;
-        text-transform: uppercase;
-        color: var(--ink-faint);
-      }
-      .quote-banner cite::before {
-        content: "— ";
-      }
-      .focus-grid {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 18px;
-      }
-      .focus-card {
-        padding: 24px;
-        border: 1px solid var(--line-soft);
-        border-radius: 16px;
-        background: linear-gradient(
-          180deg,
-          rgba(255, 255, 255, 0.04),
-          rgba(255, 255, 255, 0.018)
-        );
-      }
-      .focus-badge {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        width: 34px;
-        height: 34px;
-        margin-bottom: 14px;
-        border-radius: 999px;
-        background: rgba(62, 123, 250, 0.12);
-        border: 1px solid rgba(62, 123, 250, 0.26);
-        color: var(--accent);
-        font-family: var(--font-mono);
-        font-size: 0.72rem;
-        font-weight: 700;
-      }
-      .focus-card h3 {
-        font-family: var(--font-display);
-        font-weight: 600;
-        font-size: 1.05rem;
-        margin-bottom: 8px;
-      }
-      .focus-card p {
-        color: var(--ink-dim);
-        font-size: 0.9rem;
-        line-height: 1.65;
-      }
-      .facts {
-        background: var(--bg-elev);
-        border: 1px solid var(--line-soft);
-        border-radius: 12px;
-        padding: 28px;
-      }
-      .fact-row {
-        display: flex;
-        justify-content: space-between;
-        padding: 12px 0;
-        border-bottom: 1px solid var(--line-soft);
-        font-size: 0.88rem;
-      }
-      .fact-row:last-child {
-        border-bottom: none;
-      }
-      .fact-row .k {
-        color: var(--ink-faint);
-        font-family: var(--font-mono);
-        font-size: 0.78rem;
-      }
-      .fact-row .v {
-        color: var(--ink);
-        font-weight: 500;
-      }
-      .fact-badge {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        margin-bottom: 22px;
-        padding: 10px 14px;
-        border-radius: 999px;
-        border: 1px solid rgba(62, 123, 250, 0.35);
-        background: rgba(62, 123, 250, 0.12);
-        color: #dfe7ff;
-        font-family: var(--font-mono);
-        font-size: 0.74rem;
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
-        font-weight: 700;
-        box-shadow: 0 0 20px rgba(62, 123, 250, 0.16);
-      }
-      .fact-row .v.status {
-        color: #fff;
-        font-weight: 700;
-      }
-
-      /* ---------- skills ---------- */
-      .skill-intro {
-        color: var(--ink-dim);
-        max-width: 640px;
-        margin-bottom: 28px;
-        font-size: 0.98rem;
-      }
-      .skill-rows {
-        display: flex;
-        flex-direction: column;
-      }
-      .skill-row {
-        display: grid;
-        grid-template-columns: 200px 1fr;
-        gap: 40px;
-        padding: 32px 0;
-        border-top: 1px solid var(--line-soft);
-        align-items: start;
-        opacity: 0;
-        transform: translateY(16px);
-        transition:
-          opacity 0.6s ease,
-          transform 0.6s ease;
-        transition-delay: var(--item-delay, 0ms);
-      }
-      .skill-row.is-visible {
-        opacity: 1;
-        transform: translateY(0);
-      }
-      .skill-row:last-child {
-        border-bottom: 1px solid var(--line-soft);
-      }
-      .skill-row-label h4 {
-        font-family: var(--font-mono);
-        font-size: 0.78rem;
-        text-transform: uppercase;
-        letter-spacing: 0.06em;
-        color: var(--ink);
-      }
-      .skill-row-label p {
-        color: var(--ink-faint);
-        font-size: 0.82rem;
-        line-height: 1.6;
-        margin-top: 8px;
-      }
-      .skill-row .tag-list {
-        padding-top: 3px;
-      }
-      .lang-flow {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 32px;
-        padding-top: 3px;
-      }
-      .lang-flow .lang-block {
-        min-width: 150px;
-      }
-      .lang-flow .lang-row {
-        margin-top: 8px;
-      }
-      .lang-row {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 12px;
-      }
-      .lang-block .lang-name {
-        font-size: 0.88rem;
-        color: var(--ink);
-        display: block;
-        margin-bottom: 8px;
-      }
-      .lang-row .lang-level {
-        font-family: var(--font-mono);
-        font-size: 0.68rem;
-        color: var(--ink-faint);
-        text-transform: uppercase;
-        letter-spacing: 0.04em;
-        min-width: 56px;
-        text-align: right;
-      }
-      .lang-bar {
-        flex: 1;
-        height: 4px;
-        border-radius: 999px;
-        background: rgba(255, 255, 255, 0.06);
-        overflow: hidden;
-      }
-      .lang-fill {
-        height: 100%;
-        border-radius: 999px;
-        background: var(--accent);
-      }
-      .tag-list {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px;
-      }
-      .tag {
-        font-family: var(--font-mono);
-        font-size: 0.78rem;
-        color: var(--ink);
-        border: 1px solid var(--line);
-        background: rgba(255, 255, 255, 0.03);
-        padding: 7px 13px;
-        border-radius: 6px;
-        transition:
-          border-color 0.2s ease,
-          color 0.2s ease,
-          background 0.2s ease;
-      }
-      .tag:hover {
-        border-color: var(--accent);
-        color: var(--accent);
-        background: rgba(62, 123, 250, 0.08);
-      }
-
-      /* ---------- projects ---------- */
-      @property --beam-angle-a {
-        syntax: "<angle>";
-        inherits: false;
-        initial-value: 315deg;
-      }
-      @property --beam-angle-b {
-        syntax: "<angle>";
-        inherits: false;
-        initial-value: 315deg;
-      }
-      .project-grid {
-        position: relative;
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1px;
-        background: var(--line-soft);
-        border: 1px solid var(--line-soft);
-        border-radius: 12px;
-        overflow: hidden;
-      }
-      .project-grid::after,
-      .project-grid::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        border-radius: inherit;
-        padding: 1.5px;
-        -webkit-mask:
-          linear-gradient(#000 0 0) content-box,
-          linear-gradient(#000 0 0);
-        -webkit-mask-composite: xor;
-        mask-composite: exclude;
-        pointer-events: none;
-        opacity: 0;
-        z-index: 5;
-      }
-      /* beam A: top-left -> top-right -> bottom-right */
-      .project-grid::after {
-        background: conic-gradient(
-          from var(--beam-angle-a),
-          var(--accent) 0deg,
-          rgba(143, 176, 255, 0.85) 15deg,
-          transparent 34deg,
-          transparent 326deg,
-          rgba(143, 176, 255, 0.85) 345deg,
-          var(--accent) 360deg
-        );
-      }
-      /* beam B: top-left -> bottom-left -> bottom-right */
-      .project-grid::before {
-        background: conic-gradient(
-          from var(--beam-angle-b),
-          var(--accent) 0deg,
-          rgba(143, 176, 255, 0.85) 15deg,
-          transparent 34deg,
-          transparent 326deg,
-          rgba(143, 176, 255, 0.85) 345deg,
-          var(--accent) 360deg
-        );
-      }
-      .project-grid.in::after {
-        animation: beamTravelA 2.3s ease-out 1 forwards;
-      }
-      .project-grid.in::before {
-        animation: beamTravelB 2.3s ease-out 1 forwards;
-      }
-      @keyframes beamTravelA {
-        0% {
-          --beam-angle-a: 315deg;
-          opacity: 1;
-        }
-        85% {
-          opacity: 1;
-        }
-        100% {
-          --beam-angle-a: 495deg;
-          opacity: 0;
-        }
-      }
-      @keyframes beamTravelB {
-        0% {
-          --beam-angle-b: 315deg;
-          opacity: 1;
-        }
-        85% {
-          opacity: 1;
-        }
-        100% {
-          --beam-angle-b: 135deg;
-          opacity: 0;
-        }
-      }
-      .project-card {
-        background: var(--bg);
-        padding: 36px;
-        transition: background 0.25s ease;
-      }
-      .project-card .detail-toggle {
-        margin-top: 16px;
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-        font-family: var(--font-mono);
-        font-size: 0.72rem;
-        letter-spacing: 0.04em;
-        text-transform: uppercase;
-        color: var(--ink-dim);
-        cursor: pointer;
-        border: 1px solid var(--line-soft);
-        padding: 7px 10px;
-        border-radius: 999px;
-        background: rgba(255, 255, 255, 0.03);
-      }
-      .project-card .detail-toggle:hover {
-        color: var(--accent);
-        border-color: var(--accent);
-      }
-      .project-card .detail-toggle .arrow {
-        transition: transform 0.2s ease;
-      }
-      .project-card .detail-toggle.is-open .arrow {
-        transform: rotate(90deg);
-      }
-      .project-card .detail-panel {
-        max-height: 0;
-        overflow: hidden;
-        margin-top: 12px;
-        opacity: 0;
-        transition:
-          max-height 0.35s ease,
-          opacity 0.28s ease;
-        pointer-events: none;
-      }
-      .project-card .detail-panel.is-open {
-        max-height: 320px;
-        opacity: 1;
-        pointer-events: auto;
-      }
-      .project-card .detail-panel p {
-        margin-bottom: 10px;
-        color: var(--ink-dim);
-        font-size: 0.86rem;
-        line-height: 1.7;
-        opacity: 0;
-        transition: opacity 0.24s ease;
-      }
-      .project-card .detail-panel.is-open p {
-        opacity: 1;
-      }
-      .project-card .detail-panel.is-open p:nth-child(2) {
-        transition-delay: 0.08s;
-      }
-      .project-card .detail-panel:not(.is-open) p:last-child {
-        transition-delay: 0s;
-      }
-      .project-card .detail-panel:not(.is-open) p:first-child {
-        transition-delay: 0.08s;
-      }
-      .project-card:hover {
-        background: var(--bg-elev);
-      }
-      .project-top {
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-start;
-        margin-bottom: 20px;
-      }
-      .project-index {
-        font-family: var(--font-mono);
-        font-size: 0.75rem;
-        color: var(--accent);
-      }
-      .project-card h3 {
-        font-family: var(--font-display);
-        font-weight: 600;
-        font-size: 1.3rem;
-        margin-bottom: 10px;
-      }
-      .project-card p {
-        color: var(--ink-dim);
-        font-size: 0.9rem;
-        margin-bottom: 12px;
-      }
-      .project-visual,
-      .oi-media {
-        margin-bottom: 18px;
-        border-radius: 12px;
-        border: 1px solid var(--line-soft);
-        background:
-          radial-gradient(
-            circle at 20% 20%,
-            rgba(62, 123, 250, 0.22),
-            transparent 36%
-          ),
-          linear-gradient(
-            135deg,
-            rgba(255, 255, 255, 0.04),
-            rgba(255, 255, 255, 0.01)
-          );
-        overflow: hidden;
-      }
-      .project-visual svg,
-      .oi-media svg {
-        display: block;
-        width: 100%;
-        height: 160px;
-      }
-      .project-links {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
-        margin: 14px 0 18px;
-      }
-      .project-link {
-        font-family: var(--font-mono);
-        font-size: 0.72rem;
-        letter-spacing: 0.04em;
-        text-transform: uppercase;
-        color: var(--ink);
-        padding: 7px 10px;
-        border-radius: 999px;
-        border: 1px solid var(--line-soft);
-        background: rgba(255, 255, 255, 0.03);
-        transition:
-          border-color 0.2s ease,
-          color 0.2s ease,
-          background 0.2s ease;
-      }
-      .project-link:hover {
-        border-color: var(--accent);
-        color: var(--accent);
-        background: rgba(62, 123, 250, 0.08);
-      }
-      .project-link.secondary {
-        color: var(--ink-dim);
-      }
-      .project-tags {
-        display: flex;
-        gap: 8px;
-        flex-wrap: wrap;
-      }
-      .project-tags span {
-        font-family: var(--font-mono);
-        font-size: 0.68rem;
-        color: var(--ink-faint);
-        border: 1px solid var(--line-soft);
-        padding: 4px 10px;
-        border-radius: 5px;
-      }
-
-      /* ---------- other projects ---------- */
-      .other-projects {
-        margin-top: 72px;
-      }
-      .other-head {
-        font-family: var(--font-mono);
-        font-size: 0.72rem;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-        color: var(--ink-faint);
-        margin-bottom: 8px;
-      }
-      .other-list {
-        display: flex;
-        flex-direction: column;
-      }
-      .other-item {
-        display: grid;
-        grid-template-columns: 220px 1fr auto;
-        gap: 24px;
-        align-items: start;
-        padding: 20px 0;
-        border-top: 1px solid var(--line-soft);
-        opacity: 0;
-        transform: translateY(16px);
-        transition:
-          opacity 0.6s ease,
-          transform 0.6s ease;
-        transition-delay: var(--item-delay, 0ms);
-      }
-      .other-item.is-visible {
-        opacity: 1;
-        transform: translateY(0);
-      }
-      .other-item:last-child {
-        border-bottom: 1px solid var(--line-soft);
-      }
-      .other-item .oi-name {
-        font-family: var(--font-display);
-        font-weight: 600;
-        font-size: 0.98rem;
-        color: var(--ink);
-      }
-      .other-item .oi-copy {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-      }
-      .other-item .oi-desc {
-        color: var(--ink-dim);
-        font-size: 0.85rem;
-        line-height: 1.6;
-      }
-      .other-item .project-links {
-        margin: 0;
-      }
-      .other-item .oi-tags {
-        display: flex;
-        gap: 8px;
-        justify-content: flex-end;
-        flex-wrap: wrap;
-      }
-      .other-item .oi-tags span {
-        font-family: var(--font-mono);
-        font-size: 0.66rem;
-        color: var(--ink-faint);
-        border: 1px solid var(--line-soft);
-        padding: 4px 9px;
-        border-radius: 5px;
-        white-space: nowrap;
-      }
-
-      /* ---------- timeline ---------- */
-      .timeline {
-        position: relative;
-        padding-left: 32px;
-      }
-      .timeline::before {
-        content: "";
-        position: absolute;
-        left: 0;
-        top: 4px;
-        bottom: 4px;
-        width: 2px;
-        background: var(--line);
-      }
-      .t-item {
-        position: relative;
-        padding-bottom: 40px;
-        opacity: 0;
-        transform: translateY(24px);
-        transition:
-          opacity 0.6s ease,
-          transform 0.6s ease;
-        transition-delay: var(--item-delay, 0ms);
-      }
-      .t-item.is-visible {
-        opacity: 1;
-        transform: translateY(0);
-      }
-      .t-item:last-child {
-        padding-bottom: 0;
-      }
-      .t-item::before {
-        content: "";
-        position: absolute;
-        left: -36px;
-        top: 3px;
-        width: 10px;
-        height: 10px;
-        border-radius: 50%;
-        background: var(--accent);
-      }
-      .t-date {
-        font-family: var(--font-mono);
-        font-size: 0.72rem;
-        color: var(--ink-faint);
-        margin-bottom: 6px;
-      }
-      .t-item h4 {
-        font-family: var(--font-display);
-        font-weight: 600;
-        font-size: 1.1rem;
-        margin-bottom: 6px;
-      }
-      .t-item p {
-        color: var(--ink-dim);
-        font-size: 0.9rem;
-        max-width: 520px;
-      }
-
-      /* ---------- contact ---------- */
-      .contact-box {
-        background: var(--bg-elev);
-        border: 1px solid var(--line-soft);
-        border-radius: 16px;
-        padding: 64px;
-        text-align: center;
-      }
-      .contact-box h2 {
-        font-family: var(--font-display);
-        font-weight: 600;
-        font-size: clamp(1.8rem, 4vw, 2.6rem);
-        margin-bottom: 16px;
-      }
-      .contact-box p {
-        color: var(--ink-dim);
-        margin-bottom: 32px;
-      }
-      .contact-links {
-        display: flex;
-        gap: 28px;
-        justify-content: center;
-        flex-wrap: wrap;
-        margin-top: 36px;
-      }
-      .contact-links a {
-        font-family: var(--font-mono);
-        font-size: 0.82rem;
-        color: var(--ink-dim);
-        border-bottom: 1px solid var(--line-soft);
-        padding-bottom: 3px;
-        transition:
-          color 0.2s ease,
-          border-color 0.2s ease;
-      }
-      .contact-links a:hover {
-        color: var(--accent);
-        border-color: var(--accent);
-      }
-
-      footer {
-        padding: 40px 0;
-        border-top: 1px solid var(--line-soft);
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        font-family: var(--font-mono);
-        font-size: 0.72rem;
-        color: var(--ink-faint);
-      }
-
-      /* ---------- responsive ---------- */
-      @media (max-width: 900px) {
-        .about-grid {
-          grid-template-columns: 1fr;
-        }
-        .focus-grid {
-          grid-template-columns: 1fr;
-        }
-        .skill-row {
-          grid-template-columns: 1fr;
-          gap: 12px;
-        }
-        .project-grid {
-          grid-template-columns: 1fr;
-        }
-      }
-      @media (max-width: 720px) {
-        .wrap {
-          padding: 0 22px;
-        }
-        .nav-inner {
-          padding: 0 22px;
-        }
-        .nav-toggle {
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-        }
-        .nav-links {
-          display: none;
-          position: absolute;
-          top: calc(100% + 10px);
-          left: 0;
-          right: 0;
-          transform: none;
-          flex-direction: column;
-          align-items: flex-start;
-          gap: 10px;
-          padding: 16px 18px;
-          border: 1px solid var(--line-soft);
-          border-radius: 12px;
-          background: rgba(19, 20, 23, 0.98);
-          box-shadow: 0 16px 40px rgba(0, 0, 0, 0.3);
-        }
-        .nav-links li {
-          width: 100%;
-        }
-        .nav-links a {
-          justify-content: flex-start;
-          width: 100%;
-          padding: 6px 0;
-        }
-        section {
-          padding: 80px 0;
-        }
-        .other-item {
-          grid-template-columns: 1fr;
-          gap: 8px;
-        }
-        .other-item .oi-tags {
-          justify-content: flex-start;
-        }
-        .contact-box {
-          padding: 40px 24px;
-        }
-        footer {
-          flex-direction: column;
-          gap: 8px;
-          text-align: center;
-        }
-      }
-    </style>
+    <link rel="stylesheet" href="index.css" />
   </head>
   <body>
     <header>
@@ -1229,13 +24,18 @@
         >
           SV<span>.</span>
         </div>
-        <button
-          class="nav-toggle"
-          aria-label="Toggle navigation"
-          aria-expanded="false"
-        >
-          ☰
-        </button>
+        <div class="nav-actions">
+          <button
+            class="nav-toggle"
+            aria-label="Toggle navigation"
+            aria-expanded="false"
+          >
+            <span class="nav-toggle-line line-1"></span>
+            <span class="nav-toggle-line line-2"></span>
+            <span class="nav-toggle-line line-3"></span>
+          </button>
+          <a href="#contact" class="nav-cta">Contact</a>
+        </div>
         <ul class="nav-links">
           <li><a href="#about">About</a></li>
           <li><a href="#focus">Focus</a></li>
@@ -1243,25 +43,22 @@
           <li><a href="#work">Work</a></li>
           <li><a href="#experience">Experience</a></li>
         </ul>
-        <a href="#contact" class="nav-cta">Contact</a>
       </div>
     </header>
 
     <section class="hero" id="hero">
       <div class="hero-bg"></div>
       <div class="hero-content">
-        <div class="hero-kicker">ML / CV / NLP systems</div>
+        <div class="hero-kicker">Machine Learning · Computer Vision · NLP</div>
         <h1>
-          I build practical AI and web products focused on computer vision, NLP,
-          and real-world impact.
+          Hi, I'm Seung Vannet — I build things to understand machine learning
+          better, not just to finish them.
         </h1>
         <p>
-          Based in Phnom Penh, I work on applied ML projects and product-driven
-          development with a focus on clarity, usefulness, and clean execution.
-        </p>
-        <p class="hero-note">
-          Open to internships and junior roles in AI, ML, and product
-          engineering.
+          I'm a 4th-year IT Engineering student in Phnom Penh with a strong pull
+          toward computer vision and NLP. Most of what's on this page started
+          the same way: a question I wanted to actually understand, not a brief
+          I was handed.
         </p>
         <div class="hero-actions">
           <a href="#about" class="btn btn-primary">More about me</a>
@@ -1283,19 +80,24 @@
                 margin-bottom: 24px;
               "
             >
-              I work where data meets product.
+              Curiosity is where most of this starts.
             </h2>
             <p>
-              I’m a 4th-year IT Engineering student at RUPP building practical
-              projects around AI, web development, and product thinking.
+              I'm a 4th-year IT Engineering student at the Royal University of
+              Phnom Penh. Alongside coursework, I spend a lot of my free time
+              building projects around machine learning, computer vision, and
+              NLP — the areas I keep finding my way back to.
             </p>
             <p>
-              My work sits at the intersection of machine learning, data
-              quality, and usable interfaces.
+              Not everything I build ties directly into what I'm studying. Some
+              of it does, some of it is just a technical question that got stuck
+              in my head and wouldn't let go until I built something to answer
+              it.
             </p>
             <p>
-              I care about systems that are reliable, explainable, and worth
-              shipping.
+              I care more about understanding a system well enough to explain it
+              than about checking a box that says "done." That's usually what
+              keeps me on a project longer than I planned to be.
             </p>
           </div>
           <div class="facts reveal">
@@ -1306,7 +108,7 @@
             </div>
             <div class="fact-row">
               <span class="k">ROLE</span
-              ><span class="v">ML / Web Developer</span>
+              ><span class="v">Student · AI/ML Enthusiast</span>
             </div>
             <div class="fact-row">
               <span class="k">MAJOR</span><span class="v">IT Engineering</span>
@@ -1325,11 +127,10 @@
 
       <section class="quote-banner reveal">
         <blockquote>
-          Good systems are rarely built from a single breakthrough; they come
-          from <span>careful data</span>, clear decisions, and enough discipline
-          to ship.
+          No matter how many mistakes you make or how slow you progress,
+          <span>you are still way ahead of everyone who isn't trying.</span>
         </blockquote>
-        <cite>How I approach real-world engineering</cite>
+        <cite>Tony Robbins</cite>
       </section>
 
       <section id="focus" class="reveal">
@@ -1340,26 +141,29 @@
         <div class="focus-grid">
           <article class="focus-card">
             <div class="focus-badge">01</div>
-            <h3>Practical AI</h3>
+            <h3>Curiosity that goes deep</h3>
             <p>
-              I care about systems that solve a real workflow problem and can be
-              trusted in everyday use, not just impressive demos.
+              I don't stop once something works in a notebook. I want to know
+              why it works, and what breaks once the data gets messier than the
+              tutorial version.
             </p>
           </article>
           <article class="focus-card">
             <div class="focus-badge">02</div>
-            <h3>Product-minded thinking</h3>
+            <h3>Learning by building</h3>
             <p>
-              I like connecting technical choices with user clarity, clean
-              flows, and decisions that make the product easier to use.
+              Most of what I actually know about ML and web development came
+              from projects I didn't have to build — not from a single class or
+              course.
             </p>
           </article>
           <article class="focus-card">
             <div class="focus-badge">03</div>
-            <h3>Reliable execution</h3>
+            <h3>Careful, not rushed</h3>
             <p>
-              I value careful data handling, clear structure, and steady
-              progress so work can actually ship and be improved over time.
+              I'd rather understand a system properly than rush to something
+              that only looks finished. That means real data handling, not
+              shortcuts.
             </p>
           </article>
         </div>
@@ -1371,16 +175,16 @@
           <h2>What I work with</h2>
         </div>
         <p class="skill-intro reveal">
-          I move across AI, data work, and product implementation depending on
-          what a project needs.
+          Depending on what a project actually needs, I'll move between model
+          work, data cleanup, and the interface that ties it together.
         </p>
         <div class="skill-rows reveal">
           <div class="skill-row reveal-item">
             <div class="skill-row-label">
               <h4>AI / ML</h4>
               <p>
-                Computer vision and NLP work, from data prep through model
-                interpretability.
+                Mostly computer vision and NLP — everything from cleaning up
+                messy datasets to making a model's decisions easier to trust.
               </p>
             </div>
             <div class="tag-list">
@@ -1396,8 +200,8 @@
             <div class="skill-row-label">
               <h4>Development</h4>
               <p>
-                Simple, usable products with a strong focus on clarity and
-                maintainability.
+                Building things that stay simple to use and don't turn into a
+                headache to maintain six months later.
               </p>
             </div>
             <div class="tag-list">
@@ -1413,8 +217,8 @@
             <div class="skill-row-label">
               <h4>Tools</h4>
               <p>
-                The tools I reach for when a prototype needs to move from idea
-                to something usable.
+                The everyday tools that get a prototype from a rough idea to
+                something people can actually try out.
               </p>
             </div>
             <div class="tag-list">
@@ -1428,7 +232,7 @@
           <div class="skill-row reveal-item">
             <div class="skill-row-label">
               <h4>Languages</h4>
-              <p>Working across Khmer, English, and Chinese day to day.</p>
+              <p>I switch between Khmer, English, and Chinese most days.</p>
             </div>
             <div class="lang-flow">
               <div class="lang-block">
@@ -1470,8 +274,8 @@
           <p
             style="color: var(--ink-faint); font-size: 0.85rem; margin-top: 8px"
           >
-            I focus on projects that are technically interesting and genuinely
-            useful.
+            A mix of projects I picked because they were technically interesting
+            — and because they were actually useful.
           </p>
         </div>
         <div class="project-grid reveal">
@@ -1572,8 +376,8 @@
             </div>
             <h3>Coorad</h3>
             <p>
-              I helped shape an early-stage startup product with a clearer UI
-              structure and smoother onboarding flow.
+              Helped a young startup tighten up its UI structure and smooth out
+              a clunky onboarding flow.
             </p>
             <div class="project-tags">
               <span>Startup</span><span>Product</span><span>2026</span>
@@ -1584,14 +388,18 @@
             </button>
             <div class="detail-panel">
               <p>
-                At Coorad, I contributed as an engineer on an early-stage
-                startup product, helping shape features that connected users
-                with the platform’s core workflows. I pushed for a more modular
-                UI structure so changes could ship faster without making the
-                product feel brittle, and I owned decisions around onboarding
-                and task flow clarity. That work helped make the experience feel
-                more coherent for first-time users and gave the team a stronger
-                base for real-world validation.
+                I joined Coorad as an engineer while it was still an early-stage
+                product, working on features that connected users to the
+                platform's core workflows. A lot of my time went into pushing
+                for a more modular UI so the team could ship changes quickly
+                without the product feeling like it was held together with tape.
+                I also took ownership of the onboarding and task flow — the part
+                most likely to lose a first-time user if it's confusing.
+              </p>
+              <p>
+                That work made the experience feel noticeably more coherent and
+                gave the team a sturdier base to test the product against real
+                users.
               </p>
             </div>
           </div>
@@ -1651,8 +459,8 @@
             </div>
             <h3>Face Attendance</h3>
             <p>
-              I built a real-time face attendance prototype using embeddings and
-              a simple interface for everyday use.
+              A real-time attendance system built on face embeddings, wrapped in
+              an interface simple enough for daily use.
             </p>
             <div class="project-tags">
               <span>InsightFace</span><span>Cosine Similarity</span>
@@ -1663,15 +471,17 @@
             </button>
             <div class="detail-panel">
               <p>
-                One of the most technically interesting systems I built was a
-                real-time face attendance pipeline that had to recognize people
-                reliably under live conditions rather than just classify images
-                offline. I used InsightFace embeddings with cosine similarity
-                for efficient matching and paired that backend with a React and
-                Tailwind interface so the workflow stayed practical for everyday
-                use. The result was a lightweight prototype that showed how
-                modern CV tooling could be turned into a usable attendance
-                workflow.
+                This was probably the most technically demanding thing I've
+                built, mainly because it had to recognize people reliably in
+                live conditions instead of just labeling static photos. I used
+                InsightFace embeddings with cosine similarity for fast, accurate
+                matching, then paired that backend with a React and Tailwind
+                front end so it didn't feel like a research demo.
+              </p>
+              <p>
+                The end result was a lightweight prototype that made a genuine
+                case for turning modern CV tooling into something people would
+                actually use every day.
               </p>
             </div>
           </div>
@@ -1738,8 +548,8 @@
             </div>
             <h3>Skin Cancer Classification</h3>
             <p>
-              I built an explainable skin-lesion classifier with Grad-CAM to
-              make predictions easier to review and trust.
+              An explainable skin-lesion classifier — Grad-CAM heatmaps make its
+              predictions something a person can actually review.
             </p>
             <div class="project-tags">
               <span>TensorFlow</span><span>XAI</span>
@@ -1750,14 +560,16 @@
             </button>
             <div class="detail-panel">
               <p>
-                I built a transfer-learning pipeline around DenseNet121 to
-                classify skin lesions from HAM10000 and improve trust in the
-                predictions by making the model explainable. I added Grad-CAM
-                heatmaps so the system could show which regions influenced each
-                decision, because that matters more than a raw label when a
-                result needs review. The model reached 87.78% accuracy, and the
-                explainability layer made it far more useful as a medical-image
-                prototype.
+                I built this around a DenseNet121 transfer-learning pipeline,
+                training it on HAM10000 to classify skin lesions. A raw label
+                isn't worth much when the result needs to be reviewed by a
+                person, so I added Grad-CAM heatmaps to show which regions of an
+                image actually influenced the model's decision.
+              </p>
+              <p>
+                The model landed at 87.78% accuracy, but it was the
+                explainability layer that made it feel like a real prototype
+                rather than just a classification exercise.
               </p>
             </div>
           </div>
@@ -1840,8 +652,8 @@
             </div>
             <h3>Khmer Contextual Spell Checker</h3>
             <p>
-              I developed a Khmer spell-checking system for better contextual
-              corrections in low-resource language settings.
+              A spell checker built for Khmer, aimed at context-aware
+              corrections a simple dictionary lookup would miss.
             </p>
             <div class="project-tags"><span>NLP</span><span>XLM-R</span></div>
             <button class="detail-toggle" type="button">
@@ -1850,14 +662,17 @@
             </button>
             <div class="detail-panel">
               <p>
-                I developed a Khmer spell-checking system to address the lack of
-                strong contextual correction tools for Khmer text, especially in
-                everyday writing and low-resource language settings. I combined
-                rule-based candidate generation with XLM-RoBERTa reranking so
-                the system could catch both obvious typos and context-sensitive
-                mistakes rather than relying on simple dictionary matching. The
-                model achieved 75.5% sentence exact-match accuracy, showing that
-                a hybrid approach could outperform a single-rule baseline.
+                Khmer doesn't have many strong tools for contextual spell
+                correction, especially for everyday writing, so I set out to
+                build one. I combined rule-based candidate generation with
+                XLM-RoBERTa reranking, which let the system catch obvious typos
+                and the trickier, context-dependent mistakes that a dictionary
+                lookup alone would miss.
+              </p>
+              <p>
+                It reached 75.5% sentence exact-match accuracy — enough to show
+                that a hybrid approach genuinely beats a single-rule baseline
+                for a low-resource language like Khmer.
               </p>
             </div>
           </div>
@@ -1872,8 +687,8 @@
               margin-bottom: 16px;
             "
           >
-            A few smaller builds that helped sharpen my product and interface
-            instincts.
+            A few smaller builds that helped sharpen my instincts for product
+            and interface design.
           </p>
           <div class="other-list">
             <div class="other-item reveal-item">
@@ -1949,9 +764,9 @@
               <div class="oi-copy">
                 <span class="oi-name">FurnHaus</span>
                 <span class="oi-desc">
-                  I worked on a furniture e-commerce experience with a cleaner
-                  storefront, clearer product flow, and a more polished browsing
-                  experience.
+                  A furniture e-commerce concept where I focused on cleaning up
+                  the storefront and making the path from browsing to checkout
+                  feel less cluttered.
                 </span>
               </div>
               <div class="oi-tags">
@@ -2015,9 +830,9 @@
               <div class="oi-copy">
                 <span class="oi-name">CineVerse</span>
                 <span class="oi-desc">
-                  I built a mobile-first movie discovery app with a simple,
-                  intuitive browsing experience and a focus on fast, pleasant
-                  navigation.
+                  A mobile-first movie discovery app I built around fast,
+                  no-friction browsing — find something to watch without digging
+                  through menus.
                 </span>
               </div>
               <div class="oi-tags"><span>Kotlin</span><span>Android</span></div>
@@ -2036,37 +851,38 @@
             <div class="t-date">Mar 2026 — Present</div>
             <h4>Associate, Digital Divide Data (DDD)</h4>
             <p>
-              I support annotation workflows that directly feed model training
-              and quality review, with a strong focus on consistency, label
-              clarity, and dependable execution.
+              I work on annotation pipelines that feed directly into model
+              training and quality review — the kind of work where consistency
+              and label clarity aren't optional, and small mistakes compound
+              fast.
             </p>
           </div>
           <div class="t-item reveal-item">
             <div class="t-date">Feb 2025 — Feb 2026</div>
             <h4>Badminton Store</h4>
             <p>
-              I handled customer service, stock operations, and day-to-day
-              inventory updates in a fast-moving retail environment, which
-              sharpened my comfort with detail, reliability, and routine
-              problem-solving.
+              Handled customer service, stock, and day-to-day inventory in a
+              fast-paced retail setting. It taught me more about staying
+              organized under pressure than I expected going in.
             </p>
           </div>
           <div class="t-item reveal-item">
             <div class="t-date">2023 — Present</div>
             <h4>IT Engineering, RUPP</h4>
             <p>
-              I’m studying at the Royal University of Phnom Penh while building
-              practical projects around ML, CV/NLP, and web development, with a
-              growing focus on systems that are useful in the real world.
+              Studying at the Royal University of Phnom Penh while building
+              projects on the side in ML, computer vision, NLP, and web
+              development — mostly things I wanted to see work in practice, not
+              just on paper.
             </p>
           </div>
           <div class="t-item reveal-item">
             <div class="t-date">2023</div>
             <h4>Graduated High School</h4>
             <p>
-              I completed high school and enrolled in engineering the same year,
-              beginning the path that led to my current work in software and
-              applied AI.
+              Finished high school and went straight into engineering the same
+              year — the starting point for everything I've built since in
+              software and applied AI.
             </p>
           </div>
         </div>
@@ -2076,8 +892,9 @@
         <div class="contact-box reveal">
           <h2>Let's connect.</h2>
           <p>
-            Open to new opportunities, collaborations, or conversations about
-            AI, product building, and real-world systems.
+            Always up for new opportunities, collaborations, or just a good
+            conversation about AI, product building, and systems that work in
+            the real world.
           </p>
           <a
             href="mailto:seungvannet.personal@gmail.com"
