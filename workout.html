@@ -41,6 +41,63 @@
         </div>
       </section>
 
+      <section class="dashboard-grid">
+        <div class="dashboard-card">
+          <div class="dashboard-card__head">
+            <div class="dashboard-card__title">Rest timer</div>
+            <div class="dashboard-card__badge">1 min</div>
+          </div>
+          <div class="dashboard-card__value" id="rest-timer">01:00</div>
+          <div class="dashboard-card__actions">
+            <button class="btn btn-primary" id="rest-start">Start</button>
+            <button class="btn" id="rest-pause">Pause</button>
+            <button class="btn" id="rest-reset">Reset</button>
+          </div>
+          <div class="dashboard-card__meta" id="rest-status">
+            Ready for your next set.
+          </div>
+        </div>
+
+        <div class="dashboard-card">
+          <div class="dashboard-card__head">
+            <div class="dashboard-card__title">Gym duration</div>
+            <div class="dashboard-card__badge" id="stopwatch-status">Ready</div>
+          </div>
+          <div class="dashboard-card__value" id="stopwatch-display">
+            00:00:00
+          </div>
+          <div class="dashboard-card__actions">
+            <button class="btn btn-primary" id="stopwatch-toggle">Start</button>
+            <button class="btn" id="stopwatch-reset">Reset</button>
+          </div>
+          <div class="dashboard-card__meta" id="stopwatch-notes">
+            Tap start when you walk into the gym.
+          </div>
+        </div>
+
+        <div class="dashboard-card">
+          <div class="dashboard-card__head">
+            <div class="dashboard-card__title">Streak</div>
+            <div class="dashboard-card__badge" id="streak-badge">0 days</div>
+          </div>
+          <div class="dashboard-card__value" id="streak-value">0</div>
+          <div class="dashboard-card__meta" id="streak-meta">
+            Keep it alive every workout day.
+          </div>
+        </div>
+      </section>
+
+      <section class="week-card">
+        <div class="week-card__head">
+          <div>
+            <div class="day-name">Weekly gym dashboard</div>
+            <div class="day-label">Mon–Sun</div>
+          </div>
+          <div class="week-card__hint">Hours from stopwatch sessions</div>
+        </div>
+        <div class="week-grid" id="week-grid"></div>
+      </section>
+
       <section class="day-card">
         <div class="day-head">
           <div class="day-name">Weekly overview</div>
@@ -130,6 +187,96 @@
             </tr>
           </tbody>
         </table>
+        <div class="exercise-tracker">
+          <div class="exercise-tracker__title">Done?</div>
+          <div class="exercise-row">
+            <div>
+              <div class="exercise-row__label">
+                Barbell or Dumbbell Bench Press
+              </div>
+              <div class="exercise-row__meta">4 x 8-10 • Mid/overall chest</div>
+            </div>
+            <input
+              class="exercise-check"
+              type="checkbox"
+              aria-label="Mark Barbell or Dumbbell Bench Press as done"
+            />
+          </div>
+          <div class="exercise-row">
+            <div>
+              <div class="exercise-row__label">Incline Dumbbell Press</div>
+              <div class="exercise-row__meta">3 x 10-12 • Upper chest</div>
+            </div>
+            <input
+              class="exercise-check"
+              type="checkbox"
+              aria-label="Mark Incline Dumbbell Press as done"
+            />
+          </div>
+          <div class="exercise-row">
+            <div>
+              <div class="exercise-row__label">
+                Seated Dumbbell Shoulder Press
+              </div>
+              <div class="exercise-row__meta">
+                3 x 8-10 • Front/side shoulders
+              </div>
+            </div>
+            <input
+              class="exercise-check"
+              type="checkbox"
+              aria-label="Mark Seated Dumbbell Shoulder Press as done"
+            />
+          </div>
+          <div class="exercise-row">
+            <div>
+              <div class="exercise-row__label">Dumbbell Lateral Raise</div>
+              <div class="exercise-row__meta">
+                3 x 12-15 • Side shoulders (V-taper)
+              </div>
+            </div>
+            <input
+              class="exercise-check"
+              type="checkbox"
+              aria-label="Mark Dumbbell Lateral Raise as done"
+            />
+          </div>
+          <div class="exercise-row">
+            <div>
+              <div class="exercise-row__label">Cable Chest Fly</div>
+              <div class="exercise-row__meta">3 x 12-15 • Inner/mid chest</div>
+            </div>
+            <input
+              class="exercise-check"
+              type="checkbox"
+              aria-label="Mark Cable Chest Fly as done"
+            />
+          </div>
+          <div class="exercise-row">
+            <div>
+              <div class="exercise-row__label">Triceps Rope Pushdown</div>
+              <div class="exercise-row__meta">3 x 12-15 • Triceps</div>
+            </div>
+            <input
+              class="exercise-check"
+              type="checkbox"
+              aria-label="Mark Triceps Rope Pushdown as done"
+            />
+          </div>
+          <div class="exercise-row">
+            <div>
+              <div class="exercise-row__label">
+                Overhead Dumbbell Triceps Extension
+              </div>
+              <div class="exercise-row__meta">2 x 12-15 • Triceps</div>
+            </div>
+            <input
+              class="exercise-check"
+              type="checkbox"
+              aria-label="Mark Overhead Dumbbell Triceps Extension as done"
+            />
+          </div>
+        </div>
         <div class="mobile-only">
           <div class="mobile-item">
             <strong>Barbell or Dumbbell Bench Press</strong>
@@ -209,6 +356,75 @@
             </tr>
           </tbody>
         </table>
+        <div class="exercise-tracker">
+          <div class="exercise-tracker__title">Done?</div>
+          <div class="exercise-row">
+            <div>
+              <div class="exercise-row__label">Lat Pulldown or Pull-ups</div>
+              <div class="exercise-row__meta">4 x 8-10 • Back width</div>
+            </div>
+            <input
+              class="exercise-check"
+              type="checkbox"
+              aria-label="Mark Lat Pulldown or Pull-ups as done"
+            />
+          </div>
+          <div class="exercise-row">
+            <div>
+              <div class="exercise-row__label">Barbell or Dumbbell Row</div>
+              <div class="exercise-row__meta">4 x 8-10 • Back thickness</div>
+            </div>
+            <input
+              class="exercise-check"
+              type="checkbox"
+              aria-label="Mark Barbell or Dumbbell Row as done"
+            />
+          </div>
+          <div class="exercise-row">
+            <div>
+              <div class="exercise-row__label">Seated Cable Row</div>
+              <div class="exercise-row__meta">3 x 10-12 • Mid-back</div>
+            </div>
+            <input
+              class="exercise-check"
+              type="checkbox"
+              aria-label="Mark Seated Cable Row as done"
+            />
+          </div>
+          <div class="exercise-row">
+            <div>
+              <div class="exercise-row__label">Face Pull</div>
+              <div class="exercise-row__meta">3 x 12-15 • Rear delts</div>
+            </div>
+            <input
+              class="exercise-check"
+              type="checkbox"
+              aria-label="Mark Face Pull as done"
+            />
+          </div>
+          <div class="exercise-row">
+            <div>
+              <div class="exercise-row__label">Barbell Curl</div>
+              <div class="exercise-row__meta">3 x 10-12 • Biceps</div>
+            </div>
+            <input
+              class="exercise-check"
+              type="checkbox"
+              aria-label="Mark Barbell Curl as done"
+            />
+          </div>
+          <div class="exercise-row">
+            <div>
+              <div class="exercise-row__label">Hammer Curl</div>
+              <div class="exercise-row__meta">2 x 12-15 • Biceps + forearm</div>
+            </div>
+            <input
+              class="exercise-check"
+              type="checkbox"
+              aria-label="Mark Hammer Curl as done"
+            />
+          </div>
+        </div>
         <div class="mobile-only">
           <div class="mobile-item">
             <strong>Lat Pulldown or Pull-ups</strong>
@@ -274,6 +490,57 @@
             </tr>
           </tbody>
         </table>
+        <div class="exercise-tracker">
+          <div class="exercise-tracker__title">Done?</div>
+          <div class="exercise-row">
+            <div>
+              <div class="exercise-row__label">Barbell Hip Thrust</div>
+              <div class="exercise-row__meta">4 x 10-12 • Glutes (primary)</div>
+            </div>
+            <input
+              class="exercise-check"
+              type="checkbox"
+              aria-label="Mark Barbell Hip Thrust as done"
+            />
+          </div>
+          <div class="exercise-row">
+            <div>
+              <div class="exercise-row__label">Bulgarian Split Squat</div>
+              <div class="exercise-row__meta">
+                3 x 10-12 each leg • Glutes, quads
+              </div>
+            </div>
+            <input
+              class="exercise-check"
+              type="checkbox"
+              aria-label="Mark Bulgarian Split Squat as done"
+            />
+          </div>
+          <div class="exercise-row">
+            <div>
+              <div class="exercise-row__label">Romanian Deadlift</div>
+              <div class="exercise-row__meta">
+                3 x 8-10 • Hamstrings, glutes
+              </div>
+            </div>
+            <input
+              class="exercise-check"
+              type="checkbox"
+              aria-label="Mark Romanian Deadlift as done"
+            />
+          </div>
+          <div class="exercise-row">
+            <div>
+              <div class="exercise-row__label">Cable Kickback</div>
+              <div class="exercise-row__meta">3 x 12-15 • Glutes isolated</div>
+            </div>
+            <input
+              class="exercise-check"
+              type="checkbox"
+              aria-label="Mark Cable Kickback as done"
+            />
+          </div>
+        </div>
         <div class="mobile-only">
           <div class="mobile-item">
             <strong>Barbell Hip Thrust</strong>
@@ -336,6 +603,68 @@
             </tr>
           </tbody>
         </table>
+        <div class="exercise-tracker">
+          <div class="exercise-tracker__title">Done?</div>
+          <div class="exercise-row">
+            <div>
+              <div class="exercise-row__label">
+                Barbell or Dumbbell Bench Press
+              </div>
+              <div class="exercise-row__meta">3 x 8-10 • Mid chest</div>
+            </div>
+            <input
+              class="exercise-check"
+              type="checkbox"
+              aria-label="Mark Barbell or Dumbbell Bench Press as done"
+            />
+          </div>
+          <div class="exercise-row">
+            <div>
+              <div class="exercise-row__label">
+                Seated Dumbbell Shoulder Press
+              </div>
+              <div class="exercise-row__meta">3 x 8-10 • Shoulders</div>
+            </div>
+            <input
+              class="exercise-check"
+              type="checkbox"
+              aria-label="Mark Seated Dumbbell Shoulder Press as done"
+            />
+          </div>
+          <div class="exercise-row">
+            <div>
+              <div class="exercise-row__label">Incline Dumbbell Press</div>
+              <div class="exercise-row__meta">2 x 12 • Upper chest</div>
+            </div>
+            <input
+              class="exercise-check"
+              type="checkbox"
+              aria-label="Mark Incline Dumbbell Press as done"
+            />
+          </div>
+          <div class="exercise-row">
+            <div>
+              <div class="exercise-row__label">Dumbbell Lateral Raise</div>
+              <div class="exercise-row__meta">3 x 12-15 • Side shoulders</div>
+            </div>
+            <input
+              class="exercise-check"
+              type="checkbox"
+              aria-label="Mark Dumbbell Lateral Raise as done"
+            />
+          </div>
+          <div class="exercise-row">
+            <div>
+              <div class="exercise-row__label">Triceps Rope Pushdown</div>
+              <div class="exercise-row__meta">3 x 12-15 • Triceps</div>
+            </div>
+            <input
+              class="exercise-check"
+              type="checkbox"
+              aria-label="Mark Triceps Rope Pushdown as done"
+            />
+          </div>
+        </div>
         <div class="mobile-only">
           <div class="mobile-item">
             <strong>Barbell or Dumbbell Bench Press</strong>
@@ -402,6 +731,64 @@
             </tr>
           </tbody>
         </table>
+        <div class="exercise-tracker">
+          <div class="exercise-tracker__title">Done?</div>
+          <div class="exercise-row">
+            <div>
+              <div class="exercise-row__label">Lat Pulldown or Pull-ups</div>
+              <div class="exercise-row__meta">3 x 8-10 • Back width</div>
+            </div>
+            <input
+              class="exercise-check"
+              type="checkbox"
+              aria-label="Mark Lat Pulldown or Pull-ups as done"
+            />
+          </div>
+          <div class="exercise-row">
+            <div>
+              <div class="exercise-row__label">Dumbbell or Barbell Row</div>
+              <div class="exercise-row__meta">3 x 8-10 • Back thickness</div>
+            </div>
+            <input
+              class="exercise-check"
+              type="checkbox"
+              aria-label="Mark Dummbell or Barbell Row as done"
+            />
+          </div>
+          <div class="exercise-row">
+            <div>
+              <div class="exercise-row__label">Seated Cable Row</div>
+              <div class="exercise-row__meta">2 x 12 • Mid-back</div>
+            </div>
+            <input
+              class="exercise-check"
+              type="checkbox"
+              aria-label="Mark Seated Cable Row as done"
+            />
+          </div>
+          <div class="exercise-row">
+            <div>
+              <div class="exercise-row__label">Face Pull</div>
+              <div class="exercise-row__meta">2 x 15 • Rear delts</div>
+            </div>
+            <input
+              class="exercise-check"
+              type="checkbox"
+              aria-label="Mark Face Pull as done"
+            />
+          </div>
+          <div class="exercise-row">
+            <div>
+              <div class="exercise-row__label">Barbell or Dumbbell Curl</div>
+              <div class="exercise-row__meta">3 x 10-12 • Biceps</div>
+            </div>
+            <input
+              class="exercise-check"
+              type="checkbox"
+              aria-label="Mark Barbell or Dumbbell Curl as done"
+            />
+          </div>
+        </div>
         <div class="mobile-only">
           <div class="mobile-item">
             <strong>Lat Pulldown or Pull-ups</strong>
@@ -468,6 +855,64 @@
             </tr>
           </tbody>
         </table>
+        <div class="exercise-tracker">
+          <div class="exercise-tracker__title">Done?</div>
+          <div class="exercise-row">
+            <div>
+              <div class="exercise-row__label">Incline Dumbbell Press</div>
+              <div class="exercise-row__meta">3 x 10-12 • Upper chest</div>
+            </div>
+            <input
+              class="exercise-check"
+              type="checkbox"
+              aria-label="Mark Incline Dumbbell Press as done"
+            />
+          </div>
+          <div class="exercise-row">
+            <div>
+              <div class="exercise-row__label">Dumbbell Lateral Raise</div>
+              <div class="exercise-row__meta">3 x 12-15 • Shoulders</div>
+            </div>
+            <input
+              class="exercise-check"
+              type="checkbox"
+              aria-label="Mark Dumbbell Lateral Raise as done"
+            />
+          </div>
+          <div class="exercise-row">
+            <div>
+              <div class="exercise-row__label">Cable Row or Dumbbell Row</div>
+              <div class="exercise-row__meta">3 x 10-12 • Back thickness</div>
+            </div>
+            <input
+              class="exercise-check"
+              type="checkbox"
+              aria-label="Mark Cable Row or Dumbbell Row as done"
+            />
+          </div>
+          <div class="exercise-row">
+            <div>
+              <div class="exercise-row__label">Face Pull</div>
+              <div class="exercise-row__meta">3 x 15 • Rear delts</div>
+            </div>
+            <input
+              class="exercise-check"
+              type="checkbox"
+              aria-label="Mark Face Pull as done"
+            />
+          </div>
+          <div class="exercise-row">
+            <div>
+              <div class="exercise-row__label">Barbell or Dumbbell Curl</div>
+              <div class="exercise-row__meta">2 x 12 • Biceps</div>
+            </div>
+            <input
+              class="exercise-check"
+              type="checkbox"
+              aria-label="Mark Barbell or Dumbbell Curl as done"
+            />
+          </div>
+        </div>
         <div class="mobile-only">
           <div class="mobile-item">
             <strong>Incline Dumbbell Press</strong>
@@ -516,6 +961,41 @@
       const subscriptionCountdownEl = document.getElementById(
         "subscription-countdown",
       );
+
+      const restTimerEl = document.getElementById("rest-timer");
+      const restStatusEl = document.getElementById("rest-status");
+      const restStartBtn = document.getElementById("rest-start");
+      const restPauseBtn = document.getElementById("rest-pause");
+      const restResetBtn = document.getElementById("rest-reset");
+
+      const stopwatchDisplayEl = document.getElementById("stopwatch-display");
+      const stopwatchStatusEl = document.getElementById("stopwatch-status");
+      const stopwatchNotesEl = document.getElementById("stopwatch-notes");
+      const stopwatchToggleBtn = document.getElementById("stopwatch-toggle");
+      const stopwatchResetBtn = document.getElementById("stopwatch-reset");
+
+      const streakValueEl = document.getElementById("streak-value");
+      const streakBadgeEl = document.getElementById("streak-badge");
+      const streakMetaEl = document.getElementById("streak-meta");
+      const weekGridEl = document.getElementById("week-grid");
+
+      const workoutState = {
+        restRemaining: 60,
+        restRunning: false,
+        restTimerId: null,
+        stopwatchRunning: false,
+        stopwatchStartedAt: null,
+        stopwatchElapsedMs: 0,
+        stopwatchTimerId: null,
+      };
+
+      const storageKeys = {
+        rest: "workout-rest-state",
+        stopwatch: "workout-stopwatch-state",
+        sessions: "workout-sessions",
+        exercises: "workout-exercise-progress",
+        streak: "workout-streak",
+      };
 
       const clearHighlights = () => {
         dayCards.forEach((card) => card.classList.remove("is-highlighted"));
@@ -578,6 +1058,13 @@
             month: "long",
             day: "numeric",
             year: "numeric",
+          });
+        }
+
+        if (todayDayEl) {
+          const today = new Date();
+          todayDayEl.textContent = today.toLocaleDateString("en-US", {
+            weekday: "short",
           });
         }
 
@@ -647,9 +1134,444 @@
         });
       };
 
+      const addExerciseCheckboxes = () => {
+        document.querySelectorAll(".day-card table").forEach((table) => {
+          table.querySelectorAll("tbody tr").forEach((row) => {
+            const label = row.children[0]?.textContent?.trim() || "exercise";
+            row.classList.add("has-checkline");
+            row.style.position = "relative";
+
+            const lastCell = row.querySelector("td:last-child");
+            if (!lastCell) return;
+            lastCell.style.position = "relative";
+
+            const checkboxOverlay = document.createElement("div");
+            checkboxOverlay.className = "exercise-checkbox-overlay";
+            const checkbox = document.createElement("input");
+            checkbox.type = "checkbox";
+            checkbox.className = "exercise-check";
+            checkbox.setAttribute("aria-label", `Mark ${label} as done`);
+            checkbox.addEventListener("change", () => {
+              row.classList.toggle("is-complete", checkbox.checked);
+            });
+            checkboxOverlay.appendChild(checkbox);
+            lastCell.appendChild(checkboxOverlay);
+          });
+        });
+
+        document
+          .querySelectorAll(".mobile-only .mobile-item")
+          .forEach((item) => {
+            if (item.querySelector(".mobile-item__check")) return;
+
+            const label =
+              item.querySelector("strong")?.textContent?.trim() || "exercise";
+            const checkWrap = document.createElement("div");
+            checkWrap.className = "mobile-item__check";
+            const checkbox = document.createElement("input");
+            checkbox.type = "checkbox";
+            checkbox.className = "exercise-check";
+            checkbox.setAttribute("aria-label", `Mark ${label} as done`);
+            checkbox.addEventListener("change", () => {
+              item.classList.toggle("is-complete", checkbox.checked);
+            });
+            checkWrap.appendChild(checkbox);
+            item.appendChild(checkWrap);
+          });
+      };
+
+      const formatTimeValue = (value) => String(value).padStart(2, "0");
+
+      const formatClock = (seconds) => {
+        const safeSeconds = Math.max(0, seconds);
+        const minutes = Math.floor(safeSeconds / 60);
+        const remainingSeconds = safeSeconds % 60;
+        return `${formatTimeValue(minutes)}:${formatTimeValue(remainingSeconds)}`;
+      };
+
+      const formatStopwatchTime = (milliseconds) => {
+        const totalSeconds = Math.max(0, Math.floor(milliseconds / 1000));
+        const hours = Math.floor(totalSeconds / 3600);
+        const minutes = Math.floor((totalSeconds % 3600) / 60);
+        const seconds = totalSeconds % 60;
+        return `${formatTimeValue(hours)}:${formatTimeValue(minutes)}:${formatTimeValue(seconds)}`;
+      };
+
+      const persistState = () => {
+        localStorage.setItem(storageKeys.rest, JSON.stringify(workoutState));
+        localStorage.setItem(
+          storageKeys.stopwatch,
+          JSON.stringify(workoutState),
+        );
+      };
+
+      const saveSessions = (sessions) => {
+        localStorage.setItem(storageKeys.sessions, JSON.stringify(sessions));
+      };
+
+      const loadSessions = () => {
+        try {
+          return JSON.parse(localStorage.getItem(storageKeys.sessions) || "[]");
+        } catch (error) {
+          return [];
+        }
+      };
+
+      const loadExerciseProgress = () => {
+        try {
+          return JSON.parse(
+            localStorage.getItem(storageKeys.exercises) || "{}",
+          );
+        } catch (error) {
+          return {};
+        }
+      };
+
+      const saveExerciseProgress = (progress) => {
+        localStorage.setItem(storageKeys.exercises, JSON.stringify(progress));
+      };
+
+      const renderExerciseTracker = () => {
+        const progress = loadExerciseProgress();
+        dayCards.forEach((card) => {
+          const existingTracker = card.querySelector(".exercise-tracker");
+          if (existingTracker) {
+            existingTracker.remove();
+          }
+
+          const tracker = document.createElement("div");
+          tracker.className = "exercise-tracker";
+          tracker.innerHTML =
+            '<div class="exercise-tracker__title">Exercise checklist</div>';
+
+          const table = card.querySelector("table");
+          if (!table) {
+            card.appendChild(tracker);
+            return;
+          }
+
+          const exerciseNames = Array.from(
+            table.querySelectorAll("tbody tr td:first-child"),
+          )
+            .map((cell) => cell.textContent.trim())
+            .filter(Boolean);
+
+          exerciseNames.forEach((name) => {
+            const label = document.createElement("label");
+            label.className = "exercise-item";
+            const key = `${card.id}:${name}`;
+            const isComplete = Boolean(progress[key]);
+            label.innerHTML = `<input type="checkbox" ${isComplete ? "checked" : ""} /> <span>${name}</span>`;
+            label.classList.toggle("is-complete", isComplete);
+            label.querySelector("input").addEventListener("change", () => {
+              const nextProgress = loadExerciseProgress();
+              nextProgress[key] = label.querySelector("input").checked;
+              saveExerciseProgress(nextProgress);
+              label.classList.toggle("is-complete", nextProgress[key]);
+              recordWorkoutActivity();
+            });
+            tracker.appendChild(label);
+          });
+
+          card.appendChild(tracker);
+        });
+      };
+
+      const loadStreakState = () => {
+        try {
+          return JSON.parse(
+            localStorage.getItem(storageKeys.streak) ||
+              '{"count":0,"lastWorkoutDate":null}',
+          );
+        } catch (error) {
+          return { count: 0, lastWorkoutDate: null };
+        }
+      };
+
+      const saveStreakState = (streakState) => {
+        localStorage.setItem(storageKeys.streak, JSON.stringify(streakState));
+      };
+
+      const updateStreakUI = () => {
+        const streakState = loadStreakState();
+        streakValueEl.textContent = streakState.count;
+        streakBadgeEl.textContent = `${streakState.count} day${streakState.count === 1 ? "" : "s"}`;
+        streakMetaEl.textContent = streakState.lastWorkoutDate
+          ? `Last workout: ${streakState.lastWorkoutDate}`
+          : "Keep it alive every workout day.";
+      };
+
+      const recordWorkoutActivity = () => {
+        const streakState = loadStreakState();
+        const today = new Date();
+        const todayKey = `${today.getFullYear()}-${formatTimeValue(today.getMonth() + 1)}-${formatTimeValue(today.getDate())}`;
+
+        if (streakState.lastWorkoutDate === todayKey) {
+          saveStreakState(streakState);
+          updateStreakUI();
+          return;
+        }
+
+        const lastDate = streakState.lastWorkoutDate
+          ? new Date(`${streakState.lastWorkoutDate}T00:00:00`)
+          : null;
+        const yesterday = new Date(today);
+        yesterday.setDate(today.getDate() - 1);
+        const lastWasYesterday =
+          lastDate && lastDate.toDateString() === yesterday.toDateString();
+
+        streakState.count = lastWasYesterday ? streakState.count + 1 : 1;
+        streakState.lastWorkoutDate = todayKey;
+        saveStreakState(streakState);
+        updateStreakUI();
+      };
+
+      const startRestTimer = () => {
+        if (workoutState.restRunning) return;
+        workoutState.restRunning = true;
+        restStatusEl.textContent = "Counting down...";
+        workoutState.restTimerId = window.setInterval(() => {
+          workoutState.restRemaining -= 1;
+          if (workoutState.restRemaining <= 0) {
+            workoutState.restRemaining = 60;
+            workoutState.restRunning = false;
+            clearInterval(workoutState.restTimerId);
+            restStatusEl.textContent = "Rest complete — ready to go.";
+            if (window.Notification && Notification.permission === "granted") {
+              new Notification("Rest timer complete", {
+                body: "Your 1 minute rest is done.",
+              });
+            } else {
+              window.alert("Rest timer complete! Your 1 minute rest is done.");
+            }
+          }
+          renderRestTimer();
+        }, 1000);
+        renderRestTimer();
+      };
+
+      const pauseRestTimer = () => {
+        if (!workoutState.restRunning) return;
+        workoutState.restRunning = false;
+        clearInterval(workoutState.restTimerId);
+        restStatusEl.textContent = "Paused — press start when you are ready.";
+        renderRestTimer();
+      };
+
+      const resetRestTimer = () => {
+        workoutState.restRemaining = 60;
+        workoutState.restRunning = false;
+        clearInterval(workoutState.restTimerId);
+        restStatusEl.textContent = "Reset for the next round.";
+        renderRestTimer();
+      };
+
+      const renderRestTimer = () => {
+        restTimerEl.textContent = formatClock(workoutState.restRemaining);
+        restStartBtn.textContent = workoutState.restRunning
+          ? "Running"
+          : "Start";
+      };
+
+      const startStopwatch = () => {
+        if (workoutState.stopwatchRunning) return;
+
+        workoutState.stopwatchRunning = true;
+        workoutState.stopwatchStartedAt = Date.now();
+        stopwatchStatusEl.textContent = "Live";
+        stopwatchNotesEl.textContent =
+          "Session started — you can stop it when you leave.";
+        stopwatchToggleBtn.textContent = "Stop";
+        workoutState.stopwatchTimerId = window.setInterval(() => {
+          const elapsed =
+            workoutState.stopwatchElapsedMs +
+            (Date.now() - workoutState.stopwatchStartedAt);
+          stopwatchDisplayEl.textContent = formatStopwatchTime(elapsed);
+        }, 1000);
+        recordWorkoutActivity();
+      };
+
+      const stopStopwatch = () => {
+        if (!workoutState.stopwatchRunning) return;
+
+        const elapsedMs =
+          workoutState.stopwatchElapsedMs +
+          (Date.now() - workoutState.stopwatchStartedAt);
+        workoutState.stopwatchElapsedMs = elapsedMs;
+        workoutState.stopwatchRunning = false;
+        workoutState.stopwatchStartedAt = null;
+        clearInterval(workoutState.stopwatchTimerId);
+        stopwatchStatusEl.textContent = "Saved";
+        stopwatchDisplayEl.textContent = formatStopwatchTime(elapsedMs);
+        const startedAt = new Date(Date.now() - elapsedMs);
+        const endedAt = new Date();
+        const sessions = loadSessions();
+        sessions.push({
+          date: startedAt.toISOString().slice(0, 10),
+          startedAt: startedAt.toISOString(),
+          endedAt: endedAt.toISOString(),
+          durationMs: elapsedMs,
+        });
+        saveSessions(sessions);
+        renderWeekDashboard();
+        stopwatchNotesEl.textContent = `Session saved • ${formatStopwatchTime(elapsedMs)} total.`;
+        stopwatchToggleBtn.textContent = "Start";
+        recordWorkoutActivity();
+      };
+
+      const resetStopwatch = () => {
+        if (workoutState.stopwatchRunning) {
+          clearInterval(workoutState.stopwatchTimerId);
+        }
+        workoutState.stopwatchRunning = false;
+        workoutState.stopwatchStartedAt = null;
+        workoutState.stopwatchElapsedMs = 0;
+        stopwatchDisplayEl.textContent = "00:00:00";
+        stopwatchStatusEl.textContent = "Ready";
+        stopwatchNotesEl.textContent = "Tap start when you walk into the gym.";
+        stopwatchToggleBtn.textContent = "Start";
+      };
+
+      const formatHours = (milliseconds) => {
+        const totalMinutes = Math.round(milliseconds / 60000);
+        const hours = Math.floor(totalMinutes / 60);
+        const minutes = totalMinutes % 60;
+        if (hours === 0) return `${minutes}m`;
+        if (minutes === 0) return `${hours}h`;
+        return `${hours}h ${minutes}m`;
+      };
+
+      const formatDayNote = (dateTime) => {
+        return new Date(dateTime).toLocaleTimeString("en-US", {
+          hour: "numeric",
+          minute: "2-digit",
+        });
+      };
+
+      const renderWeekDashboard = () => {
+        const sessions = loadSessions();
+        const now = new Date();
+        const weekStart = new Date(now);
+        weekStart.setDate(now.getDate() - ((now.getDay() + 6) % 7));
+        weekStart.setHours(0, 0, 0, 0);
+
+        const days = Array.from({ length: 7 }, (_, index) => {
+          const day = new Date(weekStart);
+          day.setDate(weekStart.getDate() + index);
+          return day;
+        });
+
+        weekGridEl.innerHTML = days
+          .map((day) => {
+            const key = day.toISOString().slice(0, 10);
+            const daySessions = sessions.filter(
+              (session) => session.date === key,
+            );
+            const totalMs = daySessions.reduce(
+              (sum, session) => sum + (session.durationMs || 0),
+              0,
+            );
+            const noteText = daySessions.length
+              ? daySessions
+                  .map(
+                    (session) =>
+                      `${formatDayNote(session.startedAt)} → ${formatDayNote(session.endedAt)}`,
+                  )
+                  .join(" • ")
+              : "No session yet";
+            const isToday = day.toDateString() === new Date().toDateString();
+
+            return `
+              <div class="week-day ${isToday ? "is-today" : ""}">
+                <div class="week-day__label">${day.toLocaleDateString("en-US", { weekday: "short" })}</div>
+                <div class="week-day__hours">${formatHours(totalMs)}</div>
+                <div class="week-day__notes">${noteText}</div>
+              </div>
+            `;
+          })
+          .join("");
+      };
+
+      restStartBtn.addEventListener("click", startRestTimer);
+      restPauseBtn.addEventListener("click", pauseRestTimer);
+      restResetBtn.addEventListener("click", resetRestTimer);
+      stopwatchToggleBtn.addEventListener("click", () => {
+        if (workoutState.stopwatchRunning) {
+          stopStopwatch();
+        } else {
+          startStopwatch();
+        }
+      });
+      stopwatchResetBtn.addEventListener("click", resetStopwatch);
+
+      const restoreSavedState = () => {
+        try {
+          const savedRest = JSON.parse(
+            localStorage.getItem(storageKeys.rest) || "null",
+          );
+          if (savedRest) {
+            workoutState.restRemaining = savedRest.restRemaining || 60;
+            workoutState.restRunning = Boolean(savedRest.restRunning);
+          }
+          const savedStopwatch = JSON.parse(
+            localStorage.getItem(storageKeys.stopwatch) || "null",
+          );
+          if (savedStopwatch) {
+            workoutState.stopwatchRunning = Boolean(
+              savedStopwatch.stopwatchRunning,
+            );
+            workoutState.stopwatchStartedAt =
+              savedStopwatch.stopwatchStartedAt || null;
+            workoutState.stopwatchElapsedMs =
+              savedStopwatch.stopwatchElapsedMs || 0;
+          }
+        } catch (error) {
+          console.error(error);
+        }
+      };
+
+      const syncStateToStorage = () => {
+        localStorage.setItem(storageKeys.rest, JSON.stringify(workoutState));
+        localStorage.setItem(
+          storageKeys.stopwatch,
+          JSON.stringify(workoutState),
+        );
+      };
+
+      const initializeDashboard = () => {
+        restoreSavedState();
+        renderRestTimer();
+        if (workoutState.stopwatchRunning) {
+          stopwatchStatusEl.textContent = "Live";
+          stopwatchToggleBtn.textContent = "Stop";
+          stopwatchNotesEl.textContent =
+            "Session resumed from your last visit.";
+          const elapsedNow =
+            workoutState.stopwatchElapsedMs +
+            (Date.now() - workoutState.stopwatchStartedAt);
+          stopwatchDisplayEl.textContent = formatStopwatchTime(elapsedNow);
+          workoutState.stopwatchTimerId = window.setInterval(() => {
+            const liveElapsed =
+              workoutState.stopwatchElapsedMs +
+              (Date.now() - workoutState.stopwatchStartedAt);
+            stopwatchDisplayEl.textContent = formatStopwatchTime(liveElapsed);
+          }, 1000);
+        } else {
+          stopwatchDisplayEl.textContent = formatStopwatchTime(
+            workoutState.stopwatchElapsedMs,
+          );
+        }
+        renderExerciseTracker();
+        updateStreakUI();
+        renderWeekDashboard();
+      };
+
+      addExerciseCheckboxes();
       updateStatusInfo();
       updateMobileExerciseText();
+      initializeDashboard();
       setInterval(updateStatusInfo, 60000);
+      setInterval(syncStateToStorage, 1000);
       window.addEventListener("resize", updateMobileExerciseText);
 
       if (window.location.hash) {
