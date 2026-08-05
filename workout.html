@@ -42,12 +42,12 @@
       </section>
 
       <section class="dashboard-grid">
-        <div class="dashboard-card">
+        <div class="dashboard-card" id="rest-card">
           <div class="dashboard-card__head">
             <div class="dashboard-card__title">Rest timer</div>
-            <div class="dashboard-card__badge">1 min</div>
+            <div class="dashboard-card__badge">3 min</div>
           </div>
-          <div class="dashboard-card__value" id="rest-timer">01:00</div>
+          <div class="dashboard-card__value" id="rest-timer">03:00</div>
           <div class="dashboard-card__actions">
             <button class="btn btn-primary" id="rest-start">Start</button>
             <button class="btn" id="rest-pause">Pause</button>
@@ -967,6 +967,7 @@
       const restStartBtn = document.getElementById("rest-start");
       const restPauseBtn = document.getElementById("rest-pause");
       const restResetBtn = document.getElementById("rest-reset");
+      const restCardEl = document.getElementById("rest-card");
 
       const stopwatchDisplayEl = document.getElementById("stopwatch-display");
       const stopwatchStatusEl = document.getElementById("stopwatch-status");
@@ -980,7 +981,7 @@
       const weekGridEl = document.getElementById("week-grid");
 
       const workoutState = {
-        restRemaining: 60,
+        restRemaining: 180,
         restRunning: false,
         restTimerId: null,
         stopwatchRunning: false,
@@ -1032,6 +1033,14 @@
 
       dayCards.forEach((card) => observer.observe(card));
 
+      const moveRestTimerCard = (targetId) => {
+        if (!restCardEl) return;
+        const targetCard = document.getElementById(targetId);
+        if (!targetCard) return;
+        targetCard.insertAdjacentElement("afterend", restCardEl);
+        restCardEl.classList.add("rest-card--inserted");
+      };
+
       overviewLinks.forEach((link) => {
         link.addEventListener("click", (event) => {
           const href = link.getAttribute("href");
@@ -1042,6 +1051,7 @@
           history.pushState(null, "", href);
           clearHighlights();
           activeHighlightId = targetId;
+          moveRestTimerCard(targetId);
 
           document.getElementById(targetId)?.scrollIntoView({
             behavior: "smooth",
@@ -1049,6 +1059,15 @@
           });
         });
       });
+
+      const syncRestCardWithHash = () => {
+        const currentHash = window.location.hash.slice(1);
+        if (currentHash) {
+          moveRestTimerCard(currentHash);
+        }
+      };
+
+      window.addEventListener("popstate", syncRestCardWithHash);
 
       const updateStatusInfo = () => {
         if (todayDateEl) {
@@ -1333,16 +1352,16 @@
         workoutState.restTimerId = window.setInterval(() => {
           workoutState.restRemaining -= 1;
           if (workoutState.restRemaining <= 0) {
-            workoutState.restRemaining = 60;
+            workoutState.restRemaining = 180;
             workoutState.restRunning = false;
             clearInterval(workoutState.restTimerId);
             restStatusEl.textContent = "Rest complete — ready to go.";
             if (window.Notification && Notification.permission === "granted") {
               new Notification("Rest timer complete", {
-                body: "Your 1 minute rest is done.",
+                body: "Your 3 minute rest is done.",
               });
             } else {
-              window.alert("Rest timer complete! Your 1 minute rest is done.");
+              window.alert("Rest timer complete! Your 3 minute rest is done.");
             }
           }
           renderRestTimer();
@@ -1359,7 +1378,7 @@
       };
 
       const resetRestTimer = () => {
-        workoutState.restRemaining = 60;
+        workoutState.restRemaining = 180;
         workoutState.restRunning = false;
         clearInterval(workoutState.restTimerId);
         restStatusEl.textContent = "Reset for the next round.";
@@ -1577,6 +1596,7 @@
       if (window.location.hash) {
         const initialId = window.location.hash.slice(1);
         activeHighlightId = initialId;
+        moveRestTimerCard(initialId);
         window.setTimeout(() => {
           document.getElementById(initialId)?.scrollIntoView({
             behavior: "smooth",

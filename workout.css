@@ -123,6 +123,29 @@ header {
   padding: 18px 18px 16px;
 }
 
+#rest-card {
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.rest-card--inserted {
+  margin: 14px 0 18px;
+  animation: restCardLift 0.35s ease forwards;
+}
+
+@keyframes restCardLift {
+  from {
+    opacity: 0;
+    transform: translateY(-18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .dashboard-card__head,
 .week-card__head {
   display: flex;
@@ -325,6 +348,10 @@ tr.has-checkline.is-complete td {
     opacity 0.3s ease,
     box-shadow 0.3s ease;
   box-shadow: 0 0 0 rgba(62, 123, 250, 0);
+}
+
+.mobile-item.is-complete {
+  opacity: 0.72;
 }
 
 .mobile-item.is-complete::after {
@@ -652,8 +679,10 @@ tr:last-child td {
   }
 
   .mobile-item {
-    padding: 12px 0;
+    position: relative;
+    padding: 12px 40px 12px 0;
     border-top: 1px solid var(--line-soft);
+    display: block;
   }
 
   .mobile-item:first-of-type {
@@ -664,14 +693,28 @@ tr:last-child td {
   .mobile-item strong {
     display: block;
     color: var(--ink);
-    margin-bottom: 4px;
+    margin-bottom: 6px;
   }
 
   .mobile-item span {
     display: block;
     color: var(--ink-dim);
     font-size: 0.9rem;
-    line-height: 1.45;
+    line-height: 1.5;
+    margin: 0;
+    padding: 0;
+    text-indent: 0;
+  }
+
+  .mobile-item__check {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
   }
 
   .countdown-line {
