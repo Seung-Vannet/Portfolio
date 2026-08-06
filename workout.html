@@ -11,6 +11,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="workout.css" />
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   </head>
   <body>
     <div class="page">
@@ -984,6 +985,7 @@
         restRemaining: 180,
         restRunning: false,
         restTimerId: null,
+        restSecondsTracked: 0,
         stopwatchRunning: false,
         stopwatchStartedAt: null,
         stopwatchElapsedMs: 0,
@@ -997,6 +999,23 @@
         exercises: "workout-exercise-progress",
         streak: "workout-streak",
       };
+
+      const supabaseConfig = window.__SUPABASE_CONFIG__ || {
+        url: "https://your-project-id.supabase.co",
+        anonKey: "your-anon-key",
+      };
+      const supabaseEnabled =
+        Boolean(supabaseConfig?.url) &&
+        Boolean(supabaseConfig?.anonKey) &&
+        !supabaseConfig.url.includes("your-project-id") &&
+        !supabaseConfig.anonKey.includes("your-anon-key");
+      const supabase =
+        supabaseEnabled && window.supabase
+          ? window.supabase.createClient(
+              supabaseConfig.url,
+              supabaseConfig.anonKey,
+            )
+          : null;
 
       const clearHighlights = () => {
         dayCards.forEach((card) => card.classList.remove("is-highlighted"));
@@ -1224,8 +1243,37 @@
         );
       };
 
+      const normalizeSessionRecord = (session) => ({
+        id:
+          session.id ||
+          `${session.date || "session"}-${session.startedAt || Date.now()}`,
+        date:
+          session.date ||
+          session.created_at?.slice(0, 10) ||
+          new Date().toISOString().slice(0, 10),
+        started_at: session.startedAt || session.started_at || null,
+        ended_at: session.endedAt || session.ended_at || null,
+        duration_ms: Number(session.durationMs || session.duration_ms || 0),
+        rest_seconds: Number(session.restSeconds || session.rest_seconds || 0),
+        workout_seconds: Number(
+          session.workoutSeconds || session.workout_seconds || 0,
+        ),
+        created_at:
+          session.createdAt || session.created_at || new Date().toISOString(),
+      });
+
       const saveSessions = (sessions) => {
         localStorage.setItem(storageKeys.sessions, JSON.stringify(sessions));
+
+        if (!supabase) return;
+
+        const payload = sessions.slice(-100).map(normalizeSessionRecord);
+        supabase
+          .from("workout_sessions")
+          .upsert(payload, { onConflict: "id" })
+          .catch((error) => {
+            console.warn("Supabase save failed:", error);
+          });
       };
 
       const loadSessions = () => {
@@ -1233,6 +1281,41 @@
           return JSON.parse(localStorage.getItem(storageKeys.sessions) || "[]");
         } catch (error) {
           return [];
+        }
+      };
+
+      const loadSessionsFromSupabase = async () => {
+        if (!supabase) return loadSessions();
+
+        try {
+          const { data, error } = await supabase
+            .from("workout_sessions")
+            .select("*")
+            .order("created_at", { ascending: true });
+
+          if (error) throw error;
+
+          const normalized = (data || []).map((session) => ({
+            id: session.id,
+            date: session.date || session.created_at?.slice(0, 10),
+            startedAt: session.started_at,
+            endedAt: session.ended_at,
+            durationMs: Number(session.duration_ms || 0),
+            restSeconds: Number(session.rest_seconds || 0),
+            workoutSeconds: Number(session.workout_seconds || 0),
+          }));
+
+          if (normalized.length) {
+            localStorage.setItem(
+              storageKeys.sessions,
+              JSON.stringify(normalized),
+            );
+          }
+
+          return normalized;
+        } catch (error) {
+          console.warn("Supabase load failed:", error);
+          return loadSessions();
         }
       };
 
@@ -1351,6 +1434,9 @@
         restStatusEl.textContent = "Counting down...";
         workoutState.restTimerId = window.setInterval(() => {
           workoutState.restRemaining -= 1;
+          if (workoutState.stopwatchRunning) {
+            workoutState.restSecondsTracked += 1;
+          }
           if (workoutState.restRemaining <= 0) {
             workoutState.restRemaining = 180;
             workoutState.restRunning = false;
@@ -1397,6 +1483,7 @@
 
         workoutState.stopwatchRunning = true;
         workoutState.stopwatchStartedAt = Date.now();
+        workoutState.restSecondsTracked = 0;
         stopwatchStatusEl.textContent = "Live";
         stopwatchNotesEl.textContent =
           "Session started — you can stop it when you leave.";
@@ -1430,9 +1517,11 @@
           startedAt: startedAt.toISOString(),
           endedAt: endedAt.toISOString(),
           durationMs: elapsedMs,
+          workoutSeconds: Math.round(elapsedMs / 1000),
+          restSeconds: workoutState.restSecondsTracked,
         });
         saveSessions(sessions);
-        renderWeekDashboard();
+        renderWeekDashboard(sessions);
         stopwatchNotesEl.textContent = `Session saved • ${formatStopwatchTime(elapsedMs)} total.`;
         stopwatchToggleBtn.textContent = "Start";
         recordWorkoutActivity();
@@ -1467,8 +1556,7 @@
         });
       };
 
-      const renderWeekDashboard = () => {
-        const sessions = loadSessions();
+      const renderWeekDashboard = (sessions = loadSessions()) => {
         const now = new Date();
         const weekStart = new Date(now);
         weekStart.setDate(now.getDate() - ((now.getDay() + 6) % 7));
@@ -1557,9 +1645,16 @@
         );
       };
 
-      const initializeDashboard = () => {
+      const initializeDashboard = async () => {
         restoreSavedState();
         renderRestTimer();
+        const remoteSessions = await loadSessionsFromSupabase();
+        const sessions = remoteSessions.length
+          ? remoteSessions
+          : loadSessions();
+        if (sessions.length) {
+          saveSessions(sessions);
+        }
         if (workoutState.stopwatchRunning) {
           stopwatchStatusEl.textContent = "Live";
           stopwatchToggleBtn.textContent = "Stop";
@@ -1582,7 +1677,7 @@
         }
         renderExerciseTracker();
         updateStreakUI();
-        renderWeekDashboard();
+        renderWeekDashboard(sessions);
       };
 
       addExerciseCheckboxes();
