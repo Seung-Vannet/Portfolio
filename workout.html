@@ -958,7 +958,8 @@
       const workoutState = {
         restRemaining: 180,
         restRunning: false,
-        restTimerId: null,
+        restStartedAt: null,
+        restTargetAt: null,
         stopwatchRunning: false,
         stopwatchStartedAt: null,
         stopwatchElapsedMs: 0,
@@ -1280,34 +1281,45 @@
         return;
       };
 
+      const renderRestTimer = () => {
+        if (!workoutState.restRunning && workoutState.restTargetAt) {
+          const now = Date.now();
+          const remaining = Math.max(
+            0,
+            Math.ceil((workoutState.restTargetAt - now) / 1000),
+          );
+          workoutState.restRemaining = remaining;
+          workoutState.restTargetAt = null;
+        }
+
+        if (workoutState.restRunning && workoutState.restTargetAt) {
+          const now = Date.now();
+          const remaining = Math.max(
+            0,
+            Math.ceil((workoutState.restTargetAt - now) / 1000),
+          );
+          workoutState.restRemaining = remaining;
+        }
+
+        restTimerEl.textContent = formatClock(workoutState.restRemaining);
+        restStartBtn.textContent = workoutState.restRunning
+          ? "Running"
+          : "Start";
+      };
+
       const startRestTimer = () => {
         if (workoutState.restRunning) return;
         workoutState.restRunning = true;
+        workoutState.restTargetAt =
+          Date.now() + workoutState.restRemaining * 1000;
         restStatusEl.textContent = "Counting down...";
-        workoutState.restTimerId = window.setInterval(() => {
-          workoutState.restRemaining -= 1;
-          if (workoutState.restRemaining <= 0) {
-            workoutState.restRemaining = 180;
-            workoutState.restRunning = false;
-            clearInterval(workoutState.restTimerId);
-            restStatusEl.textContent = "Rest complete — ready to go.";
-            if (window.Notification && Notification.permission === "granted") {
-              new Notification("Rest timer complete", {
-                body: "Your 3 minute rest is done.",
-              });
-            } else {
-              window.alert("Rest timer complete! Your 3 minute rest is done.");
-            }
-          }
-          renderRestTimer();
-        }, 1000);
         renderRestTimer();
       };
 
       const pauseRestTimer = () => {
         if (!workoutState.restRunning) return;
         workoutState.restRunning = false;
-        clearInterval(workoutState.restTimerId);
+        workoutState.restTargetAt = null;
         restStatusEl.textContent = "Paused — press start when you are ready.";
         renderRestTimer();
       };
@@ -1315,16 +1327,9 @@
       const resetRestTimer = () => {
         workoutState.restRemaining = 180;
         workoutState.restRunning = false;
-        clearInterval(workoutState.restTimerId);
+        workoutState.restTargetAt = null;
         restStatusEl.textContent = "Reset for the next round.";
         renderRestTimer();
-      };
-
-      const renderRestTimer = () => {
-        restTimerEl.textContent = formatClock(workoutState.restRemaining);
-        restStartBtn.textContent = workoutState.restRunning
-          ? "Running"
-          : "Start";
       };
 
       const startStopwatch = () => {
@@ -1336,12 +1341,6 @@
         stopwatchNotesEl.textContent =
           "Session started — you can stop it when you leave.";
         stopwatchToggleBtn.textContent = "Stop";
-        workoutState.stopwatchTimerId = window.setInterval(() => {
-          const elapsed =
-            workoutState.stopwatchElapsedMs +
-            (Date.now() - workoutState.stopwatchStartedAt);
-          stopwatchDisplayEl.textContent = formatStopwatchTime(elapsed);
-        }, 1000);
         recordWorkoutActivity();
       };
 
@@ -1354,7 +1353,6 @@
         workoutState.stopwatchElapsedMs = elapsedMs;
         workoutState.stopwatchRunning = false;
         workoutState.stopwatchStartedAt = null;
-        clearInterval(workoutState.stopwatchTimerId);
         stopwatchStatusEl.textContent = "Saved";
         stopwatchDisplayEl.textContent = formatStopwatchTime(elapsedMs);
         const startedAt = new Date(Date.now() - elapsedMs);
@@ -1464,8 +1462,9 @@
             localStorage.getItem(storageKeys.rest) || "null",
           );
           if (savedRest) {
-            workoutState.restRemaining = savedRest.restRemaining || 60;
+            workoutState.restRemaining = savedRest.restRemaining || 180;
             workoutState.restRunning = Boolean(savedRest.restRunning);
+            workoutState.restTargetAt = savedRest.restTargetAt || null;
           }
           const savedStopwatch = JSON.parse(
             localStorage.getItem(storageKeys.stopwatch) || "null",
@@ -1490,6 +1489,19 @@
           storageKeys.stopwatch,
           JSON.stringify(workoutState),
         );
+      };
+
+      const refreshTimers = () => {
+        if (workoutState.restRunning && workoutState.restTargetAt) {
+          renderRestTimer();
+        }
+
+        if (workoutState.stopwatchRunning && workoutState.stopwatchStartedAt) {
+          const elapsed =
+            workoutState.stopwatchElapsedMs +
+            (Date.now() - workoutState.stopwatchStartedAt);
+          stopwatchDisplayEl.textContent = formatStopwatchTime(elapsed);
+        }
       };
 
       const initializeDashboard = () => {
@@ -1525,6 +1537,7 @@
       initializeDashboard();
       setInterval(updateStatusInfo, 60000);
       setInterval(syncStateToStorage, 1000);
+      setInterval(refreshTimers, 1000);
       window.addEventListener("resize", updateMobileExerciseText);
 
       if (window.location.hash) {
