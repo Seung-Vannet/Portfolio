@@ -70,9 +70,7 @@
             <button class="btn btn-primary" id="stopwatch-toggle">Start</button>
             <button class="btn" id="stopwatch-reset">Reset</button>
           </div>
-          <div class="dashboard-card__meta" id="stopwatch-notes">
-            Tap start when you walk into the gym.
-          </div>
+          <div class="dashboard-card__meta" id="stopwatch-notes"></div>
         </div>
       </section>
 
@@ -960,6 +958,7 @@
         restRunning: false,
         restStartedAt: null,
         restTargetAt: null,
+        restTimerId: null,
         stopwatchRunning: false,
         stopwatchStartedAt: null,
         stopwatchElapsedMs: 0,
@@ -1314,13 +1313,32 @@
           Date.now() + workoutState.restRemaining * 1000;
         restStatusEl.textContent = "Counting down...";
         renderRestTimer();
+
+        // Clear any existing interval
+        if (workoutState.restTimerId) {
+          clearInterval(workoutState.restTimerId);
+        }
+
+        // Set up dedicated interval for rest timer
+        workoutState.restTimerId = setInterval(() => {
+          if (workoutState.restRunning && workoutState.restTargetAt) {
+            renderRestTimer();
+          }
+        }, 100);
       };
 
       const pauseRestTimer = () => {
         if (!workoutState.restRunning) return;
         workoutState.restRunning = false;
         workoutState.restTargetAt = null;
-        restStatusEl.textContent = "Paused — press start when you are ready.";
+
+        // Clear the interval
+        if (workoutState.restTimerId) {
+          clearInterval(workoutState.restTimerId);
+          workoutState.restTimerId = null;
+        }
+
+        restStatusEl.textContent = "";
         renderRestTimer();
       };
 
@@ -1328,6 +1346,13 @@
         workoutState.restRemaining = 180;
         workoutState.restRunning = false;
         workoutState.restTargetAt = null;
+
+        // Clear the interval
+        if (workoutState.restTimerId) {
+          clearInterval(workoutState.restTimerId);
+          workoutState.restTimerId = null;
+        }
+
         restStatusEl.textContent = "Reset for the next round.";
         renderRestTimer();
       };
@@ -1342,10 +1367,34 @@
           "Session started — you can stop it when you leave.";
         stopwatchToggleBtn.textContent = "Stop";
         recordWorkoutActivity();
+
+        // Clear any existing interval
+        if (workoutState.stopwatchTimerId) {
+          clearInterval(workoutState.stopwatchTimerId);
+        }
+
+        // Set up dedicated interval for stopwatch
+        workoutState.stopwatchTimerId = setInterval(() => {
+          if (
+            workoutState.stopwatchRunning &&
+            workoutState.stopwatchStartedAt
+          ) {
+            const elapsed =
+              workoutState.stopwatchElapsedMs +
+              (Date.now() - workoutState.stopwatchStartedAt);
+            stopwatchDisplayEl.textContent = formatStopwatchTime(elapsed);
+          }
+        }, 100);
       };
 
       const stopStopwatch = () => {
         if (!workoutState.stopwatchRunning) return;
+
+        // Clear the interval
+        if (workoutState.stopwatchTimerId) {
+          clearInterval(workoutState.stopwatchTimerId);
+          workoutState.stopwatchTimerId = null;
+        }
 
         const elapsedMs =
           workoutState.stopwatchElapsedMs +
@@ -1374,13 +1423,14 @@
       const resetStopwatch = () => {
         if (workoutState.stopwatchRunning) {
           clearInterval(workoutState.stopwatchTimerId);
+          workoutState.stopwatchTimerId = null;
         }
         workoutState.stopwatchRunning = false;
         workoutState.stopwatchStartedAt = null;
         workoutState.stopwatchElapsedMs = 0;
         stopwatchDisplayEl.textContent = "00:00:00";
         stopwatchStatusEl.textContent = "Ready";
-        stopwatchNotesEl.textContent = "Tap start when you walk into the gym.";
+        stopwatchNotesEl.textContent = "";
         stopwatchToggleBtn.textContent = "Start";
       };
 
@@ -1507,6 +1557,17 @@
       const initializeDashboard = () => {
         restoreSavedState();
         renderRestTimer();
+
+        // Clear any existing intervals before setting up new ones
+        if (workoutState.stopwatchTimerId) {
+          clearInterval(workoutState.stopwatchTimerId);
+          workoutState.stopwatchTimerId = null;
+        }
+        if (workoutState.restTimerId) {
+          clearInterval(workoutState.restTimerId);
+          workoutState.restTimerId = null;
+        }
+
         if (workoutState.stopwatchRunning) {
           stopwatchStatusEl.textContent = "Live";
           stopwatchToggleBtn.textContent = "Stop";
@@ -1517,16 +1578,31 @@
             (Date.now() - workoutState.stopwatchStartedAt);
           stopwatchDisplayEl.textContent = formatStopwatchTime(elapsedNow);
           workoutState.stopwatchTimerId = window.setInterval(() => {
-            const liveElapsed =
-              workoutState.stopwatchElapsedMs +
-              (Date.now() - workoutState.stopwatchStartedAt);
-            stopwatchDisplayEl.textContent = formatStopwatchTime(liveElapsed);
-          }, 1000);
+            if (
+              workoutState.stopwatchRunning &&
+              workoutState.stopwatchStartedAt
+            ) {
+              const liveElapsed =
+                workoutState.stopwatchElapsedMs +
+                (Date.now() - workoutState.stopwatchStartedAt);
+              stopwatchDisplayEl.textContent = formatStopwatchTime(liveElapsed);
+            }
+          }, 100);
         } else {
           stopwatchDisplayEl.textContent = formatStopwatchTime(
             workoutState.stopwatchElapsedMs,
           );
         }
+
+        // If rest timer is running, set up its interval
+        if (workoutState.restRunning && workoutState.restTargetAt) {
+          workoutState.restTimerId = window.setInterval(() => {
+            if (workoutState.restRunning && workoutState.restTargetAt) {
+              renderRestTimer();
+            }
+          }, 100);
+        }
+
         renderExerciseTracker();
         renderWeekDashboard();
       };
