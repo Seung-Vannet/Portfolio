@@ -4,6 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Seung Vannet | Portfolio</title>
+    <meta
+      name="description"
+      content="Portfolio of Seung Vannet, an IT Engineering student focused on applied machine learning, computer vision, NLP, and thoughtful digital products."
+    />
+    <meta name="theme-color" content="#050505" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -13,6 +18,7 @@
     <link rel="stylesheet" href="index.css" />
   </head>
   <body>
+    <a class="skip-link" href="#about">Skip to content</a>
     <header>
       <div class="nav-inner">
         <div
@@ -29,6 +35,7 @@
             class="nav-toggle"
             aria-label="Toggle navigation"
             aria-expanded="false"
+            aria-controls="primary-navigation"
           >
             <span class="nav-toggle-line line-1"></span>
             <span class="nav-toggle-line line-2"></span>
@@ -36,7 +43,7 @@
           </button>
           <a href="#contact" class="nav-cta">Contact</a>
         </div>
-        <ul class="nav-links">
+        <ul class="nav-links" id="primary-navigation">
           <li><a href="#about">About</a></li>
           <li><a href="#focus">Focus</a></li>
           <li><a href="#skills">Skills</a></li>
@@ -61,8 +68,8 @@
           I was handed.
         </p>
         <div class="hero-actions">
-          <a href="#about" class="btn btn-primary">More about me</a>
-          <a href="#work" class="btn btn-ghost">View my work</a>
+          <a href="#about" class="btn btn-primary">More about me <span aria-hidden="true">↓</span></a>
+          <a href="#work" class="btn btn-ghost">View my work <span aria-hidden="true">→</span></a>
         </div>
       </div>
     </section>
@@ -382,11 +389,11 @@
             <div class="project-tags">
               <span>Startup</span><span>Product</span><span>2026</span>
             </div>
-            <button class="detail-toggle" type="button">
+            <button class="detail-toggle" type="button" aria-expanded="false">
               <span>More details</span>
               <span class="arrow">→</span>
             </button>
-            <div class="detail-panel">
+            <div class="detail-panel" aria-hidden="true">
               <p>
                 I joined Coorad as an engineer while it was still an early-stage
                 product, working on features that connected users to the
@@ -465,11 +472,11 @@
             <div class="project-tags">
               <span>InsightFace</span><span>Cosine Similarity</span>
             </div>
-            <button class="detail-toggle" type="button">
+            <button class="detail-toggle" type="button" aria-expanded="false">
               <span>More details</span>
               <span class="arrow">→</span>
             </button>
-            <div class="detail-panel">
+            <div class="detail-panel" aria-hidden="true">
               <p>
                 This was probably the most technically demanding thing I've
                 built, mainly because it had to recognize people reliably in
@@ -554,11 +561,11 @@
             <div class="project-tags">
               <span>TensorFlow</span><span>XAI</span>
             </div>
-            <button class="detail-toggle" type="button">
+            <button class="detail-toggle" type="button" aria-expanded="false">
               <span>More details</span>
               <span class="arrow">→</span>
             </button>
-            <div class="detail-panel">
+            <div class="detail-panel" aria-hidden="true">
               <p>
                 I built this around a DenseNet121 transfer-learning pipeline,
                 training it on HAM10000 to classify skin lesions. A raw label
@@ -656,11 +663,11 @@
               corrections a simple dictionary lookup would miss.
             </p>
             <div class="project-tags"><span>NLP</span><span>XLM-R</span></div>
-            <button class="detail-toggle" type="button">
+            <button class="detail-toggle" type="button" aria-expanded="false">
               <span>More details</span>
               <span class="arrow">→</span>
             </button>
-            <div class="detail-panel">
+            <div class="detail-panel" aria-hidden="true">
               <p>
                 Khmer doesn't have many strong tools for contextual spell
                 correction, especially for everyday writing, so I set out to
@@ -935,6 +942,8 @@
 
           button.classList.toggle("is-open", !isOpen);
           panel.classList.toggle("is-open", !isOpen);
+          button.setAttribute("aria-expanded", String(!isOpen));
+          panel.setAttribute("aria-hidden", String(isOpen));
           button.querySelector("span").textContent = isOpen
             ? "More details"
             : "Less details";
@@ -1028,6 +1037,25 @@
             navToggle.setAttribute("aria-expanded", "false");
           });
         });
+
+        document.addEventListener("keydown", (event) => {
+          if (event.key === "Escape") {
+            navMenu.classList.remove("open");
+            navToggle.setAttribute("aria-expanded", "false");
+            navToggle.focus();
+          }
+        });
+
+        document.addEventListener("click", (event) => {
+          if (
+            navMenu.classList.contains("open") &&
+            !navMenu.contains(event.target) &&
+            !navToggle.contains(event.target)
+          ) {
+            navMenu.classList.remove("open");
+            navToggle.setAttribute("aria-expanded", "false");
+          }
+        });
       }
 
       const setActiveLink = (id) => {
@@ -1055,8 +1083,18 @@
         }
       };
 
+      let navFrame;
+      const requestActiveNavUpdate = () => {
+        if (!navFrame) {
+          navFrame = requestAnimationFrame(() => {
+            updateActiveNav();
+            navFrame = undefined;
+          });
+        }
+      };
+
       updateActiveNav();
-      window.addEventListener("scroll", updateActiveNav, { passive: true });
+      window.addEventListener("scroll", requestActiveNavUpdate, { passive: true });
       window.addEventListener("resize", updateActiveNav);
 
       const logoHome = document.getElementById("logo-home");
