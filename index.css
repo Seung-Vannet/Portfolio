@@ -320,13 +320,13 @@ header {
   content: "";
   position: absolute;
   inset: 0;
-  background-image: url("img/hero_bg_profile.webp");
+  background-image: url("img/hero_bg/hero_bg_profile.webp");
   background-position: center;
   background-size: 100% auto;
   background-repeat: no-repeat;
   opacity: 0.3;
   filter: saturate(1.1) contrast(1.08);
-  transform: scale(1);
+  transform: scale(1.0);
 }
 .hero-bg::after {
   content: "";
@@ -599,8 +599,11 @@ section {
   padding: 28px;
 }
 .fact-row {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  column-gap: 12px;
+  row-gap: 6px;
+  align-items: baseline;
   padding: 12px 0;
   border-bottom: 1px solid var(--line-soft);
   font-size: 0.88rem;
@@ -612,10 +615,13 @@ section {
   color: var(--ink-faint);
   font-family: var(--font-mono);
   font-size: 0.78rem;
+  white-space: nowrap;
 }
 .fact-row .v {
   color: var(--ink);
   font-weight: 500;
+  text-align: right;
+  word-break: break-word;
 }
 .fact-badge {
   display: inline-flex;
@@ -1336,6 +1342,10 @@ footer > :last-child {
   .fact-row {
     font-size: 0.82rem;
     padding: 10px 0;
+    grid-template-columns: 1fr;
+  }
+  .fact-row .v {
+    text-align: left;
   }
   .skill-row {
     padding: 24px 0;
@@ -1784,6 +1794,10 @@ section {
 }
 .project-visual,
 .oi-media {
+  position: relative;
+  display: grid;
+  place-items: center;
+  aspect-ratio: 16 / 10;
   border-radius: 16px;
   border-color: rgba(255, 255, 255, 0.09);
   background:
@@ -1793,6 +1807,60 @@ section {
 .project-visual svg,
 .oi-media svg {
   height: 180px;
+}
+.project-visual > img,
+.oi-media > img {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: transparent;
+  z-index: 2;
+}
+.project-visual:has(> img),
+.oi-media:has(> img) {
+  position: relative;
+  isolation: isolate;
+}
+.project-visual:has(> img)::before,
+.oi-media:has(> img)::before {
+  content: "";
+  position: absolute;
+  inset: -24px;
+  z-index: 0;
+  background: var(--project-image) center / cover no-repeat;
+  filter: blur(22px) saturate(0.82) brightness(0.56);
+  opacity: 0.78;
+  transform: scale(1.08);
+}
+.project-visual:has(> img)::after,
+.oi-media:has(> img)::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: rgba(5, 5, 5, 0.2);
+  pointer-events: none;
+}
+.project-visual--skin::before {
+  filter: blur(30px) saturate(1.55) brightness(0.9) !important;
+  opacity: 1 !important;
+}
+.project-visual--skin::after {
+  background: linear-gradient(
+    135deg,
+    rgba(70, 20, 100, 0.22),
+    rgba(5, 10, 45, 0.18)
+  ) !important;
+}
+.project-visual > img + svg,
+.oi-media > img + svg {
+  display: none;
+}
+.oi-media > img.project-image--cinema {
+  height: 100%;
+  object-position: center top;
 }
 .project-card h3 {
   letter-spacing: -0.025em;
@@ -1812,6 +1880,73 @@ section {
 }
 .project-card .detail-panel {
   transition-duration: 0.42s;
+}
+.project-card .detail-panel.is-open {
+  max-height: 1000px;
+}
+.project-gallery {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 16px;
+}
+.project-gallery img {
+  display: block;
+  width: 100%;
+  height: 150px;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 12px;
+  background: transparent;
+  object-fit: contain;
+}
+.other-item .detail-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 14px;
+  padding: 7px 10px;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.075);
+  color: var(--ink);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.other-item .detail-toggle:hover { background: rgba(10, 132, 255, 0.23); }
+.other-item .detail-toggle .arrow { transition: transform 0.2s ease; }
+.other-item .detail-toggle.is-open .arrow { transform: rotate(90deg); }
+.other-item .detail-panel {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.42s ease, opacity 0.28s ease;
+}
+.other-item .detail-panel.is-open {
+  max-height: 420px;
+  opacity: 1;
+}
+.other-item .oi-media {
+  transition: aspect-ratio 0.55s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.other-item.is-gallery-open .oi-media {
+  aspect-ratio: 9 / 16;
+}
+.project-gallery--phones {
+  display: flex;
+  overflow-x: auto;
+  gap: 12px;
+  padding-bottom: 8px;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: thin;
+}
+.project-gallery--phones img {
+  height: 220px;
+  flex: 0 0 124px;
+  scroll-snap-align: start;
 }
 .project-tags span {
   border-color: transparent;
@@ -1913,6 +2048,12 @@ footer {
   .oi-media svg {
     height: 145px;
   }
+  .project-visual > img,
+  .oi-media > img {
+    height: 100%;
+  }
+  .project-gallery img { height: 120px; }
+  .project-gallery--phones img { height: 200px; }
   .other-item {
     grid-template-columns: 1fr;
   }
