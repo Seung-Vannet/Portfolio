@@ -1900,6 +1900,7 @@ section {
   object-fit: contain;
 }
 .other-item .detail-toggle {
+  align-self: flex-start;
   display: inline-flex;
   align-items: center;
   gap: 6px;
